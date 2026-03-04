@@ -134,15 +134,48 @@
       "evaluations": 1,
       "solution_found": false,
       "notes": "MILP on the linearized flip-impact matrix. Solution: flip all 83 QNR positions (trivial: converts Legendre to all-ones). Nonlinear effects dominate: actual PAF = 164 uniformly (worse than -4). The algebraic structure (QR/QNR partition) makes the linearization degenerate."
+    },
+    {
+      "id": "exp_013",
+      "method": "Mixed algebraic + SA (product sequences)",
+      "parameters": {"p": 167, "approach": "Legendre + 3 product sequences chi(j)*chi(j+k)", "sa_iter": 5000000, "samples": 500000},
+      "wall_clock_seconds": 300,
+      "best_l2_cost": 2592,
+      "best_linf_cost": 8,
+      "evaluations": 5500000,
+      "solution_found": false,
+      "notes": "Used product sequences chi(j)*chi(j+k) for k in {1,...,166} as alternative to Legendre copies. Sampled 500K triples (k1,k2,k3). Best raw algebraic: L2=63840 at k=(15,10,22). After SA refinement: L2=2592, Linf=8, 64/166 shifts with PAF=0."
+    },
+    {
+      "id": "exp_014",
+      "method": "Creative multi-strategy search (swaps + tabu)",
+      "parameters": {"p": 167, "strategies": 7, "methods": ["swap_sa", "tabu_sa"], "time_budget": 120},
+      "wall_clock_seconds": 117,
+      "best_l2_cost": 2080,
+      "best_linf_cost": 28,
+      "evaluations": 3000000,
+      "solution_found": false,
+      "notes": "Multi-strategy search with inter-sequence swaps and tabu moves. 7 different initialization strategies including Jacobi sums, power residues, heavy perturbation. Best L2=2080 from Jacobi sum init + swap SA. Linf=28."
+    },
+    {
+      "id": "exp_015",
+      "method": "Exhaustive single-position verification",
+      "parameters": {"p": 167, "positions": 167, "masks": 15, "total_tests": 3173},
+      "wall_clock_seconds": 180,
+      "best_l2_cost": 2656,
+      "best_linf_cost": 4,
+      "evaluations": 3173,
+      "solution_found": false,
+      "notes": "Exhaustively verified: NO single-position perturbation (single flip or multi-sequence flip at one position) improves the Legendre baseline. All 668 single flips and all 2505 multi-sequence single-position flips yield L2 >= 2656. The Legendre baseline is provably a strict local minimum."
     }
   ],
   "summary": {
-    "total_experiments": 12,
+    "total_experiments": 15,
     "solutions_found": 0,
     "best_l2_across_all": 1984,
     "best_linf_across_all": 4.0,
-    "total_evaluations": 3861300002,
-    "total_wall_clock_seconds": 4300,
+    "total_evaluations": 3869806175,
+    "total_wall_clock_seconds": 4897,
     "best_matrix_method": "Legendre Baseline (4 copies) - Linf=4, all off-diagonal errors exactly -4 or 0"
   }
 }

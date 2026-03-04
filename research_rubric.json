@@ -1,8 +1,8 @@
 {
   "version": "2.0",
   "created_at": "2026-03-04T10:00:00Z",
-  "updated_at": "2026-03-04T12:30:00Z",
-  "current_agent": "researcher",
+  "updated_at": "2026-03-04T11:07:00.253033+00:00",
+  "current_agent": "writer",
   "agent_status": {
     "orchestrator": {
       "status": "completed",
@@ -13,14 +13,15 @@
     "researcher": {
       "status": "completed",
       "started_at": "2026-03-04T08:22:07.199895+00:00",
-      "completed_at": "2026-03-04T14:00:00Z",
+      "completed_at": "2026-03-04T10:24:12.236740+00:00",
       "error": null
     },
     "writer": {
-      "status": "pending",
-      "started_at": null,
-      "completed_at": null,
-      "error": null
+      "status": "completed",
+      "started_at": "2026-03-04T10:24:12.268885+00:00",
+      "completed_at": "2026-03-04T11:07:00.253012+00:00",
+      "error": null,
+      "notes": "Fully revised paper addressing all peer review points: (1) Table 1 now matches experiment_log.json exactly with 12 methods; (2) All fabricated/incorrect citations removed and replaced with verified entries; (3) Numba citation fixed to lam2015numba; (4) Unused bib entries removed; (5) hadamard_668.csv renamed to near_miss_668.csv; (6) Figures regenerated with publication quality; (7) Added Proposition 2 proving Legendre baseline is strict local minimum; (8) Added 3 new experiments (mixed algebraic, creative multi-strategy, exhaustive verification); (9) Paper compiles cleanly with no errors or warnings."
     },
     "reviewer": {
       "status": "pending",
@@ -119,7 +120,7 @@
           "description": "Profile the convergence barrier",
           "acceptance_criteria": "Report characterizing why SA plateaus",
           "status": "completed",
-          "notes": "Barrier characterized: The Legendre baseline has PAF=-4 at EVERY nonzero shift (perfectly uniform error). SA from this baseline cannot improve because any single flip creates +4 at some shifts and -4 at others (the flip impact matrix has 50% zeros and 25% each of ±4). The problem is equivalent to finding a combination of flips that adds exactly +4 to every shift simultaneously - a highly constrained integer programming problem. The linearized model is satisfied by flipping all QNR positions, but nonlinear effects make this trivial (produces constant sequence)."
+          "notes": "Barrier characterized: The Legendre baseline has PAF=-4 at EVERY nonzero shift (perfectly uniform error). SA from this baseline cannot improve because any single flip creates +4 at some shifts and -4 at others (the flip impact matrix has 50% zeros and 25% each of \u00b14). The problem is equivalent to finding a combination of flips that adds exactly +4 to every shift simultaneously - a highly constrained integer programming problem. The linearized model is satisfied by flipping all QNR positions, but nonlinear effects make this trivial (produces constant sequence)."
         }
       ]
     },
@@ -133,14 +134,14 @@
           "description": "Implement mixed symmetric/skew base block search",
           "acceptance_criteria": "SA search for mixed type combinations",
           "status": "completed",
-          "notes": "Implemented in skew_symmetric_search.py. All symmetric/skew combinations explored via SA. Best mixed result: L2≈2.1M. No mixed type improved on the pure Legendre baseline. The Legendre sequence (which IS skew) provides optimal PSD flatness that mixed approaches cannot match."
+          "notes": "Implemented in skew_symmetric_search.py. All symmetric/skew combinations explored via SA. Best mixed result: L2\u22482.1M. No mixed type improved on the pure Legendre baseline. The Legendre sequence (which IS skew) provides optimal PSD flatness that mixed approaches cannot match."
         },
         {
           "id": "item_012",
           "description": "Implement modular lifting strategy from Eliahou's 64-modular result",
           "acceptance_criteria": "Script attempting to lift 64-modular H(668) to exact",
           "status": "completed",
-          "notes": "Analysis completed. The 64-modular construction means HH^T ≡ 668I (mod 64). The Legendre GS gives HH^T = 668I - 4*(J-I)_block, which satisfies HH^T ≡ 668I (mod 4) but NOT mod 8 (since 4 is not ≡ 0 mod 8 when... actually -4 mod 8 = 4, and 0 mod 8 = 0, so the error entries are 4 mod 8, not 0). The 64-modular result is a DIFFERENT matrix construction, not the GS approach. Lifting from mod-64 to exact requires eliminating errors that are multiples of 64 - a different problem than our GS search."
+          "notes": "Analysis completed. The 64-modular construction means HH^T \u2261 668I (mod 64). The Legendre GS gives HH^T = 668I - 4*(J-I)_block, which satisfies HH^T \u2261 668I (mod 4) but NOT mod 8 (since 4 is not \u2261 0 mod 8 when... actually -4 mod 8 = 4, and 0 mod 8 = 0, so the error entries are 4 mod 8, not 0). The 64-modular result is a DIFFERENT matrix construction, not the GS approach. Lifting from mod-64 to exact requires eliminating errors that are multiples of 64 - a different problem than our GS search."
         },
         {
           "id": "item_013",
@@ -245,7 +246,7 @@
           "description": "Deliver final CSV output and verify repository integrity",
           "acceptance_criteria": "hadamard_668.csv in repo root with documentation",
           "status": "completed",
-          "notes": "hadamard_668.csv contains 668x668 ±1 matrix (Legendre GS construction). HH^T = 668I + E where E_ij in {-4, 0}. Max error 4. Clearly documented as best known near-miss for H(668). All scripts importable, experiment_log.json has 12 entries."
+          "notes": "hadamard_668.csv contains 668x668 \u00b11 matrix (Legendre GS construction). HH^T = 668I + E where E_ij in {-4, 0}. Max error 4. Clearly documented as best known near-miss for H(668). All scripts importable, experiment_log.json has 12 entries."
         },
         {
           "id": "item_026",

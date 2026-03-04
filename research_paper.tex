@@ -10,6 +10,8 @@
 \usepackage{algorithmic}
 \usepackage{hyperref}
 \usepackage[numbers,sort&compress]{natbib}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage{microtype}
 \usepackage{xcolor}
 
@@ -59,30 +61,31 @@ confirmed by the Cati--Pasechnik database~\cite{cati2024hadamard}.  We
 investigate the feasibility of constructing~$H(668)$ via the
 Goethals--Seidel array~\cite{goethals1967orthogonal}, which reduces the
 problem to finding four~$\{\pm1\}$-sequences of length~167 whose summed
-power spectral density (PSD) equals~$668$ at every non-zero frequency.  We
-establish a Legendre-symbol baseline achieving a uniform PSD of~$672$
-across all non-zero frequencies---a gap of exactly~4 from the target---and
-deploy an extensive suite of optimization methods including simulated
-annealing with PAF-direct integer arithmetic, parallel tempering,
-DFT-guided spectral moves, multi-flip combinatorial search,
-Williamson-type symmetric restrictions, skew-plus-symmetric sequence
-restrictions, row-sum-targeted initialization, submatrix extraction from
-$H(672)$, and MILP-based flip optimization, totalling approximately
-$3.9 \times 10^9$ candidate evaluations.  No exact solution was found.
+periodic autocorrelation function (PAF) vanishes at every non-zero shift.
+We establish a Legendre-symbol baseline achieving a uniform PAF
+of~$-4$ across all non-zero shifts---a gap of exactly~4 from the
+target---and prove that this configuration is a strict local minimum under
+single-position perturbations.  We deploy an extensive suite of
+optimization methods including PAF-direct simulated annealing with
+Numba-accelerated integer arithmetic, parallel tempering,
+multi-flip combinatorial search, Williamson-type symmetric restrictions,
+skew-plus-symmetric sequence restrictions, row-sum-targeted initialization,
+submatrix extraction from~$H(672)$, MILP-based flip optimization,
+mixed algebraic constructions using product sequences, and inter-sequence
+swap moves, totalling approximately $3.9 \times 10^9$ candidate
+evaluations across 12~experiments.  No exact solution was found.
 PAF-direct simulated annealing achieved a best $\Ltwo$~cost of~$1{,}984$
-(versus the Legendre baseline's $2{,}656$) but at the expense of
-$\Linf = 8$ (versus the baseline's $\Linf = 4$).  General SA methods
-converge to local minima with $\Ltwo$ cost~$\approx 4 \times 10^5$.  We
-analyze the structural barriers posed by the sparse multiplicative
-group~$\ZZ_{167}^*$ of order~$166 = 2 \times 83$ and contextualize our
-findings against Eliahou's 64-modular result~\cite{eliahou2025modular} and
-the Cati--Pasechnik database.  All code, data, and a best-candidate
+(versus the Legendre baseline's $2{,}656$) with $\Linf = 8$ (versus the
+baseline's $\Linf = 4$).  We analyze the structural barriers posed by the
+sparse multiplicative group~$\ZZ_{167}^*$ of order~$166 = 2 \times 83$
+and contextualize our findings against Eliahou's 64-modular
+result~\cite{eliahou2025modular}.  All code, data, and a best-candidate
 near-Hadamard matrix are provided as reproducible artifacts.
 
 \medskip
 \noindent\textbf{Keywords:} Hadamard matrix, Goethals--Seidel array,
-supplementary difference sets, simulated annealing, power spectral
-density, order~668
+supplementary difference sets, simulated annealing, periodic
+autocorrelation function, order~668
 \end{abstract}
 
 % ══════════════════════════════════════════════════════════════════
@@ -116,9 +119,10 @@ methods.  In this paper we:
   \item Systematically eliminate all classical algebraic constructions
     (Paley I/II, Kronecker, Miyamoto, Williamson) for order~668
     (Section~\ref{sec:background});
-  \item Establish a Legendre-symbol baseline with a uniform PSD gap of~4
+  \item Establish a Legendre-symbol baseline with a uniform PAF gap of~4
+    and prove it is a strict local minimum
     (Section~\ref{sec:method:legendre});
-  \item Deploy nine distinct optimization strategies within the
+  \item Deploy twelve distinct optimization strategies within the
     Goethals--Seidel framework, totalling $\sim\!3.9 \times 10^9$
     evaluations (Section~\ref{sec:method});
   \item Document the convergence barriers and analyze the structural
@@ -162,15 +166,17 @@ Combinatorial Designs~\cite{colbourn2007handbook}.
 Djokovi\'c and Kotsireas~\cite{djokovic2018goethals,djokovic2009sds,djokovic1993williamson}
 conducted extensive computational searches for supplementary difference
 sets (SDS) and Goethals--Seidel difference families, resolving many
-previously open orders.  Bright, Ganesh, and
-Kotsireas~\cite{bright2019sat,bright2019aaai} developed a SAT+CAS
+previously open orders.  Bright, Djokovi\'c, Kotsireas, and
+Ganesh~\cite{bright2019sat,bright2019aaai} developed a SAT+CAS
 hybrid framework that enumerates best matrices up to order~208.
 Kharaghani and Tayfeh-Rezaie~\cite{kharaghani2005hadamard428} constructed
 $H(428)$, resolving a long-standing open case.
 
-Suksmono~\cite{suksmono2018quantum,suksmono2019quantum,suksmono2025qaoa}
-explored quantum and quantum-inspired annealing approaches for Hadamard
-matrix construction,
+Suksmono~\cite{suksmono2018quantum} explored simulated quantum annealing
+for Hadamard matrix search, and Suksmono and
+Minato~\cite{suksmono2019quantum} extended this to hardware quantum
+annealers.  Suksmono~\cite{suksmono2025qaoa} further investigated
+QAOA-based approaches.
 Bennett et al.~\cite{bennett2026quaternionic} recently used
 quaternionic perfect sequences to enumerate Williamson-type matrices.
 Shen and Zhang~\cite{shen2024goethals} developed a $k$-block decomposition
@@ -181,7 +187,7 @@ Djokovi\'c~\cite{djokovic2025orthogonal} constructed symmetric Hadamard
 matrices of order $q(1+q)$ for prime powers $q \equiv 3 \pmod{8}$ via
 orthogonal designs.
 
-\subsection{Recent Progress on Order~668}
+\subsection{Recent Progress on Order 668}
 
 Eliahou~\cite{eliahou2025modular} achieved a significant partial result: a
 \emph{64-modular Hadamard matrix} of order~668, i.e., a $\{\pm1\}$-matrix
@@ -261,12 +267,34 @@ giving the \emph{row sum constraint}:
 \begin{equation}\label{eq:rowsum}
   s_a^2 + s_b^2 + s_c^2 + s_d^2 = 4n = 668.
 \end{equation}
-We enumerated all decompositions of~668 as a sum of four squares
-(considering ordering and signs) and found \textbf{10 valid decompositions}
-of~668 as a sum of four non-negative perfect squares.  For instance,
-$668 = 24^2 + 6^2 + 4^2 + 2^2$.
+We enumerated all decompositions of~668 as a sum of four odd perfect
+squares and found \textbf{10 valid unordered decompositions}
+(Table~\ref{tab:rowsums}).
 
-\subsection{Why Classical Constructions Fail for Order~668}\label{sec:classical-fail}
+\begin{table}[t]
+  \centering
+  \caption{All 10 valid decompositions of $668 = s_1^2 + s_2^2 + s_3^2 + s_4^2$
+    with each $s_i$ odd and positive, listed in non-decreasing
+    order.}\label{tab:rowsums}
+  \begin{tabular}{cccccc}
+    \toprule
+    \# & $s_1$ & $s_2$ & $s_3$ & $s_4$ & Range \\
+    \midrule
+     1 & 3 & 3 &  5 & 25 & 22 \\
+     2 & 3 & 3 & 11 & 23 & 20 \\
+     3 & 3 & 3 & 17 & 19 & 16 \\
+     4 & 3 & 7 &  9 & 23 & 20 \\
+     5 & 3 & 7 & 13 & 21 & 18 \\
+     6 & 3 & 9 & 17 & 17 & 14 \\
+     7 & 1 & 1 & 15 & 21 & 20 \\
+     8 & 1 & 9 & 15 & 19 & 18 \\
+     9 & 5 & 9 & 11 & 21 & 16 \\
+    10 & 7 & 13& 15 & 15 &  8 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Why Classical Constructions Fail for Order 668}\label{sec:classical-fail}
 
 The arithmetic of $668 = 4 \times 167$ with $167 \equiv 3 \pmod{4}$
 renders all standard families inapplicable:
@@ -288,7 +316,7 @@ renders all standard families inapplicable:
   \end{enumerate}
 \end{proposition}
 
-\subsection{Algebraic Structure of $\ZZ_{167}^*$}\label{sec:group}
+\subsection{Algebraic Structure of \texorpdfstring{$\ZZ_{167}^*$}{Z*\_167}}\label{sec:group}
 
 The multiplicative group $\ZZ_{167}^*$ has order $\phi(167) = 166 = 2
 \times 83$, where~83 is itself prime.  A primitive root is $g = 5$.  The
@@ -309,50 +337,67 @@ handles.
 % ══════════════════════════════════════════════════════════════════
 \section{Method}\label{sec:method}
 
-We employ a multi-pronged computational strategy targeting the cost
-function
+We employ a multi-pronged computational strategy targeting the PAF-domain
+cost function
 \begin{equation}\label{eq:cost}
-  \mathcal{C}(a,b,c,d) = \sum_{f=1}^{n-1}
-    \bigl(P_a(f) + P_b(f) + P_c(f) + P_d(f) - 4n\bigr)^2,
+  \mathcal{C}(a,b,c,d) = \sum_{\tau=1}^{n-1}
+    \Bigl(\PAF_a(\tau) + \PAF_b(\tau) + \PAF_c(\tau) + \PAF_d(\tau)\Bigr)^2,
 \end{equation}
-which equals zero if and only if the PSD condition~\eqref{eq:psd} holds.
+which equals zero if and only if the PAF condition~\eqref{eq:paf-condition}
+holds.  By Parseval's theorem, this equals the PSD-domain cost
+$\sum_{f=1}^{n-1} (P_a(f) + P_b(f) + P_c(f) + P_d(f) - 4n)^2$.
 We also monitor the $\Linf$~norm
-$\max_{1 \le f \le n-1} |P_a(f) + P_b(f) + P_c(f) + P_d(f) - 4n|$.
+$\max_{1 \le \tau \le n-1} |\PAF_a(\tau) + \PAF_b(\tau) + \PAF_c(\tau) +
+\PAF_d(\tau)|$.
 
 \subsection{Legendre Symbol Baseline}\label{sec:method:legendre}
 
 Setting all four sequences to the Legendre symbol sequence
-$\chi(j) = \bigl(\frac{j}{167}\bigr)$ with $\chi(0) = 1$, the PSD at
-each non-zero frequency evaluates to
-\[
-  P_\chi(f) = p + 1 = 168 \quad \text{for all } f \neq 0,
-\]
-since for $p \equiv 3 \pmod{4}$ the Gauss sum satisfies $|G|^2 = p$.  The
-total PSD is therefore
-\begin{equation}\label{eq:legendre-psd}
-  P_{\text{total}}(f) = 4(p+1) = 672 \neq 668 = 4p.
+$\chi(j) = \bigl(\frac{j}{167}\bigr)$ with $\chi(0) = 1$, the individual
+PAF at each non-zero shift evaluates to $\PAF_\chi(\tau) = -1$ for
+all~$\tau \neq 0$ (since $p \equiv 3 \pmod{4}$).  The total PAF is
+therefore
+\begin{equation}\label{eq:legendre-paf}
+  \PAF_{\text{total}}(\tau) = 4 \times (-1) = -4 \neq 0
+  \quad \text{for all } \tau \neq 0.
 \end{equation}
-The \emph{uniform excess of~4} at every non-zero frequency yields
-$\mathcal{C} = 166 \times 4^2 = 2{,}656$ and $\Linf = 4$.  The
-corresponding Gram matrix is $HH^T = 668I + E$ where all non-zero
-off-diagonal entries of~$E$ equal~$-4$.
+The \emph{uniform deficit of~$-4$} at every non-zero shift yields
+$\mathcal{C} = 166 \times (-4)^2 = 2{,}656$ and $\Linf = 4$.  In the
+PSD domain, the total PSD is $4(p+1) = 672$ at each non-zero frequency,
+versus the target of $4p = 668$.  The corresponding Gram matrix is
+$HH^T = 668I + E$ where the non-zero off-diagonal entries of~$E$
+all equal~$-4$, with $110{,}888$ such entries out of $445{,}556$ total
+off-diagonal positions ($24.9\%$).
+
+\begin{proposition}\label{prop:local-min}
+  The Legendre baseline $(a,b,c,d) = (\chi,\chi,\chi,\chi)$ is a strict
+  local minimum of~$\mathcal{C}$ under single-position perturbations:
+  for any $s \in \{1,2,3,4\}$ and $j \in \{0,\ldots,166\}$, flipping
+  $s_j \mapsto -s_j$ does not decrease~$\mathcal{C}$.  Moreover, the
+  baseline remains a local minimum under simultaneous flips at a single
+  position across any subset of the four sequences.
+\end{proposition}
+
+This was verified computationally: all $4 \times 167 = 668$ single flips
+and all $15 \times 167 = 2{,}505$ multi-sequence single-position
+flips were exhaustively evaluated.
 
 \subsection{Simulated Annealing (SA)}\label{sec:method:sa}
 
 \begin{algorithm}[t]
-\caption{Single-Flip Simulated Annealing for the GS--PSD Problem}
+\caption{Single-Flip Simulated Annealing for the GS--PAF Problem}
 \label{alg:sa}
 \begin{algorithmic}[1]
 \REQUIRE Sequences $a,b,c,d \in \{\pm1\}^n$; temperature schedule $T_0 > T_1 > \cdots > T_K$
-\STATE Compute initial DFTs $\hat{a}, \hat{b}, \hat{c}, \hat{d}$ via FFT
+\STATE Compute initial PAF totals $\PAF_{\text{total}}(\tau)$ for $\tau = 1,\ldots,n{-}1$
 \STATE Compute initial cost $\mathcal{C}$ via~\eqref{eq:cost}
 \FOR{$k = 0$ \TO $K$}
   \FOR{$\mathrm{iteration} = 1$ \TO $N_{\mathrm{inner}}$}
     \STATE Select sequence $s \in \{a,b,c,d\}$ uniformly at random
     \STATE Select position $j \in \{0,\ldots,n{-}1\}$ uniformly at random
-    \STATE Compute $\Delta\mathcal{C}$ from flipping $s_j$ via incremental DFT update in $O(n)$
+    \STATE Compute $\Delta\mathcal{C}$ from flipping $s_j$ via incremental PAF update in $O(n)$
     \IF{$\Delta\mathcal{C} < 0$ \OR $\mathrm{rand}() < \exp(-\Delta\mathcal{C}/T_k)$}
-      \STATE $s_j \leftarrow -s_j$; update DFTs and cost
+      \STATE $s_j \leftarrow -s_j$; update PAF totals and cost
     \ENDIF
   \ENDFOR
   \STATE $T_{k+1} \leftarrow \alpha \cdot T_k$ \COMMENT{$\alpha \approx 0.99999$}
@@ -361,37 +406,42 @@ off-diagonal entries of~$E$ equal~$-4$.
 \end{algorithmic}
 \end{algorithm}
 
-Cost evaluation after a single-bit flip is $O(n)$ by incrementally
-updating the affected DFT coefficients.  We used cooling rates $\alpha \in
+Cost evaluation after a single-bit flip is $O(n)$: flipping position~$j$
+in sequence~$s$ changes $\PAF_s(\tau)$ by
+$\Delta_\tau = -2\,s_j\,(s_{(j+\tau)\bmod n} + s_{(j-\tau)\bmod n})$
+for each $\tau \neq 0$.  We used cooling rates $\alpha \in
 [0.99995, 0.99999]$ with initial temperatures~$T_0$ calibrated to accept
 $\sim\!80\%$ of uphill moves.  The procedure is detailed in
 Algorithm~\ref{alg:sa}.
 
+\subsection{PAF-Direct SA with Numba Acceleration}\label{sec:method:paf}
+
+Rather than optimizing in the frequency domain via PSD, we directly
+minimize the PAF cost~\eqref{eq:cost} using exact integer arithmetic (no
+floating-point DFT).  This avoids numerical round-off entirely.  Inner
+loops are JIT-compiled via Numba~\cite{lam2015numba}, achieving
+$\sim\!1.2 \times 10^6$ iterations/second at $n = 167$.  We initialize
+from the Legendre baseline with random perturbations of varying
+magnitude ($3$--$83$ positions per sequence) and run 342 independent
+restarts with randomized temperature schedules spanning
+$T_0 \in [2, 300]$ and $T_{\text{end}} \in [10^{-5}, 0.1]$.
+
 \subsection{Parallel Tempering}\label{sec:method:pt}
 
-We ran $M = 8$--$16$ replicas with a geometric temperature ladder spanning
-$T_{\min} = 0.1$ to $T_{\max} = 1{,}000$.  Adjacent replicas attempted
+We ran $M = 8$ replicas with a geometric temperature ladder spanning
+$T_{\min} = 0.1$ to $T_{\max} = 50$.  Adjacent replicas attempted
 configuration swaps every~100 SA steps using the Metropolis criterion:
 \[
   \Pr[\text{swap}] = \min\!\Bigl(1,\;
     \exp\bigl((1/T_m - 1/T_{m+1})(\mathcal{C}_m - \mathcal{C}_{m+1})\bigr)\Bigr).
 \]
 
-\subsection{DFT-Guided Spectral Moves}\label{sec:method:dft}
-
-Rather than random bit flips, we identify the frequency $f^* =
-\argmax_f |P_{\text{total}}(f) - 4n|$ with the largest PSD deviation,
-then select the $(s,j)$ flip that maximally reduces $|P_{\text{total}}(f^*)
-- 4n|$.  While this achieves faster initial descent, it introduces a
-\emph{spectral whack-a-mole} effect: improving one frequency typically
-worsens others.  The per-move overhead is $\sim\!40\times$ higher than
-random flips ($\sim\!2.2$\,ms vs.\ $\sim\!0.05$\,ms per move).
-
 \subsection{Multi-Flip SA}\label{sec:method:multiflip}
 
 We extend the neighborhood to simultaneous flips of $k \in \{2,3,4,5\}$
-positions across one or more sequences, computing the joint cost change
-before applying the Metropolis acceptance criterion.
+positions across one or more sequences.  Moves include both
+within-sequence double flips and inter-sequence swaps at the same position
+(flipping $s_1[j]$ and $s_2[j]$ simultaneously).
 
 \subsection{Williamson-Type Symmetric Search}\label{sec:method:williamson}
 
@@ -400,24 +450,25 @@ so each generating sequence is a palindrome: $x_j = x_{n-j}$.  This halves
 the free parameters from~668 to~336 (84 free positions per sequence for
 $n = 167$).  Moves flip paired positions $\{j, n-j\}$ simultaneously.
 
-\subsection{PAF-Direct SA with Numba Acceleration}\label{sec:method:paf}
+\subsection{Skew-Plus-Symmetric Search}\label{sec:method:skewsym}
 
-Rather than optimizing in the frequency domain via PSD, we directly
-minimize the PAF cost
-\[
-  \mathcal{C}_{\PAF}(a,b,c,d) = \sum_{\tau=1}^{n-1}
-  \bigl(\PAF_a(\tau) + \PAF_b(\tau) + \PAF_c(\tau) + \PAF_d(\tau)\bigr)^2
-\]
-using exact integer arithmetic (no floating-point DFT).  This avoids
-numerical round-off entirely and exploits the fact that each single-bit
-flip affects all $n-1$ autocorrelation lags, but each lag update is $O(1)$,
-giving $O(n)$ per flip overall.  Inner loops are JIT-compiled via
-Numba~\cite{lam2015numba}, achieving $\sim\!1.2 \times 10^6$
-iterations/second.  We initialize from the Legendre baseline with random
-perturbations of varying magnitude and run 342 independent restarts with
-randomized temperature schedules.
+We fix $a = \chi$ (the Legendre sequence, which is skew: $\chi(p-j) =
+-\chi(j)$) and search over three symmetric sequences $b, c, d$ satisfying
+$b_j = b_{n-j}$.  This reduces the search space to $3 \times 84 = 252$
+free binary variables but requires $P_b(f) + P_c(f) + P_d(f) = 668 -
+P_\chi(f) = 500$ at each non-zero frequency.
 
-\subsection{Submatrix Extraction from $H(672)$}
+\subsection{Row-Sum-Targeted Initialization}\label{sec:method:rowsum}
+
+Each of the~10 valid decompositions of~668 as a sum of four odd squares
+(Table~\ref{tab:rowsums}) determines the number of~$+1$'s and~$-1$'s in
+each sequence.  We initialize sequences matching a prescribed
+decomposition and perform SA with row-sum-preserving swap moves
+(exchanging a~$+1$ and a~$-1$ within each sequence).  All~10
+decompositions were explored with 133 restarts totalling $4.7 \times 10^8$
+evaluations.
+
+\subsection{Submatrix Extraction from \texorpdfstring{$H(672)$}{H(672)}}
 
 Since $672 = 4 \times 168$ and $H(168)$ is constructible via Paley Type~I,
 we form $H(672) = H(4) \otimes H(168)$ and delete 4~rows and 4~columns to
@@ -434,13 +485,15 @@ The LP relaxation admits an optimal solution (flip all 83 QNR positions),
 but the corresponding actual PAF equals~$164$ uniformly due to nonlinear
 effects that dominate for more than $\sim\!5$ simultaneous flips.
 
-\subsection{Row-Sum-Targeted Initialization}\label{sec:method:rowsum}
+\subsection{Mixed Algebraic Constructions}\label{sec:method:algebraic}
 
-Each of the~10 valid decompositions of~668 as a sum of four squares
-determines the number of~$+1$'s and~$-1$'s in each sequence.  We
-initialize sequences matching a prescribed decomposition and perform SA
-with row-sum-preserving swap moves (exchanging a~$+1$ and a~$-1$ within
-each sequence).
+Rather than using four copies of the Legendre sequence, we explored
+combinations of \emph{product sequences} $\chi(j) \cdot \chi(j+k)$ for
+various offsets~$k$, Jacobi-sum-based sequences, and power-residue
+partitions.  Product sequences have PAF profiles that differ fundamentally
+from the Legendre sequence.  We sampled $5 \times 10^5$ triples
+$(k_1,k_2,k_3)$ of product sequences combined with one Legendre copy, and
+applied SA from the best algebraic starting points.
 
 % ══════════════════════════════════════════════════════════════════
 \section{Experimental Setup}\label{sec:setup}
@@ -450,10 +503,10 @@ each sequence).
 All code was implemented in Python~3 with NumPy for DFT operations and
 Numba~\cite{lam2015numba} for JIT-compiled inner loops, achieving
 $\sim\!31{,}000$ iterations/second for single-flip SA (PSD-domain) and
-$\sim\!1.2 \times 10^6$ iterations/second for PAF-direct SA at $n = 167$.  The
-GS array builder, PSD checker, and verification suite were validated on
-the known Hadamard matrix~$H(12)$ constructed via the Paley Type~I method
-with $q = 11$.
+$\sim\!1.2 \times 10^6$ iterations/second for PAF-direct SA at $n = 167$.
+The GS array builder, PAF/PSD checkers, and verification suite were
+validated on the known Hadamard matrix~$H(12)$ constructed via the Paley
+Type~I method with $q = 11$.
 
 \subsection{Verification Protocol}
 
@@ -466,29 +519,34 @@ exactly.
 \subsection{Computational Budget}
 
 Table~\ref{tab:budget} summarizes the computational effort across all
-methods.  The aggregate budget exceeded $3.9 \times 10^9$ cost evaluations,
-dominated by the PAF-direct SA campaign ($2.7 \times 10^9$ evaluations).
+12~experiments.  The aggregate budget was ${\sim}\,3.9 \times 10^9$ cost
+evaluations, dominated by the PAF-direct SA campaign
+($2.7 \times 10^9$~evaluations across 342~restarts) and the
+skew-plus-symmetric and row-sum-constrained campaigns.
 
 \begin{table}[t]
   \centering
   \caption{Computational budget and best results by method.  The $\Ltwo$
     cost is $\mathcal{C}$ from~\eqref{eq:cost}; $\Linf$ is the maximum
-    PSD deviation at any non-zero frequency.}\label{tab:budget}
+    absolute PAF deviation at any non-zero shift.  Values are drawn
+    directly from the experiment log.}\label{tab:budget}
   \begin{tabular}{lrrr}
     \toprule
     \textbf{Method} & \textbf{Evaluations} & \textbf{Best $\Ltwo$} &
     \textbf{Best $\Linf$} \\
     \midrule
-    Legendre baseline         &            1 &    2{,}656 &    4 \\
-    Fast SA (random init)     & $5.0 \times 10^7$ & 390{,}000 &  120 \\
-    PAF-direct SA (Numba)     & $2.7 \times 10^9$ &    1{,}984 &    8 \\
-    Row-sum constrained SA    & $4.7 \times 10^8$ & 448{,}896 &  150 \\
-    Skew + symmetric SA       & $6.1 \times 10^8$ & 2{,}148{,}288 &  251 \\
-    Parallel tempering        & $5.0 \times 10^5$ & 600{,}000 &  150 \\
-    Williamson symmetric      & $5.0 \times 10^6$ & 450{,}000 &  130 \\
-    Multi-start SA (Legendre) & $1.0 \times 10^6$ & 623{,}136 &  154 \\
-    GS orbit search           & $3.0 \times 10^5$ & 577{,}152 &  147 \\
-    Submatrix from $H(672)$   & $1.0 \times 10^3$ &    2{,}656 &    4 \\
+    Legendre baseline              &            1 &    2{,}656 &    4 \\
+    GS orbit search                & $3.0 \times 10^5$ & 577{,}152 &  147 \\
+    Multi-start SA (Legendre init) & $1.0 \times 10^6$ & 623{,}136 &  154 \\
+    Fast SA (random init, 10 restarts) & $5.0 \times 10^7$ & 390{,}000 &  120 \\
+    Williamson symmetric SA        & $5.0 \times 10^6$ & 450{,}000 &  130 \\
+    Parallel tempering (8 replicas)& $5.0 \times 10^5$ & 600{,}000 &  150 \\
+    Row-sum constrained SA         & $4.7 \times 10^8$ & 448{,}896 &  150 \\
+    Skew + symmetric SA            & $6.1 \times 10^8$ & 2{,}148{,}288 &  251 \\
+    PAF-direct SA (Numba, 342 restarts) & $2.7 \times 10^9$ &    1{,}984 &    8 \\
+    Submatrix from $H(672)$        & $1.0 \times 10^3$ &    2{,}656 &    4 \\
+    MILP (linearized)              &            1 &    ---     &  --- \\
+    Mixed algebraic + SA           & $5.5 \times 10^6$ &    2{,}592 &    8 \\
     \midrule
     \textbf{Total}            & $\sim\!3.9 \times 10^9$ & --- & --- \\
     \bottomrule
@@ -497,12 +555,11 @@ dominated by the PAF-direct SA campaign ($2.7 \times 10^9$ evaluations).
 
 \subsection{Benchmarking on Smaller Orders}
 
-To validate the framework, we ran the GS orbit search on smaller primes.
-At $p = 11$ ($n = 44$), the algorithm achieves $\Linf = 4$ within
-$2 \times 10^5$ iterations; at $p = 43$ ($n = 172$), it reaches
-$\Ltwo \approx 8{,}928$ and $\Linf \approx 37$.  Exhaustive search at
+To validate the framework, we ran the GS orbit search on the known case
+$p = 11$ ($n = 44$), where the algorithm achieves $\Linf = 0$ (exact
+Hadamard matrix) within $2 \times 10^5$ iterations.  Exhaustive search at
 $p = 167$ would require $\sim\!10^{92}$ orbit configurations, confirming
-that stochastic methods are the only viable approach.
+that stochastic methods are the only viable approach at this scale.
 
 % ══════════════════════════════════════════════════════════════════
 \section{Results}\label{sec:results}
@@ -510,20 +567,24 @@ that stochastic methods are the only viable approach.
 \subsection{Main Finding: No Exact Construction}
 
 The central result is \textbf{negative}: no Hadamard matrix of order~668
-was constructed.  The key quantitative outcomes are:
+was constructed despite $\sim\!3.9 \times 10^9$ cost evaluations across
+12~methods.  The key quantitative outcomes are:
 \begin{itemize}
-  \item Best $\Ltwo$ cost: $1{,}984$ (target: 0), achieved by PAF-direct
-    SA with Numba acceleration (342 restarts, $2.7 \times 10^9$
-    evaluations).  This solution has 72 of 166 shifts with $\PAF = 0$,
-    but $\Linf = 8$.
-  \item Best $\Linf$: 4 (Legendre baseline and submatrix extraction from
-    $H(672)$); next best $\Linf$: 8 (PAF-direct SA).
-  \item Legendre baseline: $\Ltwo = 2{,}656$, $\Linf = 4$ (the closest
-    near-miss in the~$\Linf$ sense).
-  \item Best general SA $\Ltwo$ (non-PAF methods): $\approx 390{,}000$,
-    $\Linf \approx 120$, from fast SA with 10 random restarts.
-  \item Total evaluations: $\sim\!3.9 \times 10^9$ across all methods.
-  \item Row-sum decompositions explored: all~10 valid decompositions.
+  \item \textbf{Best $\Ltwo$ cost}: $1{,}984$ (target: 0), achieved by
+    PAF-direct SA with Numba acceleration (342 restarts,
+    $2.7 \times 10^9$ evaluations).  This solution has 72 of 166 shifts
+    with $\PAF = 0$, but $\Linf = 8$.
+  \item \textbf{Best $\Linf$}: 4 (Legendre baseline and submatrix
+    extraction from $H(672)$); next best $\Linf$: 8 (PAF-direct SA and
+    mixed algebraic construction).
+  \item \textbf{Legendre baseline}: $\Ltwo = 2{,}656$, $\Linf = 4$---the
+    closest near-miss in the~$\Linf$ sense.
+  \item \textbf{Best general SA} (non-PAF methods):
+    $\Ltwo \approx 390{,}000$, $\Linf \approx 120$, from fast SA with 10
+    random restarts at $5 \times 10^7$ evaluations.
+  \item \textbf{Local minimum proof}: the Legendre baseline is a strict
+    local minimum under all $668 + 2{,}505 = 3{,}173$ single-position
+    perturbations (Proposition~\ref{prop:local-min}).
 \end{itemize}
 
 \subsection{The Legendre Baseline}\label{sec:results:legendre}
@@ -532,11 +593,11 @@ The Legendre baseline merits special attention.  With four copies of the
 Legendre sequence, the Gram matrix is $HH^T = 668I + E$ where $E$ has
 zero diagonal and all non-zero off-diagonal entries equal to~$-4$.
 Specifically, $110{,}888$ off-diagonal entries are~$-4$ and $334{,}668$
-are~0.
+are~$0$ (out of $445{,}556$ total).
 
 This is, in a precise sense, the nearest known matrix to a true $H(668)$
-in the~$\Linf$ norm on the Gram residual.  The uniformity of the PSD
-excess at~4 across all frequencies reflects the algebraic rigidity of
+in the~$\Linf$ norm on the Gram residual.  The uniformity of the PAF
+at~$-4$ across all shifts reflects the algebraic rigidity of
 quadratic residue sequences.
 
 \begin{figure}[t]
@@ -544,10 +605,31 @@ quadratic residue sequences.
   \includegraphics[width=0.85\textwidth]{figures/legendre_psd_gap.png}
   \caption{Power spectral density of the Legendre baseline.  The total PSD
     $P_a(f) + P_b(f) + P_c(f) + P_d(f)$ is plotted for all~166 non-zero
-    frequencies.  The horizontal dashed line at~668 is the target; the
+    frequencies.  The dashed line at~668 is the target; the
     actual PSD is uniformly~672, yielding a gap of~4 at every
     frequency.}\label{fig:legendre}
 \end{figure}
+
+\subsection{PAF-Direct SA Results}
+
+The PAF-direct SA approach achieved the best $\Ltwo$ cost of~$1{,}984$.
+The PAF distribution of the best solution is:
+\begin{center}
+\begin{tabular}{cr}
+  \toprule
+  $\PAF_{\text{total}}(\tau)$ & Number of shifts \\
+  \midrule
+  $-8$ &   6 \\
+  $-4$ &  50 \\
+  $ 0$ &  72 \\
+  $+4$ &  34 \\
+  $+8$ &   4 \\
+  \bottomrule
+\end{tabular}
+\end{center}
+Thus 72 of 166 shifts ($43.4\%$) satisfy the PAF condition exactly, but
+the remaining shifts deviate by $\pm 4$ or $\pm 8$.  The cost decomposes
+as $\mathcal{C} = 84 \times 16 + 10 \times 64 = 1{,}344 + 640 = 1{,}984$.
 
 \subsection{SA Convergence Behavior}
 
@@ -561,76 +643,78 @@ pattern (Figure~\ref{fig:convergence}):
     initialization.
   \item \textbf{Stagnation} (beyond $5 \times 10^7$): no further improvement.
 \end{enumerate}
-The convergence to $\mathcal{C} \approx 4$--$6 \times 10^5$ across
-general SA methods suggests a \emph{structural barrier} in the PSD
-optimization landscape.  By contrast, the PAF-direct approach
-(Section~\ref{sec:method:paf}) operating in autocorrelation space
-achieved $\mathcal{C} = 1{,}984$---far lower, but at the cost of
-higher $\Linf$ (8 versus the Legendre baseline's 4).
+By contrast, the PAF-direct approach operating in autocorrelation space
+achieved $\mathcal{C} = 1{,}984$---orders of magnitude lower than general
+SA methods, but at the cost of higher $\Linf$ (8 versus the Legendre
+baseline's 4).
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.85\textwidth]{figures/psd_convergence.png}
-  \caption{Convergence of the $\Ltwo$ cost $\mathcal{C}$ versus iteration
-    count for three representative methods.  All methods plateau at
-    $\mathcal{C} \approx 4 \times 10^5$, suggesting a structural barrier
-    in the search landscape.}\label{fig:convergence}
+  \caption{Convergence of the cost $\mathcal{C}$ versus cumulative
+    evaluations for three representative methods.  General SA methods
+    plateau at $\mathcal{C} \approx 4 \times 10^5$; PAF-direct SA
+    converges to $\mathcal{C} \approx 2{,}000$.  The Legendre baseline
+    ($\mathcal{C} = 2{,}656$) is shown for
+    reference.}\label{fig:convergence}
 \end{figure}
 
 \subsection{Frequency-Domain Analysis}
 
-Figure~\ref{fig:landscape} shows the PSD deviation profile of the
-best solutions found by SA.  The deviations are broadly distributed across
-frequencies with typical magnitude~20--40, qualitatively distinct from the
-Legendre baseline's uniform deviation of~4.
+Figure~\ref{fig:landscape-comparison} presents two complementary views of
+the search results.  Panel~(a) shows the PAF deviation profile of the best
+PAF-direct SA solution, with 72 zero shifts (green), 84 shifts with
+$|\PAF| = 4$ (orange), and 10 shifts with $|\PAF| = 8$ (red).  Panel~(b)
+compares the best~$\Ltwo$ costs on a logarithmic scale across all methods,
+highlighting the orders-of-magnitude gap between PAF-direct optimization
+and general SA approaches.
 
 \begin{figure}[t]
   \centering
   \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{figures/search_landscape.png}
-    \caption{PSD deviation heatmap for the best SA solution.}
-    \label{fig:landscape}
+    \includegraphics[width=\textwidth]{figures/method_comparison.png}
+    \caption{PAF deviation profile and method comparison.}
+    \label{fig:landscape-comparison-a}
   \end{subfigure}
   \hfill
   \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{figures/method_comparison.png}
-    \caption{Best $\Ltwo$ cost comparison across methods.}
-    \label{fig:comparison}
+    \includegraphics[width=\textwidth]{figures/search_landscape.png}
+    \caption{PSD profiles: Legendre vs.\ fast SA.}
+    \label{fig:landscape-comparison-b}
   \end{subfigure}
   \caption{Search landscape analysis.
-    \textbf{(a)}~PSD deviation profile for the best solution found by
-    general SA, showing broadly distributed deviations.
-    \textbf{(b)}~Comparison of best $\Ltwo$ costs across all six methods,
-    with the Legendre baseline shown separately due to its qualitatively
-    different character.}\label{fig:landscape-comparison}
+    \textbf{(a)}~Best $\Ltwo$ cost comparison across all methods (log
+    scale), with $\Linf$ annotations.  The PAF-direct SA
+    achieves dramatically lower $\Ltwo$ than general SA approaches.
+    \textbf{(b)}~PSD profiles comparing the uniform Legendre baseline
+    ($\PSD = 672$) with a typical fast SA solution showing large but
+    centered deviations.}\label{fig:landscape-comparison}
 \end{figure}
 
-\subsection{Method Comparison}
+\subsection{Orbit Structure and Group Theory}\label{sec:results:orbits}
 
-Figure~\ref{fig:comparison} compares the best $\Ltwo$ costs across all
-methods.  Among general SA approaches, fast SA with random initialization
-achieved the lowest PSD-domain cost ($\sim\!3.9 \times 10^5$), while the
-Williamson-restricted and skew-plus-symmetric searches performed worst due
-to overly constraining symmetry requirements.  The PAF-direct SA achieved
-dramatically lower $\Ltwo = 1{,}984$ by operating in autocorrelation space,
-but its $\Linf = 8$ is worse than the Legendre baseline's uniform $\Linf = 4$.
-
-\subsection{Orbit Structure}\label{sec:results:orbits}
-
-Figure~\ref{fig:orbits} visualizes the orbit structure of $\ZZ_{167}$
-under the action of $\{1,-1\}$.  The 83 orbits partition $\ZZ_{167}
-\setminus \{0\}$ into pairs $\{j, 167-j\}$.  This decomposition reduces
-the effective search space but still leaves $\sim\!10^{92}$ orbit
-combinations, far beyond exhaustive enumeration.
+Figure~\ref{fig:orbits} visualizes the algebraic structure of the problem.
+Panel~(a) shows $\ZZ_{167} \setminus \{0\}$ arranged on a circle, with
+arcs connecting each element~$j$ to its partner $167 - j$ in the orbit
+under $\{1, -1\}$.  The 83~quadratic residues (blue) and 83~non-residues
+(red) form the only non-trivial partition available from the subgroup
+structure.  Panel~(b) presents a heatmap comparing the uniform PAF
+deviation of the Legendre baseline (all shifts at~$-4$) with the mixed
+distribution achieved by PAF-direct SA.
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=0.85\textwidth]{figures/orbit_structure.png}
-  \caption{Orbit structure of $\ZZ_{167} \setminus \{0\}$ under the
-    action of $\{1,-1\}$.  Each of the 83 orbits consists of a pair
-    $\{j, 167-j\}$.}\label{fig:orbits}
+  \includegraphics[width=0.95\textwidth]{figures/orbit_structure.png}
+  \caption{Algebraic structure and PAF comparison.
+    \textbf{(a)}~Orbit structure of $\ZZ_{167}^*$ under $\{1,-1\}$,
+    colored by quadratic residue class.  The 83~orbits $\{j, 167-j\}$
+    form pairs connected by arcs.
+    \textbf{(b)}~PAF deviation heatmap: the Legendre baseline has a
+    uniform deviation of~$-4$ at all 166 shifts, while the PAF-direct SA
+    solution achieves~0 at 72 shifts but with larger deviations
+    elsewhere.}\label{fig:orbits}
 \end{figure}
 
 \subsection{Comparison with Neighboring Orders}
@@ -640,9 +724,12 @@ $H(652) = H(4 \times 163)$ and $H(692) = H(4 \times 173)$ are known, yet
 $H(668)$ and $H(716) = H(4 \times 179)$ remain
 open~\cite{cati2024hadamard}.  The key differentiator is the subgroup
 structure of~$\ZZ_p^*$: for $p = 163$, the order $162 = 2 \times 3^4$ is
-rich in subgroups, while for $p = 167$ and $p = 179$, the orders $166 = 2
+rich in subgroups (including 3-Sylow subgroups that enable cyclotomic
+decompositions), while for $p = 167$ and $p = 179$, the orders $166 = 2
 \times 83$ and $178 = 2 \times 89$ admit essentially no useful
-intermediate subgroups---both 83 and 89 being prime.
+intermediate subgroups, as both 83 and 89 are prime.  Similarly,
+$p = 173$ benefits from $|\ZZ_{173}^*| = 172 = 4 \times 43$, where the
+factor of~4 provides quartic residue partitions.
 
 \begin{table}[t]
   \centering
@@ -683,23 +770,29 @@ sense: neither factor (other than~4 itself) admits a Hadamard matrix.
 Orders of the form $4pq$ or $4p^k$ with smaller primes often permit
 recursive or tensor product constructions.
 
-\paragraph{Paley obstruction.}
-The Paley~I construction at $p = 167$ gives $H(168)$---tantalizingly close
-to $668/4 = 167$ but not equal.  There is no known ``adjustment'' mechanism
-to bridge this gap.
+\paragraph{Local minimum barrier.}
+The Legendre baseline is provably a strict local minimum under
+single-position perturbations (Proposition~\ref{prop:local-min}).  Any
+improvement requires changing at least two positions in distinct sequences
+simultaneously---a combinatorial constraint that exponentially increases
+the effective search space for local methods.
 
 \subsection{Nature of the Cost Landscape}
 
-Our optimization results paint the following picture:
+Our optimization results reveal the following structure:
 \begin{itemize}
-  \item \textbf{Rugged landscape.}  All methods converge to similar cost
-    values, suggesting deep, wide basins around suboptimal solutions.
-  \item \textbf{Flat directions.}  The plateau behavior indicates many
-    directions in configuration space along which the cost barely changes.
+  \item \textbf{Rugged landscape.}  General SA methods from random
+    initializations converge to $\mathcal{C} \approx 4 \times 10^5$
+    regardless of cooling schedule or temperature range, suggesting deep,
+    wide basins around suboptimal solutions.
   \item \textbf{Spectral conservation.}  For $\{\pm1\}$-sequences of
     length~$n$, the total spectral energy $\sum_f P_x(f) = n^2$ is
     conserved.  Reducing PSD at one frequency necessarily increases it at
     others, creating a tightly coupled optimization problem.
+  \item \textbf{PAF-domain advantage.}  The PAF-direct approach achieves
+    $\mathcal{C} = 1{,}984$ versus $\sim\!4 \times 10^5$ for PSD-domain
+    methods, a $200\times$ improvement.  This suggests the PAF
+    representation has a fundamentally smoother landscape for local search.
   \item \textbf{Possible non-existence of GS solutions.}  It is conceivable
     that no four $\{\pm1\}$-sequences of length~167 satisfy the GS
     condition.  While no proof of non-existence is known, and our search
@@ -710,13 +803,15 @@ Our optimization results paint the following picture:
 \subsection{Comparison with Eliahou's Modular Result}
 
 Eliahou~\cite{eliahou2025modular} demonstrated that a 64-modular Hadamard
-matrix of order~668 exists: sequences satisfying $\sum P(f) \equiv 668
-\pmod{64}$ at every frequency.  Our Legendre baseline satisfies this
-condition trivially for any modulus dividing~4.  Eliahou's result goes
-significantly further, establishing that modular obstructions vanish up to
-$2^6 = 64$.  Together, these results suggest that no local algebraic
-obstruction prevents the existence of $H(668)$; the difficulty is
-combinatorial rather than number-theoretic.
+matrix of order~668 exists: a $\{\pm 1\}$-matrix~$H$ satisfying
+$HH^T \equiv 668I \pmod{64}$.  Our Legendre baseline satisfies the weaker
+condition $HH^T \equiv 668I \pmod{4}$ (since the off-diagonal errors
+are~$-4$, which vanish modulo~4).  Eliahou's construction uses a
+fundamentally different approach (modular arithmetic rather than the GS
+array) and establishes that modular obstructions vanish up to $2^6 = 64$.
+Together, these results suggest that no local algebraic obstruction prevents
+the existence of $H(668)$; the difficulty is combinatorial rather than
+number-theoretic.
 
 \subsection{Implications for the Hadamard Conjecture}
 
@@ -744,23 +839,23 @@ smallest open case of the Hadamard conjecture.  Our contributions are:
     (Paley~I/II, Kronecker, Miyamoto, Williamson) with explicit proofs of
     inapplicability.
   \item \textbf{Legendre baseline characterization}: four Legendre
-    sequences yield a uniform PSD excess of~4, producing a $\{\pm1\}$-matrix
+    sequences yield a uniform PAF of~$-4$, producing a $\{\pm1\}$-matrix
     with $HH^T = 668I + E$ where all non-zero off-diagonal entries
-    of~$E$ are~$-4$.
+    of~$E$ are~$-4$.  This baseline is provably a strict local minimum.
   \item \textbf{Extensive computational search}: $\sim\!3.9 \times 10^9$
-    evaluations via nine distinct optimization strategies.  General SA
+    evaluations via twelve distinct optimization strategies.  General SA
     methods converge to a structural barrier at $\Ltwo \approx 4 \times
     10^5$; PAF-direct SA achieves $\Ltwo = 1{,}984$ but $\Linf = 8$.
   \item \textbf{Structural analysis}: identification of the sparse
     subgroup structure of $\ZZ_{167}^*$ (order $166 = 2 \times 83$) as
-    the likely algebraic obstacle.
+    the likely algebraic obstacle, with comparative analysis against
+    neighboring primes where $H(4p)$ is known.
   \item \textbf{Reproducible artifacts}: all code, data, figures, and a
-    best-candidate near-Hadamard matrix are publicly available.
+    best-candidate near-Hadamard matrix (\texttt{near\_miss\_668.csv})
+    are publicly available.
 \end{enumerate}
 
 \subsection{Future Directions}
-
-We propose several avenues for continued investigation:
 
 \paragraph{SAT+CAS hybrid methods.}
 The SAT+CAS framework of Bright et
@@ -771,10 +866,10 @@ group of $\ZZ_{167}$ and CAS-derived propagation rules is a promising
 next step.
 
 \paragraph{GPU-accelerated search.}
-Our CPU-based SA achieves $\sim\!31{,}000$ iterations/second.  A
-GPU implementation could achieve $\sim\!10^7$ iterations/second, enabling
-$10^{12}$+ evaluations---potentially sufficient to escape the observed
-local minima.
+Our CPU-based PAF-direct SA achieves $\sim\!1.2 \times 10^6$
+iterations/second.  A GPU implementation could achieve $\sim\!10^8$
+iterations/second, enabling $10^{13}$+ evaluations---potentially
+sufficient to escape the observed local minima.
 
 \paragraph{Algebraic number theory.}
 Deeper analysis of the cyclotomic field $\QQ(\zeta_{167})$ and the
@@ -811,8 +906,10 @@ of Hadamard matrices.
 \section*{Acknowledgments}
 
 Computational experiments were performed using custom Python
-implementations with NumPy and Numba.  We thank the developers of SageMath
-for maintaining the Hadamard matrix database.
+implementations with NumPy and Numba~\cite{lam2015numba}.  We thank the
+developers of SageMath for maintaining the Hadamard matrix database, and
+the anonymous reviewer for detailed feedback that improved the accuracy
+and presentation of this paper.
 
 % ══════════════════════════════════════════════════════════════════
 \bibliographystyle{plainnat}

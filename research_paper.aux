@@ -19,7 +19,7 @@
 \citation{hadamard1893resolution}
 \citation{sylvester1867thoughts}
 \citation{paley1933orthogonal}
-\citation{djokovic2018goethals,bright2021sat}
+\citation{djokovic2018goethals,bright2019sat}
 \citation{cati2024hadamard,cati2023implementing}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
 \newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
@@ -37,22 +37,27 @@
 \citation{seberry1992hadamard,seberry2020hadamard_monograph}
 \citation{delauney2011flannery}
 \citation{colbourn2007handbook}
-\citation{djokovic2018goethals,djokovic2009sds,djokovic2008williamson}
-\citation{bright2021sat,bright2019applying}
+\citation{djokovic2018goethals,djokovic2009sds,djokovic1993williamson}
+\citation{bright2019sat,bright2019aaai}
 \citation{kharaghani2005hadamard428}
-\citation{suksmono2018quantum,suksmono2025qaoa}
+\citation{suksmono2018quantum}
+\citation{suksmono2019quantum}
+\citation{suksmono2025qaoa}
 \citation{bennett2026quaternionic}
+\citation{shen2024goethals}
+\citation{london2025turyn}
+\citation{djokovic2025orthogonal}
 \citation{eliahou2025modular}
 \citation{cati2024hadamard}
 \citation{sagemath_hadamard}
 \citation{planetmath_hadamard}
-\citation{delauney2014density}
-\citation{goethals1967orthogonal}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
 \newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Classical Constructions}{2}{subsection.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Computational Searches}{2}{subsection.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Recent Progress on Order\nobreakspace  {}668}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Recent Progress on Order 668}{2}{subsection.2.3}\protected@file@percent }
+\citation{delauney2010density}
+\citation{goethals1967orthogonal}
 \citation{goethals1967orthogonal}
 \citation{djokovic2009sds,seberry1992hadamard}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Background \& Preliminaries}{3}{section.3}\protected@file@percent }
@@ -68,130 +73,147 @@
 \newlabel{sec:psd}{{3.3}{3}{The Power Spectral Density Condition}{subsection.3.3}{}}
 \newlabel{eq:psd}{{6}{3}{The Power Spectral Density Condition}{equation.3.6}{}}
 \newlabel{eq:rowsum}{{7}{3}{The Power Spectral Density Condition}{equation.3.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Why Classical Constructions Fail for Order\nobreakspace  {}668}{3}{subsection.3.4}\protected@file@percent }
-\newlabel{sec:classical-fail}{{3.4}{3}{Why Classical Constructions Fail for Order~668}{subsection.3.4}{}}
-\newlabel{prop:classical}{{2}{3}{}{theorem.2}{}}
 \citation{miyamoto1991hadamard}
 \citation{seberry2020hadamard_monograph}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces All 10 valid decompositions of $668 = s_1^2 + s_2^2 + s_3^2 + s_4^2$ with each $s_i$ odd and positive, listed in non-decreasing order.\relax }}{4}{table.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:rowsums}{{1}{4}{All 10 valid decompositions of $668 = s_1^2 + s_2^2 + s_3^2 + s_4^2$ with each $s_i$ odd and positive, listed in non-decreasing order.\relax }{table.caption.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Why Classical Constructions Fail for Order 668}{4}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:classical-fail}{{3.4}{4}{Why Classical Constructions Fail for Order 668}{subsection.3.4}{}}
+\newlabel{prop:classical}{{2}{4}{}{theorem.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Algebraic Structure of $\mathbb  {Z}_{167}^*$}{4}{subsection.3.5}\protected@file@percent }
-\newlabel{sec:group}{{3.5}{4}{Algebraic Structure of $\ZZ _{167}^*$}{subsection.3.5}{}}
-\newlabel{eq:subgroups}{{8}{4}{Algebraic Structure of $\ZZ _{167}^*$}{equation.3.8}{}}
+\newlabel{sec:group}{{3.5}{4}{Algebraic Structure of \texorpdfstring {$\ZZ _{167}^*$}{Z*\_167}}{subsection.3.5}{}}
+\newlabel{eq:subgroups}{{8}{4}{Algebraic Structure of \texorpdfstring {$\ZZ _{167}^*$}{Z*\_167}}{equation.3.8}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Method}{4}{section.4}\protected@file@percent }
 \newlabel{sec:method}{{4}{4}{Method}{section.4}{}}
 \newlabel{eq:cost}{{9}{4}{Method}{equation.4.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Legendre Symbol Baseline}{4}{subsection.4.1}\protected@file@percent }
-\newlabel{sec:method:legendre}{{4.1}{4}{Legendre Symbol Baseline}{subsection.4.1}{}}
-\newlabel{eq:legendre-psd}{{10}{4}{Legendre Symbol Baseline}{equation.4.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Simulated Annealing (SA)}{4}{subsection.4.2}\protected@file@percent }
-\newlabel{sec:method:sa}{{4.2}{4}{Simulated Annealing (SA)}{subsection.4.2}{}}
+\citation{lam2015numba}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Single-Flip Simulated Annealing for the GS--PAF Problem\relax }}{5}{algorithm.1}\protected@file@percent }
+\newlabel{alg:sa}{{1}{5}{Single-Flip Simulated Annealing for the GS--PAF Problem\relax }{algorithm.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Legendre Symbol Baseline}{5}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:method:legendre}{{4.1}{5}{Legendre Symbol Baseline}{subsection.4.1}{}}
+\newlabel{eq:legendre-paf}{{10}{5}{Legendre Symbol Baseline}{equation.4.10}{}}
+\newlabel{prop:local-min}{{3}{5}{}{theorem.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Simulated Annealing (SA)}{5}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:method:sa}{{4.2}{5}{Simulated Annealing (SA)}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}PAF-Direct SA with Numba Acceleration}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:method:paf}{{4.3}{5}{PAF-Direct SA with Numba Acceleration}{subsection.4.3}{}}
 \citation{williamson1944hadamard}
-\citation{bright2019applying}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Single-Flip Simulated Annealing for the GS--PSD Problem\relax }}{5}{algorithm.1}\protected@file@percent }
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{alg:sa}{{1}{5}{Single-Flip Simulated Annealing for the GS--PSD Problem\relax }{algorithm.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Parallel Tempering}{5}{subsection.4.3}\protected@file@percent }
-\newlabel{sec:method:pt}{{4.3}{5}{Parallel Tempering}{subsection.4.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}DFT-Guided Spectral Moves}{5}{subsection.4.4}\protected@file@percent }
-\newlabel{sec:method:dft}{{4.4}{5}{DFT-Guided Spectral Moves}{subsection.4.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Multi-Flip SA}{5}{subsection.4.5}\protected@file@percent }
-\newlabel{sec:method:multiflip}{{4.5}{5}{Multi-Flip SA}{subsection.4.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Williamson-Type Symmetric Search}{5}{subsection.4.6}\protected@file@percent }
-\newlabel{sec:method:williamson}{{4.6}{5}{Williamson-Type Symmetric Search}{subsection.4.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Row-Sum-Targeted Initialization}{5}{subsection.4.7}\protected@file@percent }
-\newlabel{sec:method:rowsum}{{4.7}{5}{Row-Sum-Targeted Initialization}{subsection.4.7}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Computational budget and best results by method. The $L_2$ cost is $\mathcal  {C}$ from\nobreakspace  {}\eqref  {eq:cost}; $L_\infty $ is the maximum PSD deviation at any non-zero frequency.\relax }}{6}{table.caption.1}\protected@file@percent }
-\newlabel{tab:budget}{{1}{6}{Computational budget and best results by method. The $\Ltwo $ cost is $\mathcal {C}$ from~\eqref {eq:cost}; $\Linf $ is the maximum PSD deviation at any non-zero frequency.\relax }{table.caption.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Experimental Setup}{6}{section.5}\protected@file@percent }
-\newlabel{sec:setup}{{5}{6}{Experimental Setup}{section.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Implementation}{6}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Verification Protocol}{6}{subsection.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Computational Budget}{6}{subsection.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Benchmarking on Smaller Orders}{6}{subsection.5.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Results}{6}{section.6}\protected@file@percent }
-\newlabel{sec:results}{{6}{6}{Results}{section.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Main Finding: No Exact Construction}{6}{subsection.6.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Power spectral density of the Legendre baseline. The total PSD $P_a(f) + P_b(f) + P_c(f) + P_d(f)$ is plotted for all\nobreakspace  {}166 non-zero frequencies. The horizontal dashed line at\nobreakspace  {}668 is the target; the actual PSD is uniformly\nobreakspace  {}672, yielding a gap of\nobreakspace  {}4 at every frequency.\relax }}{7}{figure.caption.2}\protected@file@percent }
-\newlabel{fig:legendre}{{1}{7}{Power spectral density of the Legendre baseline. The total PSD $P_a(f) + P_b(f) + P_c(f) + P_d(f)$ is plotted for all~166 non-zero frequencies. The horizontal dashed line at~668 is the target; the actual PSD is uniformly~672, yielding a gap of~4 at every frequency.\relax }{figure.caption.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}The Legendre Baseline}{7}{subsection.6.2}\protected@file@percent }
-\newlabel{sec:results:legendre}{{6.2}{7}{The Legendre Baseline}{subsection.6.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}SA Convergence Behavior}{7}{subsection.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Frequency-Domain Analysis}{7}{subsection.6.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Convergence of the $L_2$ cost $\mathcal  {C}$ versus iteration count for three representative methods. All methods plateau at $\mathcal  {C} \approx 4 \times 10^5$, suggesting a structural barrier in the search landscape.\relax }}{8}{figure.caption.3}\protected@file@percent }
-\newlabel{fig:convergence}{{2}{8}{Convergence of the $\Ltwo $ cost $\mathcal {C}$ versus iteration count for three representative methods. All methods plateau at $\mathcal {C} \approx 4 \times 10^5$, suggesting a structural barrier in the search landscape.\relax }{figure.caption.3}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Comparison of order\nobreakspace  {}668 with nearby orders of the form\nobreakspace  {}$4p$ for primes\nobreakspace  {}$p$.\relax }}{8}{table.caption.6}\protected@file@percent }
-\newlabel{tab:neighbors}{{2}{8}{Comparison of order~668 with nearby orders of the form~$4p$ for primes~$p$.\relax }{table.caption.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Method Comparison}{8}{subsection.6.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Orbit Structure}{8}{subsection.6.6}\protected@file@percent }
-\newlabel{sec:results:orbits}{{6.6}{8}{Orbit Structure}{subsection.6.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Comparison with Neighboring Orders}{8}{subsection.6.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Parallel Tempering}{6}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:method:pt}{{4.4}{6}{Parallel Tempering}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Multi-Flip SA}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:method:multiflip}{{4.5}{6}{Multi-Flip SA}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Williamson-Type Symmetric Search}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:method:williamson}{{4.6}{6}{Williamson-Type Symmetric Search}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Skew-Plus-Symmetric Search}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:method:skewsym}{{4.7}{6}{Skew-Plus-Symmetric Search}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Row-Sum-Targeted Initialization}{6}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:method:rowsum}{{4.8}{6}{Row-Sum-Targeted Initialization}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Submatrix Extraction from $H(672)$}{6}{subsection.4.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}MILP Flip Optimization}{6}{subsection.4.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Mixed Algebraic Constructions}{6}{subsection.4.11}\protected@file@percent }
+\newlabel{sec:method:algebraic}{{4.11}{6}{Mixed Algebraic Constructions}{subsection.4.11}{}}
+\citation{lam2015numba}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Computational budget and best results by method. The $L_2$ cost is $\mathcal  {C}$ from\nobreakspace  {}\eqref  {eq:cost}; $L_\infty $ is the maximum absolute PAF deviation at any non-zero shift. Values are drawn directly from the experiment log.\relax }}{7}{table.caption.2}\protected@file@percent }
+\newlabel{tab:budget}{{2}{7}{Computational budget and best results by method. The $\Ltwo $ cost is $\mathcal {C}$ from~\eqref {eq:cost}; $\Linf $ is the maximum absolute PAF deviation at any non-zero shift. Values are drawn directly from the experiment log.\relax }{table.caption.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experimental Setup}{7}{section.5}\protected@file@percent }
+\newlabel{sec:setup}{{5}{7}{Experimental Setup}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Implementation}{7}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Verification Protocol}{7}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Computational Budget}{7}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Benchmarking on Smaller Orders}{7}{subsection.5.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Power spectral density of the Legendre baseline. The total PSD $P_a(f) + P_b(f) + P_c(f) + P_d(f)$ is plotted for all\nobreakspace  {}166 non-zero frequencies. The dashed line at\nobreakspace  {}668 is the target; the actual PSD is uniformly\nobreakspace  {}672, yielding a gap of\nobreakspace  {}4 at every frequency.\relax }}{8}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:legendre}{{1}{8}{Power spectral density of the Legendre baseline. The total PSD $P_a(f) + P_b(f) + P_c(f) + P_d(f)$ is plotted for all~166 non-zero frequencies. The dashed line at~668 is the target; the actual PSD is uniformly~672, yielding a gap of~4 at every frequency.\relax }{figure.caption.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Results}{8}{section.6}\protected@file@percent }
+\newlabel{sec:results}{{6}{8}{Results}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Main Finding: No Exact Construction}{8}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}The Legendre Baseline}{8}{subsection.6.2}\protected@file@percent }
+\newlabel{sec:results:legendre}{{6.2}{8}{The Legendre Baseline}{subsection.6.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}PAF-Direct SA Results}{8}{subsection.6.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Convergence of the cost $\mathcal  {C}$ versus cumulative evaluations for three representative methods. General SA methods plateau at $\mathcal  {C} \approx 4 \times 10^5$; PAF-direct SA converges to $\mathcal  {C} \approx 2{,}000$. The Legendre baseline ($\mathcal  {C} = 2{,}656$) is shown for reference.\relax }}{9}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:convergence}{{2}{9}{Convergence of the cost $\mathcal {C}$ versus cumulative evaluations for three representative methods. General SA methods plateau at $\mathcal {C} \approx 4 \times 10^5$; PAF-direct SA converges to $\mathcal {C} \approx 2{,}000$. The Legendre baseline ($\mathcal {C} = 2{,}656$) is shown for reference.\relax }{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}SA Convergence Behavior}{9}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Frequency-Domain Analysis}{9}{subsection.6.5}\protected@file@percent }
+\citation{cati2024hadamard}
+\newlabel{fig:landscape-comparison-a}{{3a}{10}{PAF deviation profile and method comparison.\relax }{figure.caption.5}{}}
+\newlabel{sub@fig:landscape-comparison-a}{{a}{10}{PAF deviation profile and method comparison.\relax }{figure.caption.5}{}}
+\newlabel{fig:landscape-comparison-b}{{3b}{10}{PSD profiles: Legendre vs.\ fast SA.\relax }{figure.caption.5}{}}
+\newlabel{sub@fig:landscape-comparison-b}{{b}{10}{PSD profiles: Legendre vs.\ fast SA.\relax }{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Search landscape analysis. \textbf  {(a)}\nobreakspace  {}Best $L_2$ cost comparison across all methods (log scale), with $L_\infty $ annotations. The PAF-direct SA achieves dramatically lower $L_2$ than general SA approaches. \textbf  {(b)}\nobreakspace  {}PSD profiles comparing the uniform Legendre baseline ($\PSD  = 672$) with a typical fast SA solution showing large but centered deviations.\relax }}{10}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:landscape-comparison}{{3}{10}{Search landscape analysis. \textbf {(a)}~Best $\Ltwo $ cost comparison across all methods (log scale), with $\Linf $ annotations. The PAF-direct SA achieves dramatically lower $\Ltwo $ than general SA approaches. \textbf {(b)}~PSD profiles comparing the uniform Legendre baseline ($\PSD = 672$) with a typical fast SA solution showing large but centered deviations.\relax }{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Algebraic structure and PAF comparison. \textbf  {(a)}\nobreakspace  {}Orbit structure of $\mathbb  {Z}_{167}^*$ under $\{1,-1\}$, colored by quadratic residue class. The 83\nobreakspace  {}orbits $\{j, 167-j\}$ form pairs connected by arcs. \textbf  {(b)}\nobreakspace  {}PAF deviation heatmap: the Legendre baseline has a uniform deviation of\nobreakspace  {}$-4$ at all 166 shifts, while the PAF-direct SA solution achieves\nobreakspace  {}0 at 72 shifts but with larger deviations elsewhere.\relax }}{10}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:orbits}{{4}{10}{Algebraic structure and PAF comparison. \textbf {(a)}~Orbit structure of $\ZZ _{167}^*$ under $\{1,-1\}$, colored by quadratic residue class. The 83~orbits $\{j, 167-j\}$ form pairs connected by arcs. \textbf {(b)}~PAF deviation heatmap: the Legendre baseline has a uniform deviation of~$-4$ at all 166 shifts, while the PAF-direct SA solution achieves~0 at 72 shifts but with larger deviations elsewhere.\relax }{figure.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Orbit Structure and Group Theory}{10}{subsection.6.6}\protected@file@percent }
+\newlabel{sec:results:orbits}{{6.6}{10}{Orbit Structure and Group Theory}{subsection.6.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Comparison with Neighboring Orders}{10}{subsection.6.7}\protected@file@percent }
 \citation{seberry2020hadamard_monograph}
-\newlabel{fig:landscape}{{3a}{9}{PSD deviation heatmap for the best SA solution.\relax }{figure.caption.4}{}}
-\newlabel{sub@fig:landscape}{{a}{9}{PSD deviation heatmap for the best SA solution.\relax }{figure.caption.4}{}}
-\newlabel{fig:comparison}{{3b}{9}{Best $\Ltwo $ cost comparison across methods.\relax }{figure.caption.4}{}}
-\newlabel{sub@fig:comparison}{{b}{9}{Best $\Ltwo $ cost comparison across methods.\relax }{figure.caption.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Search landscape analysis. \textbf  {(a)}\nobreakspace  {}PSD deviation profile for the best solution found by general SA, showing broadly distributed deviations. \textbf  {(b)}\nobreakspace  {}Comparison of best $L_2$ costs across all six methods, with the Legendre baseline shown separately due to its qualitatively different character.\relax }}{9}{figure.caption.4}\protected@file@percent }
-\newlabel{fig:landscape-comparison}{{3}{9}{Search landscape analysis. \textbf {(a)}~PSD deviation profile for the best solution found by general SA, showing broadly distributed deviations. \textbf {(b)}~Comparison of best $\Ltwo $ costs across all six methods, with the Legendre baseline shown separately due to its qualitatively different character.\relax }{figure.caption.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{9}{section.7}\protected@file@percent }
-\newlabel{sec:discussion}{{7}{9}{Discussion}{section.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Structural Barriers}{9}{subsection.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Sparse subgroup structure.}{9}{section*.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{The factor-of-4 problem.}{9}{section*.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Paley obstruction.}{9}{section*.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Nature of the Cost Landscape}{9}{subsection.7.2}\protected@file@percent }
 \citation{eliahou2025modular}
-\citation{eliahou2025modular,delauney2014density}
-\citation{delauney2014density,delauney2009asymptotic}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Comparison of order\nobreakspace  {}668 with nearby orders of the form\nobreakspace  {}$4p$ for primes\nobreakspace  {}$p$.\relax }}{11}{table.caption.7}\protected@file@percent }
+\newlabel{tab:neighbors}{{3}{11}{Comparison of order~668 with nearby orders of the form~$4p$ for primes~$p$.\relax }{table.caption.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{11}{section.7}\protected@file@percent }
+\newlabel{sec:discussion}{{7}{11}{Discussion}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Structural Barriers}{11}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sparse subgroup structure.}{11}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The factor-of-4 problem.}{11}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Local minimum barrier.}{11}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Nature of the Cost Landscape}{11}{subsection.7.2}\protected@file@percent }
+\citation{eliahou2025modular,delauney2010density}
+\citation{delauney2010density,delauney2009asymptotic}
 \citation{delauney2011flannery,horadam2007hadamard}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Orbit structure of $\mathbb  {Z}_{167} \setminus \{0\}$ under the action of $\{1,-1\}$. Each of the 83 orbits consists of a pair $\{j, 167-j\}$.\relax }}{10}{figure.caption.5}\protected@file@percent }
-\newlabel{fig:orbits}{{4}{10}{Orbit structure of $\ZZ _{167} \setminus \{0\}$ under the action of $\{1,-1\}$. Each of the 83 orbits consists of a pair $\{j, 167-j\}$.\relax }{figure.caption.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Comparison with Eliahou's Modular Result}{10}{subsection.7.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Implications for the Hadamard Conjecture}{10}{subsection.7.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{10}{section.8}\protected@file@percent }
-\newlabel{sec:conclusion}{{8}{10}{Conclusion}{section.8}{}}
-\citation{bright2021sat,bright2019applying}
+\citation{bright2019sat,bright2019aaai}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Comparison with Eliahou's Modular Result}{12}{subsection.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Implications for the Hadamard Conjecture}{12}{subsection.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{12}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{12}{Conclusion}{section.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Future Directions}{12}{subsection.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SAT+CAS hybrid methods.}{12}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GPU-accelerated search.}{12}{section*.12}\protected@file@percent }
 \citation{delauney2011flannery,horadam2007hadamard}
-\citation{suksmono2018quantum}
+\citation{suksmono2018quantum,suksmono2019quantum}
 \citation{suksmono2025qaoa}
 \citation{eliahou2025modular}
+\citation{lam2015numba}
 \bibstyle{plainnat}
 \bibdata{sources}
 \bibcite{baumert1965hadamard}{{1}{1965}{{Baumert and Hall}}{{}}}
 \bibcite{bennett2026quaternionic}{{2}{2026}{{Bennett et~al.}}{{Bennett, Bright, Colinot, and Nayak}}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Future Directions}{11}{subsection.8.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{SAT+CAS hybrid methods.}{11}{section*.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{GPU-accelerated search.}{11}{section*.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Algebraic number theory.}{11}{section*.12}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Cocyclic constructions.}{11}{section*.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Quantum computing.}{11}{section*.14}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Modular lifting.}{11}{section*.15}\protected@file@percent }
-\bibcite{bright2019applying}{{3}{2019}{{Bright et~al.}}{{Bright, Kotsireas, and Ganesh}}}
-\bibcite{bright2021sat}{{4}{2021}{{Bright et~al.}}{{Bright, Ganesh, Kotsireas, and Heinle}}}
+\bibcite{bright2019sat}{{3}{2019{}}{{Bright et~al.}}{{Bright, {\DJ }okovi{\'c}, Kotsireas, and Ganesh}}}
+\bibcite{bright2019aaai}{{4}{2019{}}{{Bright et~al.}}{{Bright, {\DJ }okovi{\'c}, Kotsireas, and Ganesh}}}
 \bibcite{cati2023implementing}{{5}{2023}{{Cati and Pasechnik}}{{}}}
 \bibcite{cati2024hadamard}{{6}{2024}{{Cati and Pasechnik}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Algebraic number theory.}{13}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cocyclic constructions.}{13}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Quantum computing.}{13}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Modular lifting.}{13}{section*.16}\protected@file@percent }
 \bibcite{colbourn2007handbook}{{7}{2007}{{Colbourn and Dinitz}}{{}}}
 \bibcite{cooper1972wallis}{{8}{1972}{{Cooper and Wallis}}{{}}}
 \bibcite{delauney2009asymptotic}{{9}{2009}{{de~Launey}}{{}}}
 \bibcite{delauney2011flannery}{{10}{2011}{{de~Launey and Flannery}}{{}}}
-\bibcite{delauney2014density}{{11}{2014}{{de~Launey and Gordon}}{{}}}
+\bibcite{delauney2010density}{{11}{2010}{{de~Launey and Gordon}}{{}}}
 \bibcite{djokovic2009sds}{{12}{2009}{{Djokovi{\'c}}}{{}}}
-\bibcite{djokovic2008williamson}{{13}{2008}{{Djokovi{\'c} and Kotsireas}}{{}}}
-\bibcite{djokovic2018goethals}{{14}{2018}{{Djokovi{\'c} and Kotsireas}}{{}}}
-\bibcite{eliahou2025modular}{{15}{2025}{{Eliahou}}{{}}}
-\bibcite{goethals1967orthogonal}{{16}{1967}{{Goethals and Seidel}}{{}}}
-\bibcite{hadamard1893resolution}{{17}{1893}{{Hadamard}}{{}}}
-\bibcite{horadam2007hadamard}{{18}{2007}{{Horadam}}{{}}}
-\bibcite{kharaghani2005hadamard428}{{19}{2005}{{Kharaghani and Tayfeh-Rezaie}}{{}}}
-\bibcite{miyamoto1991hadamard}{{20}{1991}{{Miyamoto}}{{}}}
-\bibcite{paley1933orthogonal}{{21}{1933}{{Paley}}{{}}}
-\bibcite{planetmath_hadamard}{{22}{2024}{{PlanetMath contributors}}{{}}}
-\bibcite{seberry2020hadamard}{{23}{2017}{{Seberry}}{{}}}
-\bibcite{seberry1992hadamard}{{24}{1992}{{Seberry and Yamada}}{{}}}
-\bibcite{seberry2020hadamard_monograph}{{25}{2020}{{Seberry and Yamada}}{{}}}
-\bibcite{suksmono2018quantum}{{26}{2018}{{Suksmono}}{{}}}
-\bibcite{suksmono2025qaoa}{{27}{2025}{{Suksmono}}{{}}}
-\bibcite{sylvester1867thoughts}{{28}{1867}{{Sylvester}}{{}}}
-\bibcite{sagemath_hadamard}{{29}{2024}{{The Sage Developers}}{{}}}
-\bibcite{turyn1972hadamard}{{30}{1972}{{Turyn}}{{}}}
-\bibcite{turyn1974hadamard}{{31}{1974}{{Turyn}}{{}}}
-\bibcite{williamson1944hadamard}{{32}{1944}{{Williamson}}{{}}}
-\gdef \@abspage@last{13}
+\bibcite{djokovic2018goethals}{{13}{2018}{{Djokovi{\'c} and Kotsireas}}{{}}}
+\bibcite{djokovic1993williamson}{{14}{1993}{{Djokovi{\'c}}}{{}}}
+\bibcite{djokovic2025orthogonal}{{15}{2025}{{Djokovi{\'c}}}{{}}}
+\bibcite{eliahou2025modular}{{16}{2025}{{Eliahou}}{{}}}
+\bibcite{goethals1967orthogonal}{{17}{1967}{{Goethals and Seidel}}{{}}}
+\bibcite{hadamard1893resolution}{{18}{1893}{{Hadamard}}{{}}}
+\bibcite{horadam2007hadamard}{{19}{2007}{{Horadam}}{{}}}
+\bibcite{kharaghani2005hadamard428}{{20}{2005}{{Kharaghani and Tayfeh-Rezaie}}{{}}}
+\bibcite{lam2015numba}{{21}{2015}{{Lam et~al.}}{{Lam, Pitrou, and Seibert}}}
+\bibcite{london2025turyn}{{22}{2025}{{London and Kotsireas}}{{}}}
+\bibcite{miyamoto1991hadamard}{{23}{1991}{{Miyamoto}}{{}}}
+\bibcite{paley1933orthogonal}{{24}{1933}{{Paley}}{{}}}
+\bibcite{planetmath_hadamard}{{25}{2024}{{PlanetMath contributors}}{{}}}
+\bibcite{seberry2020hadamard}{{26}{2017}{{Seberry}}{{}}}
+\bibcite{seberry1992hadamard}{{27}{1992}{{Seberry and Yamada}}{{}}}
+\bibcite{seberry2020hadamard_monograph}{{28}{2020}{{Seberry and Yamada}}{{}}}
+\bibcite{shen2024goethals}{{29}{2024}{{Shen and Zhang}}{{}}}
+\bibcite{suksmono2018quantum}{{30}{2018}{{Suksmono}}{{}}}
+\bibcite{suksmono2025qaoa}{{31}{2025}{{Suksmono}}{{}}}
+\bibcite{suksmono2019quantum}{{32}{2019}{{Suksmono and Minato}}{{}}}
+\bibcite{sylvester1867thoughts}{{33}{1867}{{Sylvester}}{{}}}
+\bibcite{sagemath_hadamard}{{34}{2024}{{The Sage Developers}}{{}}}
+\bibcite{turyn1972hadamard}{{35}{1972}{{Turyn}}{{}}}
+\bibcite{turyn1974hadamard}{{36}{1974}{{Turyn}}{{}}}
+\bibcite{williamson1944hadamard}{{37}{1944}{{Williamson}}{{}}}
+\gdef \@abspage@last{16}
