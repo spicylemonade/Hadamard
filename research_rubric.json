@@ -1,8 +1,8 @@
 {
   "version": "2.0",
   "created_at": "2026-03-04T10:00:00Z",
-  "updated_at": "2026-03-04T11:07:00.253033+00:00",
-  "current_agent": "writer",
+  "updated_at": "2026-03-04T11:07:04.075007+00:00",
+  "current_agent": "reviewer",
   "agent_status": {
     "orchestrator": {
       "status": "completed",
@@ -24,8 +24,8 @@
       "notes": "Fully revised paper addressing all peer review points: (1) Table 1 now matches experiment_log.json exactly with 12 methods; (2) All fabricated/incorrect citations removed and replaced with verified entries; (3) Numba citation fixed to lam2015numba; (4) Unused bib entries removed; (5) hadamard_668.csv renamed to near_miss_668.csv; (6) Figures regenerated with publication quality; (7) Added Proposition 2 proving Legendre baseline is strict local minimum; (8) Added 3 new experiments (mixed algebraic, creative multi-strategy, exhaustive verification); (9) Paper compiles cleanly with no errors or warnings."
     },
     "reviewer": {
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-03-04T11:07:04.074991+00:00",
       "completed_at": null,
       "error": null
     }
