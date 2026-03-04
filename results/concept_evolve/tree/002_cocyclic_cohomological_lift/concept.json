@@ -1,0 +1,10 @@
+{
+  "id": 2,
+  "symbolic_name": "cocyclic_cohomological_lift",
+  "description": "Cocyclic Hadamard matrices are developed from 2-cocycles over a group G. For order 668, we seek a group G of order 668 and a cocycle psi: GxG -> {+/-1} such that M[g,h] = psi(g,h) is Hadamard. Transforms brute-force search into group cohomology computation.",
+  "domains": ["group cohomology", "algebraic topology", "combinatorial design theory"],
+  "mathematical_formalization": "Given G with |G| = 668, compute H^2(G, Z_2). For each [psi], form M_{g,h} = psi(g,h). Test: M M^T = 668 I.",
+  "analogical_connections": ["Cocycles ~ gauge transformations in physics", "Cohomology classification ~ knot invariants", "Extension classes ~ fiber bundles"],
+  "implementation_hypothesis": "Use GAP to enumerate H^2(G, Z_2) for D_{668}, Z_4 x Z_167, Z_668. GA search within each cohomology class.",
+  "experiment_seed": "Compute H^2(D_{668}, Z_2) in GAP. Test each representative cocycle for orthogonality."
+}

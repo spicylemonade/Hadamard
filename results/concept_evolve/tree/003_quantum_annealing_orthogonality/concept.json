@@ -1,0 +1,10 @@
+{
+  "id": 3,
+  "symbolic_name": "quantum_annealing_orthogonality",
+  "description": "Formulate Hadamard matrix search as QUBO and solve via quantum annealing. Suksmono demonstrated this for small orders. For order 668, decompose into overlapping subproblems with sliding-window approach.",
+  "domains": ["quantum computing", "optimization", "combinatorial design theory"],
+  "mathematical_formalization": "Minimize H_penalty = sum_{r<s} (sum_k h_{rk}*h_{sk})^2 over h_{ij} in {-1,+1}. QUBO encoding via q_{ij} = (1-h_{ij})/2.",
+  "analogical_connections": ["QUBO ~ Ising spin glass ground state", "Quantum tunneling ~ escaping local optima", "Penalty Hamiltonian ~ protein folding energy"],
+  "implementation_hypothesis": "SQA with transverse-field Ising model. Sliding windows of 20 rows over 668 columns. Iterate until convergence.",
+  "experiment_seed": "SQA on row-orthogonality Hamiltonian. Random start, anneal in 20-row windows. Track residual norm."
+}

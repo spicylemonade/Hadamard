@@ -1,0 +1,25 @@
+{
+  "id": 9,
+  "symbolic_name": "rl_guided_difference_family",
+  "description": "Use deep reinforcement learning (RL) to guide the construction of supplementary difference sets for the Goethals-Seidel array. The RL agent sequentially adds elements to four blocks X_0,...,X_3, with state being the current partial blocks and reward derived from the autocorrelation defect. This combines structured search of traditional methods with learned heuristics of RL.",
+  "domains": [
+    "reinforcement learning",
+    "combinatorial optimization",
+    "combinatorial design theory"
+  ],
+  "mathematical_formalization": "MDP: State s_t = (X_0^{(t)}, X_1^{(t)}, X_2^{(t)}, X_3^{(t)}), partial subsets of Z_167. Action a_t = (i, g): add element g to block X_i. Reward r_t = -Delta(autocorrelation defect). Terminal reward: +1000 if valid SDS, 0 otherwise. Policy pi_theta(a|s) parameterized by a GNN on the Cayley graph of Z_167.",
+  "analogical_connections": [
+    "Sequential block construction mirrors the game of Go: each element placement affects global balance of autocorrelations",
+    "The GNN on the Cayley graph captures algebraic structure of Z_167, analogous to how AlphaFold captures protein geometry",
+    "The sparse reward signal requires Monte Carlo tree search, paralleling game-playing AI"
+  ],
+  "implementation_hypothesis": "Model the Cayley graph of Z_167 as a graph with 167 nodes. The GNN processes current state and outputs a policy over (block_id, element) actions. Train with PPO using self-play. Use curriculum learning: start with smaller v (v=11, 23, 47) where solutions are known, then transfer to v=167.",
+  "experiment_seed": "Train an RL agent to construct SDS for v=11 (order 44, known). Evaluate transfer to v=23 (order 92, known). Measure: success rate, episodes to convergence, quality of learned heuristics (do they discover cyclotomic structure?).",
+  "folder_plan": [
+    "concept.json",
+    "README.md",
+    "literature.json"
+  ],
+  "generated_at": "2026-03-04T08:45:43.042592+00:00",
+  "project_folder": "concept_evolve/tree/009_rl-guided-difference-family"
+}

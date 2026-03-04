@@ -1,0 +1,10 @@
+{
+  "id": 4,
+  "symbolic_name": "genetic_algorithm_circulant_core",
+  "description": "GA for Hadamard construction with circulant cores. Encode four 167-bit chromosomes representing SDS blocks. FFT-based fitness evaluation. GPU-parallelized.",
+  "domains": ["evolutionary computation", "combinatorial design theory", "GPU computing"],
+  "mathematical_formalization": "Chromosome: (x_0,...,x_3) in {0,1}^{4x167}. Fitness: f = -sum_{g=1}^{166} (sum_i N_{X_i}(g) - lambda)^2. Target: f = 0.",
+  "analogical_connections": ["Chromosomes ~ DNA encoding", "Fitness landscape ~ NK landscapes", "GPU parallelism ~ protein folding"],
+  "implementation_hypothesis": "Tournament selection, uniform crossover, bit-flip mutation. FFT-based autocorrelation O(v log v). Pop: 10K, Gen: 100K. Cyclotomic seeding.",
+  "experiment_seed": "GA with FFT fitness on GPU for 24h. Compare random vs cyclotomic vs Williamson-symmetric initialization."
+}

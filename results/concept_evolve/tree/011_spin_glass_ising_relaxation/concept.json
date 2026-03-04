@@ -1,0 +1,10 @@
+{
+  "id": 11,
+  "symbolic_name": "spin_glass_ising_relaxation",
+  "description": "Map Hadamard construction to spin-glass energy minimization. Each entry is an Ising spin. Energy is sum of squared row inner products. Ground state (E=0) is a Hadamard matrix. Parallel tempering with structured initialization.",
+  "domains": ["statistical mechanics", "spin glass theory", "combinatorial optimization"],
+  "mathematical_formalization": "E(H) = sum_{r<s} (sum_k h_{rk}*h_{sk})^2. Ground state: E=0 iff Hadamard. Parallel tempering: K replicas at T_1 < ... < T_K with Metropolis swaps.",
+  "analogical_connections": ["Hadamard landscape ~ Edwards-Anderson spin glass", "Replica exchange ~ migration between populations", "Zero-energy states ~ error-free codewords"],
+  "implementation_hypothesis": "32 replicas, T_k = 0.1 * 1.2^k. Single-spin-flip Glauber dynamics. O(668) per flip. 10^10 flips per replica.",
+  "experiment_seed": "Parallel tempering on 668x668. Structured initialization. 24 hours, 32 cores. Track minimum energy and acceptance rates."
+}

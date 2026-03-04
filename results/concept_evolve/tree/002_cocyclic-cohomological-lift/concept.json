@@ -1,0 +1,25 @@
+{
+  "id": 2,
+  "symbolic_name": "cocyclic_cohomological_lift",
+  "description": "Cocyclic Hadamard matrices are developed from 2-cocycles over a group G, as introduced by Horadam and de Launey (1993). For order 668, we seek a group G of order 668 and a cocycle psi: GxG -> {+/-1} such that the cocyclic matrix M[g,h] = psi(g,h) is Hadamard. This algebraic approach transforms the search from a brute-force combinatorial problem into one of group cohomology computation.",
+  "domains": [
+    "group cohomology",
+    "algebraic topology",
+    "combinatorial design theory"
+  ],
+  "mathematical_formalization": "Given G with |G| = 668, compute H^2(G, Z_2). For each cohomology class [psi], form M_{g,h} = psi(g,h). Test orthogonality: M M^T = 668 I. Key groups: D_{4*167} (dihedral), Z_4 x Z_167, Z_668.",
+  "analogical_connections": [
+    "Cocycles are the algebraic analog of gauge transformations in physics: they describe twisted symmetries",
+    "The cohomological approach mirrors how topological invariants classify knots -- classifying Hadamard matrices by their algebraic structure",
+    "Extension classes in group cohomology parallel fiber bundles in differential geometry"
+  ],
+  "implementation_hypothesis": "Use GAP or SageMath to enumerate H^2(G, Z_2) for candidate groups of order 668. For each coboundary class, construct the cocyclic matrix and test orthogonality. Exploit the dihedral group D_{4t} with t=167, known to produce many cocyclic Hadamard matrices. Use the genetic algorithm of Alvarez et al. as a guided search within each cohomology class.",
+  "experiment_seed": "Compute H^2(D_{668}, Z_2) using GAP's cohomology package. For each representative cocycle, construct the 668x668 matrix and check row orthogonality. Profile which cohomology classes come closest to orthogonality.",
+  "folder_plan": [
+    "concept.json",
+    "README.md",
+    "literature.json"
+  ],
+  "generated_at": "2026-03-04T08:45:43.039430+00:00",
+  "project_folder": "concept_evolve/tree/002_cocyclic-cohomological-lift"
+}

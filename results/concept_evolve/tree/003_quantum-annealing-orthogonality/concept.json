@@ -1,0 +1,25 @@
+{
+  "id": 3,
+  "symbolic_name": "quantum_annealing_orthogonality",
+  "description": "Formulate Hadamard matrix search as a Quadratic Unconstrained Binary Optimization (QUBO) problem and solve via quantum annealing. Suksmono (2018, 2019) demonstrated this approach for small orders on D-Wave. For order 668, the challenge is encoding the orthogonality constraint H*H^T = 668*I as a penalty Hamiltonian with manageable connectivity, requiring reduction from quartic to quadratic terms via auxiliary variables.",
+  "domains": [
+    "quantum computing",
+    "optimization",
+    "combinatorial design theory"
+  ],
+  "mathematical_formalization": "Let h_{ij} in {-1,+1} mapped to q_{ij} = (1-h_{ij})/2 in {0,1}. Minimize H_penalty = sum_{r<s} (sum_k h_{rk}*h_{sk})^2 = sum_{r<s} (sum_k (1-2q_{rk})(1-2q_{sk}))^2. This is naturally quartic; reduce to QUBO via auxiliary variables. Total variables: O(n^2) = O(668^2) ~ 446,224.",
+  "analogical_connections": [
+    "The QUBO formulation is equivalent to finding the ground state of an Ising spin glass -- connecting combinatorics to statistical physics",
+    "Quantum tunneling through energy barriers is analogous to escaping local optima in classical simulated annealing",
+    "The penalty Hamiltonian structure mirrors constraint enforcement in protein folding energy landscapes"
+  ],
+  "implementation_hypothesis": "Use simulated quantum annealing (SQA) with transverse-field Ising model. Decompose the 668x668 problem into overlapping subproblems of size ~40x668 using a sliding-window approach. Each window fixes some rows and optimizes the rest. Iterate until convergence. This avoids the O(n^4) qubit requirement of the full QUBO.",
+  "experiment_seed": "Implement SQA for the row-orthogonality Hamiltonian on subproblems. Start from a random +/-1 matrix and anneal in windows of 20 rows. Measure: residual off-diagonal norm of H*H^T after each sweep.",
+  "folder_plan": [
+    "concept.json",
+    "README.md",
+    "literature.json"
+  ],
+  "generated_at": "2026-03-04T08:45:43.039864+00:00",
+  "project_folder": "concept_evolve/tree/003_quantum-annealing-orthogonality"
+}

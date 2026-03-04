@@ -1,0 +1,34 @@
+[
+  {
+    "title": "An Explicit Skew-Hadamard Matrix of Order 1252 via Cyclotomic Unions",
+    "authors": ["Amira Karoui"],
+    "year": 2026,
+    "venue": "arXiv:2602.16089",
+    "relevance": "Most recent cyclotomic union construction; directly applicable methodology",
+    "url": "https://arxiv.org/abs/2602.16089"
+  },
+  {
+    "title": "Cyclotomy, Hadamard arrays and supplementary difference sets",
+    "authors": ["D. Hunt", "J. Seberry"],
+    "year": 1972,
+    "venue": "Proceedings of Conference on Combinatorial Mathematics",
+    "relevance": "Foundational paper connecting cyclotomy to Hadamard arrays",
+    "url": "https://www.semanticscholar.org/paper/8e80b10bfc4aad34383c50172bd21cc6ca790ce7"
+  },
+  {
+    "title": "Quantum Algorithms for Weighing Matrices and Quadratic Residues",
+    "authors": ["W. van Dam"],
+    "year": 2000,
+    "venue": "Algorithmica",
+    "relevance": "Connects quadratic residue structure to quantum query complexity; relevant to cyclotomic-based constructions",
+    "url": "https://arxiv.org/abs/quant-ph/0008059"
+  },
+  {
+    "title": "Extension of Paley Construction for Hadamard Matrix",
+    "authors": ["S. Kumari", "H. Mahato"],
+    "year": 2019,
+    "venue": "arXiv:1912.10755",
+    "relevance": "Extends Paley constructions using conference matrices for any odd prime power",
+    "url": "https://arxiv.org/abs/1912.10755"
+  }
+]

@@ -1,48 +1,46 @@
 {
-  "paley_quadratic_residue": [
-    "conference_matrix_border"
+  "goethals_seidel_sds_search": [
+    "cyclotomic_union_assembly",
+    "genetic_algorithm_circulant_core",
+    "lattice_sieve_sds_enumeration",
+    "rl_guided_difference_family"
   ],
-  "conference_matrix_border": [
-    "goethals_seidel_array"
+  "cocyclic_cohomological_lift": [
+    "goethals_seidel_sds_search",
+    "ag_code_evaluation_matrix"
   ],
-  "goethals_seidel_array": [
-    "complementary_sequences"
+  "quantum_annealing_orthogonality": [
+    "spin_glass_ising_relaxation",
+    "tensor_network_contraction"
   ],
-  "complementary_sequences": [
-    "spectral_flatness_condition",
-    "flat_psd_equivalence"
+  "genetic_algorithm_circulant_core": [
+    "rl_guided_difference_family",
+    "spin_glass_ising_relaxation"
   ],
-  "spectral_flatness_condition": [
-    "quantum_optimization_search"
+  "tensor_network_contraction": [
+    "belief_propagation_row_repair",
+    "kronecker_lift_bootstrap"
   ],
-  "kronecker_tensor_product": [
-    "modular_hadamard_relaxation"
+  "ag_code_evaluation_matrix": [
+    "cyclotomic_union_assembly"
   ],
-  "williamson_type_matrices": [
-    "goethals_seidel_array"
+  "belief_propagation_row_repair": [
+    "spin_glass_ising_relaxation",
+    "quantum_annealing_orthogonality"
   ],
-  "cyclotomic_class_partition": [
-    "difference_set_construction",
-    "paley_quadratic_residue"
+  "cyclotomic_union_assembly": [
+    "lattice_sieve_sds_enumeration"
   ],
-  "difference_set_construction": [
-    "goethals_seidel_array"
+  "kronecker_lift_bootstrap": [
+    "goethals_seidel_sds_search"
   ],
-  "t_sequence_decomposition": [
-    "goethals_seidel_array"
+  "rl_guided_difference_family": [
+    "belief_propagation_row_repair"
   ],
-  "GF167_structure": [
-    "cyclotomic_class_partition",
-    "paley_quadratic_residue",
-    "open_problem_668"
+  "lattice_sieve_sds_enumeration": [
+    "ag_code_evaluation_matrix"
   ],
-  "flat_psd_equivalence": [
-    "open_problem_668"
-  ],
-  "modular_hadamard_relaxation": [
-    "open_problem_668"
-  ],
-  "quantum_optimization_search": [
-    "open_problem_668"
+  "spin_glass_ising_relaxation": [
+    "kronecker_lift_bootstrap"
   ]
 }

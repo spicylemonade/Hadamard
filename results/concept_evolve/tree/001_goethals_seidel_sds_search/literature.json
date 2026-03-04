@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Some New Orders of Hadamard and Skew-Hadamard Matrices",
+    "authors": ["D. Ž. Đoković", "O. Golubitsky", "I. Kotsireas"],
+    "year": 2013,
+    "venue": "Journal of Combinatorial Designs",
+    "relevance": "Constructs H(1004) and H(2524) using GS array with hashing-based matching — the direct methodological predecessor for H(668)",
+    "url": "https://arxiv.org/abs/1301.3671"
+  },
+  {
+    "title": "Two classes of Hadamard matrices of Goethals-Seidel type",
+    "authors": ["D. Ž. Đoković"],
+    "year": 2024,
+    "venue": "arXiv:2404.14375",
+    "relevance": "Introduces new GS-type classes and constructs matrices up to order 2524; discusses difficulties for small unknown orders including 668",
+    "url": "https://arxiv.org/abs/2404.14375"
+  },
+  {
+    "title": "Goethals-Seidel Difference Families with Symmetric or Skew Base Blocks",
+    "authors": ["D. Ž. Đoković", "I. S. Kotsireas"],
+    "year": 2018,
+    "venue": "Mathematics in Computer Science",
+    "relevance": "Classifies GS difference families with symmetric/skew blocks for v < 50; methodology extends to larger v",
+    "url": "https://arxiv.org/abs/1802.00556"
+  },
+  {
+    "title": "An infinite family of Goethals-Seidel arrays",
+    "authors": ["M. Xia", "T. Xia", "J. Seberry"],
+    "year": 2005,
+    "venue": "Discrete Applied Mathematics",
+    "relevance": "Proves infinite family for q ≡ 3 mod 8 prime powers; 167 ≡ 7 mod 8 falls outside this family",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0166218X04000988"
+  },
+  {
+    "title": "Several Goethals-Seidel Sequences with Special Structures",
+    "authors": ["Xiaojun Zhang"],
+    "year": 2024,
+    "venue": "Mathematics",
+    "relevance": "Recent work on GS sequences; notes 668 as smallest unconstructed order",
+    "url": "https://www.mdpi.com/2227-7390/12/4/530"
+  }
+]

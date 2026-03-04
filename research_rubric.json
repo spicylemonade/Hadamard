@@ -1,8 +1,8 @@
 {
   "version": "2.0",
   "created_at": "2026-03-04T10:00:00Z",
-  "updated_at": "2026-03-04T08:22:03.449229+00:00",
-  "current_agent": "orchestrator",
+  "updated_at": "2026-03-04T08:22:07.199913+00:00",
+  "current_agent": "researcher",
   "agent_status": {
     "orchestrator": {
       "status": "completed",
@@ -11,8 +11,8 @@
       "error": null
     },
     "researcher": {
-      "status": "pending",
-      "started_at": null,
+      "status": "in_progress",
+      "started_at": "2026-03-04T08:22:07.199895+00:00",
       "completed_at": null,
       "error": null
     },

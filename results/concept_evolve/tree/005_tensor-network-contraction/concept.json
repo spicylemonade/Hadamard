@@ -1,0 +1,25 @@
+{
+  "id": 5,
+  "symbolic_name": "tensor_network_contraction",
+  "description": "Model the Hadamard matrix construction as a constraint satisfaction problem encoded in a tensor network. Each entry h_{ij} is a binary tensor variable. Orthogonality constraints between rows become tensor contractions. The partition function of the network counts the number of valid Hadamard matrices; approximate contraction via belief propagation or DMRG-like sweeps can find solutions.",
+  "domains": [
+    "tensor networks",
+    "quantum information",
+    "constraint satisfaction"
+  ],
+  "mathematical_formalization": "Construct tensor T_{r,s,k} = delta(sum_k h_{rk}*h_{sk}, 0) for r != s. The full constraint tensor is T = prod_{r<s} T_{r,s}. Finding an assignment with T=1 is the Hadamard construction problem. Approximate via Matrix Product State (MPS) with bond dimension chi, sweeping over rows.",
+  "analogical_connections": [
+    "Tensor network contraction for Hadamard construction parallels DMRG for ground state finding in 1D quantum systems",
+    "Bond dimension chi controls the approximation quality, analogous to rank in low-rank matrix approximation",
+    "The row-by-row sweep is analogous to Gaussian elimination -- progressively fixing variables"
+  ],
+  "implementation_hypothesis": "Represent each row of the 668x668 matrix as a tensor with indices for each column entry. Build a tensor network where contraction nodes enforce pairwise orthogonality. Use a DMRG-like sweep algorithm: optimize one row at a time while keeping others fixed in an MPS. Bond dimension starts at chi=2 and increases adaptively.",
+  "experiment_seed": "Implement a toy version for order 28 (known Hadamard order) using ITensor library. Measure: (a) convergence to a valid Hadamard matrix, (b) bond dimension required, (c) scaling to order 44, 92. Extrapolate feasibility to 668.",
+  "folder_plan": [
+    "concept.json",
+    "README.md",
+    "literature.json"
+  ],
+  "generated_at": "2026-03-04T08:45:43.040784+00:00",
+  "project_folder": "concept_evolve/tree/005_tensor-network-contraction"
+}

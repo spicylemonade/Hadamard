@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Cocyclic Development of Designs",
+    "authors": ["K. J. Horadam", "W. de Launey"],
+    "year": 1993,
+    "venue": "Journal of Algebraic Combinatorics",
+    "relevance": "Foundational paper introducing cocyclic Hadamard matrices",
+    "url": "https://doi.org/10.1023/A:1022403732401"
+  },
+  {
+    "title": "A Heuristic Procedure with Guided Reproduction for Constructing Cocyclic Hadamard Matrices",
+    "authors": ["V. Álvarez", "M.D. Frau", "A. Osuna"],
+    "year": 2006,
+    "venue": "LNCS",
+    "relevance": "Genetic algorithm for cocyclic Hadamard search over dihedral groups",
+    "url": "https://idus.us.es/items/efc9d555-a1f8-4361-9bf8-1a32a0736a48"
+  },
+  {
+    "title": "On D4t-Cocyclic Hadamard Matrices",
+    "authors": ["V. Álvarez", "J. Armario", "M. Frau", "F. Gudiel", "M. Güemes", "A. Osuna"],
+    "year": 2016,
+    "venue": "Journal of Combinatorial Designs",
+    "relevance": "Classification results for cocyclic Hadamard matrices over D_{4t} up to order 44",
+    "url": "https://doi.org/10.1002/jcd.21510"
+  },
+  {
+    "title": "On Cocyclic Hadamard Matrices over Goethals-Seidel Loops",
+    "authors": ["V. Álvarez", "J. Armario", "R. M. Falcón", "M. Frau", "A. Osuna"],
+    "year": 2019,
+    "venue": "Mathematics",
+    "relevance": "Extends cocyclic framework to Moufang loops, showing GS-type matrices are pseudococyclic",
+    "url": "https://doi.org/10.3390/math8010024"
+  },
+  {
+    "title": "Group actions on Hadamard matrices",
+    "authors": ["Padraig Ó Catháin"],
+    "year": 2008,
+    "venue": "NUI Galway MSc Thesis",
+    "relevance": "Theory of cocyclic development and group actions on the expanded design",
+    "url": "https://maths.nuigalway.ie/~padraig/Docs/PadraigOCathainMastersThesis.pdf"
+  }
+]

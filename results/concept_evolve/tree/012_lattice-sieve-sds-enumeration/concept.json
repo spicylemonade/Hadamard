@@ -1,0 +1,25 @@
+{
+  "id": 12,
+  "symbolic_name": "lattice_sieve_sds_enumeration",
+  "description": "Adapt lattice sieving techniques from computational number theory (used in the Number Field Sieve for integer factoring) to enumerate supplementary difference sets. The SDS conditions define a lattice of valid block configurations in Z^{4x167}. Short vectors correspond to SDS with small block sizes. Lattice reduction (LLL/BKZ) followed by sieving can systematically enumerate candidate solutions.",
+  "domains": [
+    "computational number theory",
+    "lattice algorithms",
+    "combinatorial design theory"
+  ],
+  "mathematical_formalization": "Define autocorrelation lattice L = {(x_0,...,x_3) in Z^{4x167} : forall g!=0, sum_i N_{supp(x_i)}(g) = lambda}. This is an affine sublattice of Z^{668}. Apply LLL reduction to find short vectors. Candidate SDS correspond to 0/1 vectors in L. Use CVP to find nearest 0/1 vector to a lattice point.",
+  "analogical_connections": [
+    "Lattice sieving for SDS parallels lattice sieving for smooth values in NFS -- both seek structured elements in high-dimensional lattices",
+    "LLL reduction is analogous to Gram-Schmidt orthogonalization -- both find nearly orthogonal bases",
+    "The CVP formulation connects Hadamard matrix construction to lattice-based cryptography"
+  ],
+  "implementation_hypothesis": "Transform SDS autocorrelation conditions into a system of linear equations modulo suitable values. Construct the associated lattice. Apply BKZ-2.0 reduction. For each reduced basis vector, round to nearest 0/1 vector and check if it forms a valid SDS block. Use Schnorr-Euchner enumeration.",
+  "experiment_seed": "Construct the autocorrelation lattice for v=23 (known SDS for order 92). Apply LLL and enumerate nearby 0/1 vectors. Verify known SDS solutions are found. Measure lattice dimension and gap. Scale to v=47, then v=167.",
+  "folder_plan": [
+    "concept.json",
+    "README.md",
+    "literature.json"
+  ],
+  "generated_at": "2026-03-04T08:45:43.044017+00:00",
+  "project_folder": "concept_evolve/tree/012_lattice-sieve-sds-enumeration"
+}

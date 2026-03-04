@@ -1,0 +1,25 @@
+{
+  "id": 11,
+  "symbolic_name": "spin_glass_ising_relaxation",
+  "description": "Map Hadamard matrix construction to a spin-glass energy minimization problem. Each entry h_{ij} in {-1,+1} is an Ising spin. Energy is the sum of squared inner products between distinct rows. Ground state (energy = 0) corresponds to a Hadamard matrix. Use replica-exchange Monte Carlo (parallel tempering) exploiting the physical analogy between orthogonality constraints and antiferromagnetic frustration.",
+  "domains": [
+    "statistical mechanics",
+    "spin glass theory",
+    "combinatorial optimization"
+  ],
+  "mathematical_formalization": "E(H) = sum_{r<s} (sum_{k=1}^{668} h_{rk} h_{sk})^2. Ground state: E=0 iff H is Hadamard. Parallel tempering: run K replicas at temperatures T_1 < T_2 < ... < T_K. Swap adjacent replicas with Metropolis acceptance.",
+  "analogical_connections": [
+    "The Hadamard energy landscape is a spin glass with frustration -- connecting combinatorics to Edwards-Anderson models",
+    "Replica exchange is analogous to evolution with migration between populations at different selection pressures",
+    "Zero-energy ground states correspond to error-free codewords in coding theory"
+  ],
+  "implementation_hypothesis": "Run parallel tempering with 32 replicas at temperatures T_k = 0.1 * 1.2^k. Each replica is a 668x668 +/-1 matrix. Spin-flip updates: flip h_{ij} and compute delta_E in O(n) time. Exploit row structure: flipping h_{ij} only affects inner products involving row i. Total update cost per flip: O(668).",
+  "experiment_seed": "Implement parallel tempering for E(H) on 668x668. Initialize with structured starts (Paley-like construction). Run for 24 hours on 32-core machine. Track: minimum energy found, replica exchange acceptance rates.",
+  "folder_plan": [
+    "concept.json",
+    "README.md",
+    "literature.json"
+  ],
+  "generated_at": "2026-03-04T08:45:43.043577+00:00",
+  "project_folder": "concept_evolve/tree/011_spin-glass-ising-relaxation"
+}

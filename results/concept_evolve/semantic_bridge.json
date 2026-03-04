@@ -1,61 +1,70 @@
 {
   "nodes": [
-    {"id": "paley_quadratic_residue", "domain": "number_theory"},
-    {"id": "goethals_seidel_array", "domain": "combinatorial_design"},
-    {"id": "kronecker_tensor_product", "domain": "linear_algebra"},
-    {"id": "williamson_type_matrices", "domain": "algebraic_combinatorics"},
-    {"id": "complementary_sequences", "domain": "signal_processing"},
-    {"id": "cyclotomic_class_partition", "domain": "number_theory"},
-    {"id": "spectral_flatness_condition", "domain": "information_theory"},
-    {"id": "quantum_optimization_search", "domain": "quantum_computing"},
-    {"id": "modular_hadamard_relaxation", "domain": "coding_theory"},
-    {"id": "conference_matrix_border", "domain": "combinatorial_design"},
-    {"id": "t_sequence_decomposition", "domain": "signal_processing"},
-    {"id": "difference_set_construction", "domain": "group_theory"},
-    {"id": "GF167_structure", "domain": "finite_fields"},
-    {"id": "open_problem_668", "domain": "mathematics"},
-    {"id": "flat_psd_equivalence", "domain": "signal_processing"}
+    {"id": "goethals_seidel_sds_search", "domain": "combinatorial design theory"},
+    {"id": "cocyclic_cohomological_lift", "domain": "group cohomology"},
+    {"id": "quantum_annealing_orthogonality", "domain": "quantum computing"},
+    {"id": "genetic_algorithm_circulant_core", "domain": "evolutionary computation"},
+    {"id": "tensor_network_contraction", "domain": "tensor networks"},
+    {"id": "ag_code_evaluation_matrix", "domain": "algebraic geometry"},
+    {"id": "belief_propagation_row_repair", "domain": "information theory"},
+    {"id": "cyclotomic_union_assembly", "domain": "number theory"},
+    {"id": "rl_guided_difference_family", "domain": "reinforcement learning"},
+    {"id": "kronecker_lift_bootstrap", "domain": "linear algebra"},
+    {"id": "spin_glass_ising_relaxation", "domain": "statistical mechanics"},
+    {"id": "lattice_sieve_sds_enumeration", "domain": "computational number theory"}
   ],
   "edges": [
-    {"source": "paley_quadratic_residue", "target": "conference_matrix_border", "relation": "Legendre symbol constructs Jacobsthal matrix which IS the conference matrix"},
-    {"source": "conference_matrix_border", "target": "goethals_seidel_array", "relation": "Conference matrix serves as input A in GS array; bordering is a special case of GS"},
-    {"source": "goethals_seidel_array", "target": "complementary_sequences", "relation": "GS circulant condition IS the complementary sequence PAF=0 condition"},
-    {"source": "complementary_sequences", "target": "spectral_flatness_condition", "relation": "PAF flatness in time domain ↔ PSD flatness in frequency domain (DFT duality)"},
-    {"source": "spectral_flatness_condition", "target": "quantum_optimization_search", "relation": "PSD flatness objective can be encoded as QUBO cost Hamiltonian"},
-    {"source": "kronecker_tensor_product", "target": "modular_hadamard_relaxation", "relation": "Truncated Kronecker product yields modular Hadamard approximation"},
-    {"source": "williamson_type_matrices", "target": "goethals_seidel_array", "relation": "Williamson matrices are a special case (symmetric circulant) of GS input matrices"},
-    {"source": "cyclotomic_class_partition", "target": "difference_set_construction", "relation": "Cyclotomic classes provide structured difference sets in Z_p"},
-    {"source": "cyclotomic_class_partition", "target": "paley_quadratic_residue", "relation": "QR/QNR are the 2-class cyclotomic partition; Paley uses this directly"},
-    {"source": "difference_set_construction", "target": "goethals_seidel_array", "relation": "SDS directly yield circulant matrices for the GS array"},
-    {"source": "t_sequence_decomposition", "target": "goethals_seidel_array", "relation": "T-matrices plug into Cooper-Wallis variant of GS construction"},
-    {"source": "GF167_structure", "target": "cyclotomic_class_partition", "relation": "GF(167)* = Z_166 = Z_2 × Z_83 determines available cyclotomic structures"},
-    {"source": "GF167_structure", "target": "paley_quadratic_residue", "relation": "GF(167) provides the finite field for Legendre symbol and Jacobsthal matrix"},
-    {"source": "GF167_structure", "target": "open_problem_668", "relation": "4 ∤ 166 = |GF(167)*| is the root algebraic obstruction"},
-    {"source": "complementary_sequences", "target": "flat_psd_equivalence", "relation": "Complementary set condition and flat PSD are DFT-dual formulations"},
-    {"source": "flat_psd_equivalence", "target": "open_problem_668", "relation": "No set of four ±1 sequences of length 167 with flat total PSD = 668 is known"},
-    {"source": "modular_hadamard_relaxation", "target": "open_problem_668", "relation": "Best known: 64-modular (Eliahou 2025); exact Hadamard unknown"},
-    {"source": "quantum_optimization_search", "target": "open_problem_668", "relation": "Proposed path: quantum advantage may solve instances classical computers cannot"}
+    {"source": "goethals_seidel_sds_search", "target": "cyclotomic_union_assembly", "relation": "Cyclotomic classes provide structured initial blocks for the GS difference family search"},
+    {"source": "goethals_seidel_sds_search", "target": "genetic_algorithm_circulant_core", "relation": "GA optimizes the SDS block selection that feeds into the GS array construction"},
+    {"source": "goethals_seidel_sds_search", "target": "lattice_sieve_sds_enumeration", "relation": "Lattice sieving provides a systematic enumeration method for the same SDS search space"},
+    {"source": "goethals_seidel_sds_search", "target": "rl_guided_difference_family", "relation": "RL learns heuristic policies for the same sequential SDS block construction problem"},
+    {"source": "cocyclic_cohomological_lift", "target": "goethals_seidel_sds_search", "relation": "Cocyclic matrices over Goethals-Seidel loops generalize the GS construction algebraically"},
+    {"source": "cocyclic_cohomological_lift", "target": "ag_code_evaluation_matrix", "relation": "Both use algebraic structures (cohomology/curves) to impose orthogonality constraints on matrices"},
+    {"source": "quantum_annealing_orthogonality", "target": "spin_glass_ising_relaxation", "relation": "Both model orthogonality as energy minimization in an Ising-type Hamiltonian, classical vs. quantum"},
+    {"source": "quantum_annealing_orthogonality", "target": "tensor_network_contraction", "relation": "Tensor networks simulate quantum annealing classically; both exploit entanglement/correlation structure"},
+    {"source": "genetic_algorithm_circulant_core", "target": "rl_guided_difference_family", "relation": "Both are learning-based search methods; GA uses population evolution while RL uses policy gradient"},
+    {"source": "genetic_algorithm_circulant_core", "target": "spin_glass_ising_relaxation", "relation": "GA population diversity mirrors replica diversity in parallel tempering; both combat premature convergence"},
+    {"source": "tensor_network_contraction", "target": "belief_propagation_row_repair", "relation": "BP is the message-passing analog of tensor network contraction on tree-like factor graphs"},
+    {"source": "tensor_network_contraction", "target": "kronecker_lift_bootstrap", "relation": "Kronecker product structure is a rank-1 tensor decomposition; tensor networks generalize to higher ranks"},
+    {"source": "ag_code_evaluation_matrix", "target": "cyclotomic_union_assembly", "relation": "Both exploit finite field arithmetic; AG codes evaluate functions while cyclotomy partitions the multiplicative group"},
+    {"source": "belief_propagation_row_repair", "target": "spin_glass_ising_relaxation", "relation": "BP computes marginals of the same Gibbs distribution that spin glass MC samples from"},
+    {"source": "belief_propagation_row_repair", "target": "quantum_annealing_orthogonality", "relation": "Both iteratively refine solutions; BP through message passing, QA through quantum tunneling"},
+    {"source": "cyclotomic_union_assembly", "target": "lattice_sieve_sds_enumeration", "relation": "Cyclotomic structure constrains the lattice to a lower-dimensional subspace, making sieving tractable"},
+    {"source": "kronecker_lift_bootstrap", "target": "goethals_seidel_sds_search", "relation": "Kronecker scaffold provides starting point; GS-based local repair fixes orthogonality defects"},
+    {"source": "rl_guided_difference_family", "target": "belief_propagation_row_repair", "relation": "RL can learn to select which rows to repair via BP, combining global strategy with local inference"},
+    {"source": "lattice_sieve_sds_enumeration", "target": "ag_code_evaluation_matrix", "relation": "Lattice techniques from coding theory (decoding AG codes) transfer to the SDS enumeration problem"},
+    {"source": "spin_glass_ising_relaxation", "target": "kronecker_lift_bootstrap", "relation": "Spin glass relaxation refines the approximate Kronecker-product matrix toward exact orthogonality"}
   ],
   "bridge_chains": [
     {
-      "name": "Number Theory → Signal Processing → Quantum Computing",
-      "path": ["paley_quadratic_residue", "conference_matrix_border", "goethals_seidel_array", "complementary_sequences", "spectral_flatness_condition", "quantum_optimization_search"],
-      "description": "From quadratic residues in GF(167) through conference matrices and GS array to spectral flatness condition, then to quantum optimization. Crosses number theory, combinatorial design, signal processing, and quantum computing."
+      "name": "algebraic_to_computational",
+      "path": ["cyclotomic_union_assembly", "goethals_seidel_sds_search", "genetic_algorithm_circulant_core", "rl_guided_difference_family"],
+      "domains_crossed": ["number theory", "combinatorial design theory", "evolutionary computation", "reinforcement learning"],
+      "description": "Starts from pure algebraic structure (cyclotomic classes), encodes into combinatorial constraints (GS array), and progressively applies more sophisticated computational search methods (GA then RL)"
     },
     {
-      "name": "Group Theory → Combinatorics → Optimization",
-      "path": ["GF167_structure", "cyclotomic_class_partition", "difference_set_construction", "goethals_seidel_array", "spectral_flatness_condition"],
-      "description": "From the algebraic structure of Z_167* through cyclotomic partitions and difference sets to the GS array and spectral optimization. Crosses algebra, combinatorics, and optimization."
+      "name": "physics_inspired_optimization",
+      "path": ["spin_glass_ising_relaxation", "quantum_annealing_orthogonality", "tensor_network_contraction", "belief_propagation_row_repair"],
+      "domains_crossed": ["statistical mechanics", "quantum computing", "tensor networks", "information theory"],
+      "description": "Traverses the physics-information theory bridge: classical spin glass -> quantum annealing -> tensor network representation -> message-passing inference"
     },
     {
-      "name": "Linear Algebra → Coding Theory → Open Problem",
-      "path": ["kronecker_tensor_product", "modular_hadamard_relaxation", "open_problem_668"],
-      "description": "From Kronecker product construction through modular relaxation to the open problem. Shows how exact constructions (H(672)) yield approximations (4-modular H(668))."
+      "name": "structural_scaffold_refinement",
+      "path": ["ag_code_evaluation_matrix", "kronecker_lift_bootstrap", "spin_glass_ising_relaxation", "belief_propagation_row_repair"],
+      "domains_crossed": ["algebraic geometry", "linear algebra", "statistical mechanics", "information theory"],
+      "description": "Uses algebraic geometry to build initial structure, Kronecker products to scaffold it, physics-based optimization to refine globally, and BP for targeted local repair"
     },
     {
-      "name": "Algebraic Combinatorics → Signal Design → Information Theory",
-      "path": ["williamson_type_matrices", "goethals_seidel_array", "complementary_sequences", "flat_psd_equivalence", "spectral_flatness_condition"],
-      "description": "From Williamson matrix constraints through sequence design to information-theoretic optimality conditions. Bridges discrete algebra and continuous signal theory."
+      "name": "algebraic_topology_to_computation",
+      "path": ["cocyclic_cohomological_lift", "ag_code_evaluation_matrix", "lattice_sieve_sds_enumeration", "goethals_seidel_sds_search"],
+      "domains_crossed": ["group cohomology", "algebraic geometry", "computational number theory", "combinatorial design theory"],
+      "description": "Pure algebraic classification (cohomology) -> algebraic construction (AG codes) -> computational enumeration (lattice sieving) -> explicit matrix construction (GS array)"
+    },
+    {
+      "name": "learning_guided_algebraic_search",
+      "path": ["rl_guided_difference_family", "genetic_algorithm_circulant_core", "goethals_seidel_sds_search", "cyclotomic_union_assembly", "lattice_sieve_sds_enumeration"],
+      "domains_crossed": ["reinforcement learning", "evolutionary computation", "combinatorial design theory", "number theory", "computational number theory"],
+      "description": "ML methods progressively incorporate algebraic structure: RL discovers heuristics -> GA exploits diversity -> GS provides framework -> cyclotomy constrains search -> lattice methods enumerate systematically"
     }
   ]
 }

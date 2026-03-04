@@ -1,0 +1,10 @@
+{
+  "id": 12,
+  "symbolic_name": "lattice_sieve_sds_enumeration",
+  "description": "Adapt lattice sieving from computational number theory (NFS for integer factoring) to enumerate SDS. The autocorrelation conditions define a lattice in Z^{4x167}. LLL/BKZ reduction plus CVP finds candidate 0/1 vectors corresponding to valid SDS blocks.",
+  "domains": ["computational number theory", "lattice algorithms", "combinatorial design theory"],
+  "mathematical_formalization": "Autocorrelation lattice L in Z^{668}: constraints forall g!=0, sum_i N_{supp(x_i)}(g) = lambda. LLL reduce, CVP to nearest 0/1 vector.",
+  "analogical_connections": ["Lattice sieving for SDS ~ NFS smooth value sieving", "LLL ~ Gram-Schmidt orthogonalization", "CVP ~ lattice cryptography"],
+  "implementation_hypothesis": "Transform autocorrelation conditions to linear system. Build lattice. BKZ-2.0 reduction. Schnorr-Euchner enumeration for nearest 0/1 vectors.",
+  "experiment_seed": "Build lattice for v=23 (known SDS). Apply LLL, find 0/1 vectors. Verify known solutions. Scale to v=47, then v=167."
+}

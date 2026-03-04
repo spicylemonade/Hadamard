@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Algebraic geometry codes",
+    "authors": ["T. Høholdt", "J. H. van Lint", "R. Pellikaan"],
+    "year": 1998,
+    "venue": "Handbook of Coding Theory",
+    "relevance": "Comprehensive reference on AG code construction and properties",
+    "url": "https://www.cs.utexas.edu/~danama/courses/codes/lec7-AG-codes.pdf"
+  },
+  {
+    "title": "Hadamard matrices and the spectrum of quadratic symmetric polynomials over finite fields",
+    "authors": ["F. Castro", "L. A. Medina"],
+    "year": 2018,
+    "venue": "Linear Algebra and its Applications",
+    "relevance": "Connection between Hadamard matrices and exponential sums over Galois fields",
+    "url": "https://doi.org/10.1016/J.LAA.2018.03.013"
+  },
+  {
+    "title": "A Construction of Quantum Stabilizer Codes from Classical Codes and Butson Hadamard Matrices",
+    "authors": ["B. Saraç", "D. Acar"],
+    "year": 2024,
+    "venue": "arXiv:2407.13527",
+    "relevance": "Connects Butson Hadamard matrices with code constructions via Kronecker products",
+    "url": "https://arxiv.org/abs/2407.13527"
+  }
+]

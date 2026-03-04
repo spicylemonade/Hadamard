@@ -1,0 +1,10 @@
+{
+  "id": 1,
+  "symbolic_name": "goethals_seidel_sds_search",
+  "description": "The Goethals-Seidel (GS) array constructs a Hadamard matrix of order 4v from four supplementary difference sets (SDS) over Z_v. For v=167 (prime, 3 mod 8), we need four blocks X0..X3 in Z_167 satisfying the constant autocorrelation-sum condition. This is the primary proven method for constructing Hadamard matrices of new orders.",
+  "domains": ["combinatorial design theory", "computational algebra", "number theory"],
+  "mathematical_formalization": "Find X_0..X_3 subsets of Z_167 with sum(|X_i|) = 167 + lambda, such that for all g != 0: sum_i |{(x,y) in X_i^2 : x-y=g}| = lambda.",
+  "analogical_connections": ["SDS search ~ 4D sphere packing", "Hashing match ~ meet-in-middle cryptanalysis", "Autocorrelation ~ flat spectrum of m-sequences"],
+  "implementation_hypothesis": "Split blocks into two pairs, hash partial autocorrelation spectra, match. Use orbit reduction under Aut(Z_167) = Z_166.",
+  "experiment_seed": "Parallel search over Z_167 with orbit reduction, symmetric/skew blocks first."
+}

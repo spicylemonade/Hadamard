@@ -1,8 +1,12 @@
 CONCEPT EVOLUTION COMPLETE
 - Concepts: 12
-- Bridge nodes: 15
-- Bridge edges: 18
+- Bridge nodes: 12
+- Bridge edges: 20
 - Concept folders: 12
-- Walk paths: 26
+- Walk paths: 51
 
 Top steering directions:
+- Hybrid Cyclotomic-GA Search for GS Difference Families over Z_167
+- Cocyclic Construction via Dihedral Groups D_{4x167}
+- Parallel Tempering plus Kronecker Bootstrap from Paley(168)
+- Deep RL Agent for Sequential SDS Construction with Curriculum Transfer

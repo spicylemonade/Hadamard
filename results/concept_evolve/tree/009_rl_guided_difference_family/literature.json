@@ -1,0 +1,26 @@
+[
+  {
+    "title": "A general deep reinforcement learning hyperheuristic framework for solving combinatorial optimization problems",
+    "authors": ["J. Kallestad", "R. Hasibi", "A. Hemmati", "K. Sörensen"],
+    "year": 2023,
+    "venue": "European Journal of Operational Research",
+    "relevance": "General RL hyperheuristic framework applicable to combinatorial construction problems",
+    "url": "https://doi.org/10.1016/j.ejor.2023.01.016"
+  },
+  {
+    "title": "Neural combinatorial optimization with reinforcement learning in industrial engineering: a survey",
+    "authors": ["K. T. Chung", "C. K. M. Lee", "Y. P. Tsang"],
+    "year": 2025,
+    "venue": "Artificial Intelligence Review",
+    "relevance": "Comprehensive survey of RL for combinatorial optimization; methodology reference",
+    "url": "https://doi.org/10.1007/s10462-024-11045-1"
+  },
+  {
+    "title": "SOLO: Search Online, Learn Offline for Combinatorial Optimization Problems",
+    "authors": ["J. Oren", "C. Ross", "M. Lefarov", "F. Richter", "A. Taitler", "Z. Feldman", "D. Di Castro", "C. Daniel"],
+    "year": 2021,
+    "venue": "arXiv:2104.01646",
+    "relevance": "Combines RL with MCTS for combinatorial optimization; applicable to SDS search",
+    "url": "https://arxiv.org/abs/2104.01646"
+  }
+]

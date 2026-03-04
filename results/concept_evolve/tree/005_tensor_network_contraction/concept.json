@@ -1,0 +1,10 @@
+{
+  "id": 5,
+  "symbolic_name": "tensor_network_contraction",
+  "description": "Model Hadamard matrix construction as a constraint satisfaction problem encoded in a tensor network. Each entry is a binary tensor variable. Orthogonality constraints become tensor contractions. Approximate contraction via BP or DMRG-like sweeps finds solutions.",
+  "domains": ["tensor networks", "quantum information", "constraint satisfaction"],
+  "mathematical_formalization": "Construct tensor T_{r,s,k} = delta(sum_k h_{rk}*h_{sk}, 0) for r != s. Full constraint: T = prod_{r<s} T_{r,s}. Approximate via MPS with bond dimension chi.",
+  "analogical_connections": ["TN contraction ~ DMRG ground state finding", "Bond dimension ~ matrix rank", "Row sweep ~ Gaussian elimination"],
+  "implementation_hypothesis": "Represent each row as a tensor. DMRG-like sweep optimizing one row at a time. Adaptive bond dimension starting at chi=2.",
+  "experiment_seed": "Toy version for order 28 using ITensor. Measure convergence and scaling to 44, 92."
+}

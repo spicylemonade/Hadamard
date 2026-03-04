@@ -1,0 +1,10 @@
+{
+  "id": 9,
+  "symbolic_name": "rl_guided_difference_family",
+  "description": "Use deep reinforcement learning to guide SDS construction for the Goethals-Seidel array. RL agent sequentially adds elements to four blocks, with reward from autocorrelation defect. GNN policy on Cayley graph of Z_167. Curriculum transfer from small known instances.",
+  "domains": ["reinforcement learning", "combinatorial optimization", "combinatorial design theory"],
+  "mathematical_formalization": "MDP: State = partial (X_0,...,X_3), Action = (block_id, element). Reward = -Delta(defect). Policy pi_theta via GNN on Cayley graph of Z_167.",
+  "analogical_connections": ["Block construction ~ game of Go", "GNN on Cayley graph ~ AlphaFold geometry capture", "Sparse reward ~ MCTS game playing"],
+  "implementation_hypothesis": "GNN-based PPO agent. Curriculum: train on v=11, transfer to v=23, v=47, then v=167. Self-play episodes as construction attempts.",
+  "experiment_seed": "Train RL on v=11 (order 44). Transfer to v=23 (order 92). Measure success rate and learned heuristic quality."
+}

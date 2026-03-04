@@ -1,0 +1,34 @@
+[
+  {
+    "title": "On Construction of Hadamard Matrices",
+    "authors": ["S. Kumari", "H. Mahato"],
+    "year": 2021,
+    "venue": "arXiv:2108.08133",
+    "relevance": "Hadamard construction using skew Hadamard matrices and Kronecker product",
+    "url": "https://arxiv.org/abs/2108.08133"
+  },
+  {
+    "title": "An infinite family of Hadamard matrices constructed from Paley type matrices",
+    "authors": ["A. Farouk", "Q.-W. Wang"],
+    "year": 2020,
+    "venue": "Filomat",
+    "relevance": "Constructs H(2q(q+1)) from H(2(q+1)) using Paley-type building blocks",
+    "url": "https://doi.org/10.2298/fil2003815f"
+  },
+  {
+    "title": "On Construction of Hadamard Matrices",
+    "authors": ["W. V. Nishadi", "A. A. I. Perera"],
+    "year": 2020,
+    "venue": "IRE Journals",
+    "relevance": "Block matrix construction using Kronecker product for specific orders",
+    "url": "https://www.irejournals.com/formatedpaper/1702324.pdf"
+  },
+  {
+    "title": "Matrix Calculus, Kronecker Product and Tensor Product",
+    "authors": ["Y. Hardy", "W. Steeb"],
+    "year": 2019,
+    "venue": "World Scientific",
+    "relevance": "Reference for Kronecker product properties used in the bootstrap construction",
+    "url": "https://doi.org/10.1142/11338"
+  }
+]

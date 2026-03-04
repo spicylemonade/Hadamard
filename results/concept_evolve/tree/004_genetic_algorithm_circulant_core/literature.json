@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Genetic algorithms for the construction of Hadamard matrices with two circulant cores",
+    "authors": ["I. S. Kotsireas", "C. Koukouvinos"],
+    "year": 2005,
+    "venue": "Journal of Discrete Mathematical Sciences and Cryptography",
+    "relevance": "Pioneering GA approach for circulant-core Hadamard matrices",
+    "url": "https://doi.org/10.1080/09720529.2005.10698034"
+  },
+  {
+    "title": "A GPU Accelerated Genetic Algorithm for the Construction of Hadamard Matrices",
+    "authors": ["R. I. Ruiz"],
+    "year": 2022,
+    "venue": "UTRGV Master's Thesis",
+    "relevance": "GPU acceleration of GA for Hadamard construction",
+    "url": "https://scholarworks.utrgv.edu/etd/1098/"
+  },
+  {
+    "title": "Hadamard matrices from Goethals-Seidel difference families with a repeated block",
+    "authors": ["L. Abuzin", "N. Unknown", "D. Đoković", "I. Kotsireas"],
+    "year": 2019,
+    "venue": "Information and Control Systems",
+    "relevance": "Propus construction with repeated blocks; produces symmetric H matrices",
+    "url": "https://doi.org/10.31799/1684-8853-2019-5-2-9"
+  },
+  {
+    "title": "A database of constructions of Hadamard matrices",
+    "authors": ["M. Cati", "D. V. Pasechnik"],
+    "year": 2024,
+    "venue": "arXiv:2411.18897",
+    "relevance": "Comprehensive database of known constructions in SageMath; confirms 668 as open",
+    "url": "https://arxiv.org/abs/2411.18897"
+  }
+]

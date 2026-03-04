@@ -1,0 +1,25 @@
+{
+  "id": 1,
+  "symbolic_name": "goethals_seidel_sds_search",
+  "description": "The Goethals-Seidel (GS) array constructs a Hadamard matrix of order 4v from four supplementary difference sets (SDS) over Z_v. For v=167 (a prime congruent to 3 mod 8), we need four blocks X0..X3 in Z_167 satisfying the constant autocorrelation-sum condition. The core computational challenge is searching for these four blocks using hashing-based matching algorithms, as pioneered by Dokovic, Golubitsky, and Kotsireas.",
+  "domains": [
+    "combinatorial design theory",
+    "computational algebra",
+    "number theory"
+  ],
+  "mathematical_formalization": "Find X_0, X_1, X_2, X_3 subsets of Z_{167} with |X_i| = k_i such that sum_{i=0}^{3} k_i = 167 + lambda and for all g != 0 in Z_{167}: sum_{i=0}^{3} |{(x,y) in X_i x X_i : x - y = g}| = lambda. The GS array then yields H of order 668.",
+  "analogical_connections": [
+    "SDS search is analogous to 4-dimensional sphere packing: find 4 subsets whose intersection patterns are uniformly distributed",
+    "The hashing-based matching resembles meet-in-the-middle attacks in cryptanalysis",
+    "The autocorrelation condition mirrors the flat spectral property of m-sequences in signal processing"
+  ],
+  "implementation_hypothesis": "Split the four blocks into two pairs (X0,X1) and (X2,X3). For each pair, enumerate candidates satisfying partial autocorrelation constraints, hash them by their partial autocorrelation spectrum, then match pairs whose combined spectra yield the constant lambda. Use orbit reduction under the automorphism group Aut(Z_167) = Z_166 to prune the search space by factor ~166.",
+  "experiment_seed": "Implement a parallel search in Python/C++ over Z_167 with orbit reduction modulo the cyclic automorphism group. Start with symmetric or skew blocks to reduce search space. Measure: number of valid SDS found vs. CPU hours.",
+  "folder_plan": [
+    "concept.json",
+    "README.md",
+    "literature.json"
+  ],
+  "generated_at": "2026-03-04T08:45:43.038857+00:00",
+  "project_folder": "concept_evolve/tree/001_goethals-seidel-sds-search"
+}

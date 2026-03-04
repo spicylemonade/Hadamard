@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Constructing Optimal Contraction Trees for Tensor Network Quantum Circuit Simulation",
+    "authors": ["C. Ibrahim", "D. Lykov", "Z. He", "Y. Alexeev", "I. Safro"],
+    "year": 2022,
+    "venue": "IEEE HPEC",
+    "relevance": "Optimal contraction tree methods applicable to Hadamard constraint networks",
+    "url": "https://arxiv.org/abs/2209.02895"
+  },
+  {
+    "title": "A Quantum-Inspired Tensor Network Algorithm for Constrained Combinatorial Optimization Problems",
+    "authors": ["T. Hao", "X. Huang", "C. Jia", "C. Peng"],
+    "year": 2022,
+    "venue": "Frontiers of Physics",
+    "relevance": "Tensor network approach for constrained combinatorial optimization — directly applicable methodology",
+    "url": "https://doi.org/10.3389/fphy.2022.906590"
+  },
+  {
+    "title": "Optimal symbolic construction of matrix product operators and tree tensor network operators",
+    "authors": ["H. Çakır", "R. M. Milbradt", "C. B. Mendl"],
+    "year": 2025,
+    "venue": "Physical Review B",
+    "relevance": "MPO/TTNO construction methods transferable to Hadamard constraint encoding",
+    "url": "https://arxiv.org/abs/2502.18630"
+  }
+]

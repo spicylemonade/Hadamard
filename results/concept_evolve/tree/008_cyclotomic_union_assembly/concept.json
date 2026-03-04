@@ -1,0 +1,10 @@
+{
+  "id": 8,
+  "symbolic_name": "cyclotomic_union_assembly",
+  "description": "For v=167, GF(167)* = Z_166 = Z_2 x Z_83. Cyclotomic classes of order N|166 partition the multiplicative group. Unions of these classes can form SDS blocks. Karoui (2026) used this for order 1252 via GF(5^4). Adapting to GF(167) could yield H(668).",
+  "domains": ["number theory", "finite field theory", "combinatorial design theory"],
+  "mathematical_formalization": "Cyclotomic classes C_j = {g^{Nk+j}} for primitive root g mod 167. For N=2: QR and QNR of size 83 each. SDS blocks are unions of C_j sets.",
+  "analogical_connections": ["Cyclotomic classes ~ Fourier harmonics", "Union assembly ~ DNA recombination", "Flatness condition ~ wavelet construction"],
+  "implementation_hypothesis": "Order-2 classes give QR/QNR. Check all 4-tuples. Extend to non-standard unions with {0}. Consider GF(167^2) for finer structure.",
+  "experiment_seed": "Compute Jacobsthal matrix of GF(167). Form SDS from cyclotomic unions. Check small search space (~16 combinations)."
+}

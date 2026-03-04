@@ -1,0 +1,25 @@
+{
+  "id": 4,
+  "symbolic_name": "genetic_algorithm_circulant_core",
+  "description": "Genetic algorithms (GA) have been applied to Hadamard matrix construction, notably by Kotsireas and Koukouvinos (2005) for two-circulant-core designs, and by Ruiz (2022) with GPU acceleration. For order 668 = 4x167, encode four circulant first-rows (each a binary vector in Z_167) as chromosomes. Crossover and mutation operate on these compact representations, with fitness defined by closeness to the SDS autocorrelation condition.",
+  "domains": [
+    "evolutionary computation",
+    "combinatorial design theory",
+    "GPU computing"
+  ],
+  "mathematical_formalization": "Chromosome: (x_0, x_1, x_2, x_3) in {0,1}^{4x167}. Fitness: f(x) = -sum_{g=1}^{166} (sum_{i=0}^{3} N_{X_i}(g) - lambda)^2, where N_{X_i}(g) = |{(a,b) in X_i^2 : a-b = g mod 167}|. Target: f = 0.",
+  "analogical_connections": [
+    "Chromosomes encoding circulant first-rows are analogous to DNA encoding protein structure -- compact representations of complex objects",
+    "The fitness landscape of SDS conditions resembles NK fitness landscapes in evolutionary biology",
+    "GPU-parallel fitness evaluation mirrors massively parallel protein folding simulations"
+  ],
+  "implementation_hypothesis": "Encode each of the 4 blocks as a 167-bit chromosome. Use tournament selection, uniform crossover, and bit-flip mutation. Evaluate fitness via FFT-based autocorrelation (O(v log v) per block). Parallelize on GPU: each thread evaluates one individual. Population size: 10,000; generations: 100,000. Apply orbit-aware initialization: seed the population with blocks derived from cyclotomic classes.",
+  "experiment_seed": "Run a GA with FFT-based fitness on a single GPU for 24 hours. Compare convergence rates for: (a) random initialization, (b) cyclotomic seeding, (c) Williamson-type symmetric constraint. Record best fitness vs. generation.",
+  "folder_plan": [
+    "concept.json",
+    "README.md",
+    "literature.json"
+  ],
+  "generated_at": "2026-03-04T08:45:43.040323+00:00",
+  "project_folder": "concept_evolve/tree/004_genetic-algorithm-circulant-core"
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "title": "A proof of the Hadamard transform decoding of the belief propagation algorithm for LDPCC over GF(q)",
+    "authors": ["Various"],
+    "year": 2004,
+    "venue": "IEEE Conference",
+    "relevance": "Hadamard transform in BP decoding of LDPC codes — conceptual ancestor",
+    "url": "https://ieeexplore.ieee.org/document/1400507/"
+  },
+  {
+    "title": "Probabilistic Construction and Analysis of Seminormalized Hadamard Matrices",
+    "authors": ["A. B. Suksmono"],
+    "year": 2016,
+    "venue": "arXiv:1606.09368",
+    "relevance": "Probabilistic algorithms (RVS, OSA) for Hadamard construction — related iterative approach",
+    "url": "https://arxiv.org/abs/1606.09368"
+  },
+  {
+    "title": "Survey propagation: An algorithm for satisfiability",
+    "authors": ["A. Braunstein", "M. Mézard", "R. Zecchina"],
+    "year": 2005,
+    "venue": "Random Structures and Algorithms",
+    "relevance": "Survey propagation for hard SAT instances — methodology for frustrated constraint systems",
+    "url": "https://doi.org/10.1002/rsa.20057"
+  }
+]

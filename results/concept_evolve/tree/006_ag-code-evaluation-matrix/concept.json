@@ -1,0 +1,25 @@
+{
+  "id": 6,
+  "symbolic_name": "ag_code_evaluation_matrix",
+  "description": "Algebraic geometry (AG) codes over curves with many rational points produce generator matrices with strong orthogonality properties. A Hermitian curve over GF(q^2) yields codes close to the Singleton bound. By evaluating basis functions at rational points of a curve over GF(167^2) or a related field, one might construct a matrix with near-Hadamard properties that can be rounded or refined to a true Hadamard matrix.",
+  "domains": [
+    "algebraic geometry",
+    "coding theory",
+    "number theory"
+  ],
+  "mathematical_formalization": "Let C be a curve over F_q with N rational points P_1,...,P_N. For a divisor G with deg(G) < N, the evaluation code C_L(G) = {(f(P_1),...,f(P_N)) : f in L(G)}. For q=167, the Hermitian curve y^q + y = x^{q+1} over F_{q^2} has q^3 + 1 rational points. Extract a 668x668 submatrix with maximal orthogonality.",
+  "analogical_connections": [
+    "AG codes generalize Reed-Solomon codes just as Hadamard matrices generalize DFT matrices",
+    "The Riemann-Roch theorem guarantees code parameters, analogous to how the Hadamard bound guarantees matrix determinant",
+    "Evaluation at rational points is analogous to sampling a continuous function -- connecting algebraic geometry to signal processing"
+  ],
+  "implementation_hypothesis": "Use SageMath to construct the Hermitian curve over GF(167^2). Enumerate rational points. Construct an evaluation code of dimension 668. Extract the 668x668 generator matrix. Apply a rounding/sign procedure to map entries to {+/-1}. Measure the orthogonality defect and refine via local search.",
+  "experiment_seed": "Construct Hermitian codes over GF(13^2) and GF(17^2) (smaller fields). Measure the orthogonality defect of the sign-rounded generator matrix. Determine if defect decreases with field size. Extrapolate to GF(167^2).",
+  "folder_plan": [
+    "concept.json",
+    "README.md",
+    "literature.json"
+  ],
+  "generated_at": "2026-03-04T08:45:43.041222+00:00",
+  "project_folder": "concept_evolve/tree/006_ag-code-evaluation-matrix"
+}

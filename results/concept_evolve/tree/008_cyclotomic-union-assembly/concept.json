@@ -1,0 +1,25 @@
+{
+  "id": 8,
+  "symbolic_name": "cyclotomic_union_assembly",
+  "description": "For v=167 (prime), the multiplicative group GF(167)* is cyclic of order 166 = 2x83. Cyclotomic classes of order N|166 partition GF(167)* into N cosets. Unions of these cyclotomic classes can form the blocks of supplementary difference sets. Karoui (2026) recently used cyclotomic unions over GF(5^4) to construct a skew-Hadamard matrix of order 1252. Adapting this to GF(167) with classes of order 2 or 83 could yield the needed SDS for H(668).",
+  "domains": [
+    "number theory",
+    "finite field theory",
+    "combinatorial design theory"
+  ],
+  "mathematical_formalization": "Let g be a primitive root mod 167. The N-th cyclotomic classes are C_j = {g^{Nk+j} : k=0,...,166/N-1} for j=0,...,N-1. For N=2: C_0 = QR(167), C_1 = QNR(167), each of size 83. SDS blocks X_i are unions of C_j sets. The autocorrelation condition becomes equations on index sets S_i, solvable by exhaustive search over 2^N subsets.",
+  "analogical_connections": [
+    "Cyclotomic classes are the number-theoretic analog of Fourier harmonics -- frequency components of the multiplicative group",
+    "Union assembly mirrors DNA recombination: combining genetic segments to build functional structures",
+    "The approach parallels wavelet construction: selecting frequency bands to achieve flatness"
+  ],
+  "implementation_hypothesis": "For 167, we have 166 = 2x83. Use cyclotomic classes of order 2 (QR and QNR). Each block is either QR, QNR, QR union {0}, or QNR union {0}. Check all combinations. For finer resolution, consider non-standard unions with additional algebraic structure from the field extension GF(167^2).",
+  "experiment_seed": "Compute the Jacobsthal matrix J of GF(167). Form candidate SDS blocks as unions of cyclotomic classes for N=2. Check all 4-tuples (very small search space: ~16 combinations). If none work, extend to N=83 classes or use GF(167^2) structure.",
+  "folder_plan": [
+    "concept.json",
+    "README.md",
+    "literature.json"
+  ],
+  "generated_at": "2026-03-04T08:45:43.042152+00:00",
+  "project_folder": "concept_evolve/tree/008_cyclotomic-union-assembly"
+}

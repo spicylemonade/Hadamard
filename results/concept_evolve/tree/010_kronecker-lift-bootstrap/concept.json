@@ -1,0 +1,25 @@
+{
+  "id": 10,
+  "symbolic_name": "kronecker_lift_bootstrap",
+  "description": "Although 668 cannot be directly decomposed as a Kronecker product of known Hadamard orders (since 668 = 4x167 and 167 is not a valid Hadamard order), a bootstrap approach constructs a near-Hadamard matrix H' of order 668 by starting from H_4 tensor M_167, where M_167 is derived from the Paley conference matrix of order 167 (which exists since 167 is an odd prime). Local refinement then corrects H' to achieve exact orthogonality.",
+  "domains": [
+    "linear algebra",
+    "matrix perturbation theory",
+    "combinatorial design theory"
+  ],
+  "mathematical_formalization": "Let C_167 be the Paley conference matrix (167x167, C*C^T = 166*I). Construct M = [1 j^T; -j C] of order 168 (Paley Type I Hadamard). Extract a 167x167 submatrix. Form H' = H_4 tensor M'. Compute defect D = H'*H'^T - 668*I. Apply gradient-based or combinatorial repair to minimize ||D||_F by flipping entries.",
+  "analogical_connections": [
+    "Bootstrapping from a conference matrix is like using a scaffold in 3D printing -- starting with approximate structure and refining",
+    "The Kronecker product structure acts like a coarse-grained model in molecular dynamics",
+    "Entry flipping to repair orthogonality mirrors bit-flipping decoding in LDPC codes"
+  ],
+  "implementation_hypothesis": "Step 1: Build 168x168 Paley Type I Hadamard from conference matrix of GF(167). Step 2: Delete row/column to get 167x167 near-orthogonal matrix M'. Step 3: Form H' = H_4 tensor M' (668x668). Step 4: Use simulated annealing to flip entries, minimizing Frobenius norm of H'H'^T - 668I. The initial structure dramatically reduces search space.",
+  "experiment_seed": "Construct 168x168 Paley Hadamard. Delete row/col to get 167x167 matrix. Form H' = H_4 tensor M'. Measure initial defect. Run SA with entry-flipping for 10^8 iterations. Track defect convergence.",
+  "folder_plan": [
+    "concept.json",
+    "README.md",
+    "literature.json"
+  ],
+  "generated_at": "2026-03-04T08:45:43.043019+00:00",
+  "project_folder": "concept_evolve/tree/010_kronecker-lift-bootstrap"
+}

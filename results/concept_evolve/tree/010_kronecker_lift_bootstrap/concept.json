@@ -1,0 +1,10 @@
+{
+  "id": 10,
+  "symbolic_name": "kronecker_lift_bootstrap",
+  "description": "Bootstrap a near-Hadamard 668x668 matrix from H_4 tensor M_167, where M_167 derives from the Paley conference matrix of order 167. Local refinement corrects defects to achieve exact orthogonality. Leverages the structural proximity 668 = 4 x 167.",
+  "domains": ["linear algebra", "matrix perturbation theory", "combinatorial design theory"],
+  "mathematical_formalization": "C_167 Paley conference matrix. M = [1 j^T; -j C] order 168. Extract 167x167 submatrix M'. H' = H_4 tensor M'. Minimize ||H'H'^T - 668I||_F via entry flipping.",
+  "analogical_connections": ["Conference scaffold ~ 3D printing scaffold", "Kronecker structure ~ coarse-grained molecular model", "Entry flipping ~ LDPC bit-flipping decoding"],
+  "implementation_hypothesis": "Build Paley H(168). Delete row/col for 167x167. Form H_4 tensor M'. SA with entry-flipping to minimize Frobenius defect.",
+  "experiment_seed": "Construct scaffold. Measure initial defect. Run SA for 10^8 iterations. Track convergence."
+}

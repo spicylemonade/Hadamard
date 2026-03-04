@@ -1,0 +1,10 @@
+{
+  "id": 6,
+  "symbolic_name": "ag_code_evaluation_matrix",
+  "description": "AG codes over curves with many rational points produce generator matrices with strong orthogonality properties. Evaluate basis functions at rational points of a Hermitian curve over GF(167^2) to construct a near-Hadamard matrix. Round to {+/-1} and refine.",
+  "domains": ["algebraic geometry", "coding theory", "number theory"],
+  "mathematical_formalization": "Hermitian curve y^q + y = x^{q+1} over F_{q^2}, q=167. N = q^3+1 rational points. Evaluation code C_L(G) with dim 668. Extract 668x668 generator, round, refine.",
+  "analogical_connections": ["AG codes generalize Reed-Solomon ~ Hadamard generalizes DFT", "Riemann-Roch ~ Hadamard bound", "Point evaluation ~ signal sampling"],
+  "implementation_hypothesis": "SageMath: construct Hermitian curve over GF(167^2), enumerate points, build evaluation code, extract generator, sign-round, local search refinement.",
+  "experiment_seed": "Test with GF(13^2) and GF(17^2). Measure orthogonality defect of rounded generator. Extrapolate to GF(167^2)."
+}

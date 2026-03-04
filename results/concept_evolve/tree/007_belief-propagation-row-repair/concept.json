@@ -1,0 +1,25 @@
+{
+  "id": 7,
+  "symbolic_name": "belief_propagation_row_repair",
+  "description": "Treat the partially-constructed Hadamard matrix as a factor graph where variable nodes represent undetermined entries and factor nodes enforce pairwise row orthogonality. Apply belief propagation (BP) or survey propagation (SP) to iteratively refine entry assignments. This borrows from LDPC decoding, where BP efficiently solves similar constraint satisfaction problems on sparse graphs.",
+  "domains": [
+    "information theory",
+    "probabilistic graphical models",
+    "combinatorial design theory"
+  ],
+  "mathematical_formalization": "Factor graph: variable nodes v_{ij} in {-1,+1}, factor nodes f_{rs} = delta(sum_k v_{rk}*v_{sk}, 0) for r<s. BP messages: mu_{v->f}(x) = prod_{f' in N(v)\\f} mu_{f'->v}(x); mu_{f->v}(x) = sum_{x'} f(x,x') prod_{v' in N(f)\\v} mu_{v'->f}(x'). Iterate until convergence.",
+  "analogical_connections": [
+    "BP for Hadamard construction parallels turbo decoding -- iterative refinement with soft information",
+    "The factor graph is analogous to a Tanner graph for LDPC codes, with orthogonality constraints replacing parity checks",
+    "Survey propagation (from spin glass theory) handles frustrated loops, analogous to conflicting row constraints"
+  ],
+  "implementation_hypothesis": "Initialize a 668x668 matrix with a near-Hadamard solution (from partial construction or simulated annealing). For each violated orthogonality constraint, set up a BP subproblem over the involved rows. Run damped BP with momentum to handle cycles. Use decimation: fix high-confidence variables, re-run BP. Repeat until all constraints satisfied.",
+  "experiment_seed": "Start with a random 668x668 +/-1 matrix. Run BP with decimation for 1000 iterations. Track: number of violated orthogonality constraints vs. iteration, convergence rate. Compare with direct SA baseline.",
+  "folder_plan": [
+    "concept.json",
+    "README.md",
+    "literature.json"
+  ],
+  "generated_at": "2026-03-04T08:45:43.041694+00:00",
+  "project_folder": "concept_evolve/tree/007_belief-propagation-row-repair"
+}

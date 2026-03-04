@@ -1,14 +1,14 @@
 {
-  "topic": "Find a Hadamard matrix of order 668. Provide your solution as a csv. try hard",
-  "timestamp": "2026-03-04T05:46:31.870350+00:00",
+  "topic": "Find a Hadamard matrix of order 668 using creative construction methods beyond standard approaches",
+  "timestamp": "2026-03-04T08:45:43.045095+00:00",
   "status": "completed",
   "n_concepts": 12,
-  "n_graph_nodes": 15,
-  "n_graph_edges": 18,
-  "n_steering_directions": 0,
+  "n_graph_nodes": 12,
+  "n_graph_edges": 20,
+  "n_steering_directions": 4,
   "tree": {
     "concept_folder_count": 12,
-    "walk_path_count": 26,
-    "edge_count": 18
+    "walk_path_count": 51,
+    "edge_count": 20
   }
 }

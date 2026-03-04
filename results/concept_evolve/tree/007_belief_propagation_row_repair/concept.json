@@ -1,0 +1,10 @@
+{
+  "id": 7,
+  "symbolic_name": "belief_propagation_row_repair",
+  "description": "Treat partially-constructed Hadamard matrix as a factor graph. Variable nodes are entries, factor nodes enforce pairwise row orthogonality. Apply belief propagation or survey propagation to iteratively refine assignments. Borrows from LDPC decoding.",
+  "domains": ["information theory", "probabilistic graphical models", "combinatorial design theory"],
+  "mathematical_formalization": "Factor graph: v_{ij} in {-1,+1}, f_{rs} = delta(sum_k v_{rk}*v_{sk}, 0). BP messages iterate until convergence. Decimation fixes high-confidence variables.",
+  "analogical_connections": ["BP ~ turbo decoding", "Factor graph ~ LDPC Tanner graph", "Survey propagation ~ spin glass cavity method"],
+  "implementation_hypothesis": "Initialize near-Hadamard matrix. BP on violated constraints. Damped BP with momentum. Decimation of confident variables. Repeat.",
+  "experiment_seed": "Random 668x668 start. BP + decimation for 1000 iterations. Track violated constraints vs iteration."
+}

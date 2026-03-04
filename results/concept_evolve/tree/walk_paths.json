@@ -1,164 +1,359 @@
 [
   [
-    "GF167_structure",
-    "cyclotomic_class_partition",
-    "difference_set_construction",
-    "goethals_seidel_array",
-    "complementary_sequences"
+    "belief_propagation_row_repair",
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "cyclotomic_union_assembly"
   ],
   [
-    "GF167_structure",
-    "cyclotomic_class_partition",
-    "paley_quadratic_residue",
-    "conference_matrix_border",
-    "goethals_seidel_array"
+    "belief_propagation_row_repair",
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "genetic_algorithm_circulant_core"
   ],
   [
-    "GF167_structure",
-    "paley_quadratic_residue",
-    "conference_matrix_border",
-    "goethals_seidel_array",
-    "complementary_sequences"
+    "belief_propagation_row_repair",
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "lattice_sieve_sds_enumeration"
   ],
   [
-    "GF167_structure",
-    "open_problem_668"
+    "belief_propagation_row_repair",
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "rl_guided_difference_family"
   ],
   [
-    "complementary_sequences",
-    "spectral_flatness_condition",
-    "quantum_optimization_search",
-    "open_problem_668"
+    "belief_propagation_row_repair",
+    "quantum_annealing_orthogonality",
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search"
   ],
   [
-    "complementary_sequences",
-    "flat_psd_equivalence",
-    "open_problem_668"
+    "belief_propagation_row_repair",
+    "quantum_annealing_orthogonality",
+    "tensor_network_contraction",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search"
   ],
   [
-    "conference_matrix_border",
-    "goethals_seidel_array",
-    "complementary_sequences",
-    "spectral_flatness_condition",
-    "quantum_optimization_search"
+    "cocyclic_cohomological_lift",
+    "goethals_seidel_sds_search",
+    "cyclotomic_union_assembly",
+    "lattice_sieve_sds_enumeration",
+    "ag_code_evaluation_matrix"
   ],
   [
-    "conference_matrix_border",
-    "goethals_seidel_array",
-    "complementary_sequences",
-    "flat_psd_equivalence",
-    "open_problem_668"
+    "cocyclic_cohomological_lift",
+    "goethals_seidel_sds_search",
+    "genetic_algorithm_circulant_core",
+    "rl_guided_difference_family",
+    "belief_propagation_row_repair"
   ],
   [
-    "cyclotomic_class_partition",
-    "difference_set_construction",
-    "goethals_seidel_array",
-    "complementary_sequences",
-    "spectral_flatness_condition"
+    "cocyclic_cohomological_lift",
+    "goethals_seidel_sds_search",
+    "genetic_algorithm_circulant_core",
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap"
   ],
   [
-    "cyclotomic_class_partition",
-    "difference_set_construction",
-    "goethals_seidel_array",
-    "complementary_sequences",
-    "flat_psd_equivalence"
+    "cocyclic_cohomological_lift",
+    "goethals_seidel_sds_search",
+    "lattice_sieve_sds_enumeration",
+    "ag_code_evaluation_matrix",
+    "cyclotomic_union_assembly"
   ],
   [
-    "cyclotomic_class_partition",
-    "paley_quadratic_residue",
-    "conference_matrix_border",
-    "goethals_seidel_array",
-    "complementary_sequences"
+    "cocyclic_cohomological_lift",
+    "goethals_seidel_sds_search",
+    "rl_guided_difference_family",
+    "belief_propagation_row_repair",
+    "spin_glass_ising_relaxation"
   ],
   [
-    "difference_set_construction",
-    "goethals_seidel_array",
-    "complementary_sequences",
-    "spectral_flatness_condition",
-    "quantum_optimization_search"
+    "cocyclic_cohomological_lift",
+    "goethals_seidel_sds_search",
+    "rl_guided_difference_family",
+    "belief_propagation_row_repair",
+    "quantum_annealing_orthogonality"
   ],
   [
-    "difference_set_construction",
-    "goethals_seidel_array",
-    "complementary_sequences",
-    "flat_psd_equivalence",
-    "open_problem_668"
+    "genetic_algorithm_circulant_core",
+    "rl_guided_difference_family",
+    "belief_propagation_row_repair",
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap"
   ],
   [
-    "flat_psd_equivalence",
-    "open_problem_668"
+    "genetic_algorithm_circulant_core",
+    "rl_guided_difference_family",
+    "belief_propagation_row_repair",
+    "quantum_annealing_orthogonality",
+    "spin_glass_ising_relaxation"
   ],
   [
-    "goethals_seidel_array",
-    "complementary_sequences",
-    "spectral_flatness_condition",
-    "quantum_optimization_search",
-    "open_problem_668"
+    "genetic_algorithm_circulant_core",
+    "rl_guided_difference_family",
+    "belief_propagation_row_repair",
+    "quantum_annealing_orthogonality",
+    "tensor_network_contraction"
   ],
   [
-    "goethals_seidel_array",
-    "complementary_sequences",
-    "flat_psd_equivalence",
-    "open_problem_668"
+    "genetic_algorithm_circulant_core",
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "cyclotomic_union_assembly"
   ],
   [
-    "kronecker_tensor_product",
-    "modular_hadamard_relaxation",
-    "open_problem_668"
+    "genetic_algorithm_circulant_core",
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "lattice_sieve_sds_enumeration"
   ],
   [
-    "modular_hadamard_relaxation",
-    "open_problem_668"
+    "genetic_algorithm_circulant_core",
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "rl_guided_difference_family"
   ],
   [
-    "paley_quadratic_residue",
-    "conference_matrix_border",
-    "goethals_seidel_array",
-    "complementary_sequences",
-    "spectral_flatness_condition"
+    "goethals_seidel_sds_search",
+    "genetic_algorithm_circulant_core",
+    "rl_guided_difference_family",
+    "belief_propagation_row_repair",
+    "spin_glass_ising_relaxation"
   ],
   [
-    "paley_quadratic_residue",
-    "conference_matrix_border",
-    "goethals_seidel_array",
-    "complementary_sequences",
-    "flat_psd_equivalence"
+    "goethals_seidel_sds_search",
+    "genetic_algorithm_circulant_core",
+    "rl_guided_difference_family",
+    "belief_propagation_row_repair",
+    "quantum_annealing_orthogonality"
   ],
   [
-    "quantum_optimization_search",
-    "open_problem_668"
+    "goethals_seidel_sds_search",
+    "rl_guided_difference_family",
+    "belief_propagation_row_repair",
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap"
   ],
   [
-    "spectral_flatness_condition",
-    "quantum_optimization_search",
-    "open_problem_668"
+    "goethals_seidel_sds_search",
+    "rl_guided_difference_family",
+    "belief_propagation_row_repair",
+    "quantum_annealing_orthogonality",
+    "spin_glass_ising_relaxation"
   ],
   [
-    "t_sequence_decomposition",
-    "goethals_seidel_array",
-    "complementary_sequences",
-    "spectral_flatness_condition",
-    "quantum_optimization_search"
+    "goethals_seidel_sds_search",
+    "rl_guided_difference_family",
+    "belief_propagation_row_repair",
+    "quantum_annealing_orthogonality",
+    "tensor_network_contraction"
   ],
   [
-    "t_sequence_decomposition",
-    "goethals_seidel_array",
-    "complementary_sequences",
-    "flat_psd_equivalence",
-    "open_problem_668"
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "cyclotomic_union_assembly",
+    "lattice_sieve_sds_enumeration",
+    "ag_code_evaluation_matrix"
   ],
   [
-    "williamson_type_matrices",
-    "goethals_seidel_array",
-    "complementary_sequences",
-    "spectral_flatness_condition",
-    "quantum_optimization_search"
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "genetic_algorithm_circulant_core",
+    "rl_guided_difference_family",
+    "belief_propagation_row_repair"
   ],
   [
-    "williamson_type_matrices",
-    "goethals_seidel_array",
-    "complementary_sequences",
-    "flat_psd_equivalence",
-    "open_problem_668"
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "lattice_sieve_sds_enumeration",
+    "ag_code_evaluation_matrix",
+    "cyclotomic_union_assembly"
+  ],
+  [
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "rl_guided_difference_family",
+    "belief_propagation_row_repair",
+    "spin_glass_ising_relaxation"
+  ],
+  [
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "rl_guided_difference_family",
+    "belief_propagation_row_repair",
+    "quantum_annealing_orthogonality"
+  ],
+  [
+    "quantum_annealing_orthogonality",
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "cyclotomic_union_assembly"
+  ],
+  [
+    "quantum_annealing_orthogonality",
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "genetic_algorithm_circulant_core"
+  ],
+  [
+    "quantum_annealing_orthogonality",
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "lattice_sieve_sds_enumeration"
+  ],
+  [
+    "quantum_annealing_orthogonality",
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "rl_guided_difference_family"
+  ],
+  [
+    "quantum_annealing_orthogonality",
+    "tensor_network_contraction",
+    "belief_propagation_row_repair",
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap"
+  ],
+  [
+    "quantum_annealing_orthogonality",
+    "tensor_network_contraction",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "cyclotomic_union_assembly"
+  ],
+  [
+    "quantum_annealing_orthogonality",
+    "tensor_network_contraction",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "genetic_algorithm_circulant_core"
+  ],
+  [
+    "quantum_annealing_orthogonality",
+    "tensor_network_contraction",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "lattice_sieve_sds_enumeration"
+  ],
+  [
+    "quantum_annealing_orthogonality",
+    "tensor_network_contraction",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "rl_guided_difference_family"
+  ],
+  [
+    "rl_guided_difference_family",
+    "belief_propagation_row_repair",
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search"
+  ],
+  [
+    "rl_guided_difference_family",
+    "belief_propagation_row_repair",
+    "quantum_annealing_orthogonality",
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap"
+  ],
+  [
+    "rl_guided_difference_family",
+    "belief_propagation_row_repair",
+    "quantum_annealing_orthogonality",
+    "tensor_network_contraction",
+    "kronecker_lift_bootstrap"
+  ],
+  [
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "cyclotomic_union_assembly",
+    "lattice_sieve_sds_enumeration"
+  ],
+  [
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "genetic_algorithm_circulant_core",
+    "rl_guided_difference_family"
+  ],
+  [
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "lattice_sieve_sds_enumeration",
+    "ag_code_evaluation_matrix"
+  ],
+  [
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "rl_guided_difference_family",
+    "belief_propagation_row_repair"
+  ],
+  [
+    "tensor_network_contraction",
+    "belief_propagation_row_repair",
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search"
+  ],
+  [
+    "tensor_network_contraction",
+    "belief_propagation_row_repair",
+    "quantum_annealing_orthogonality",
+    "spin_glass_ising_relaxation",
+    "kronecker_lift_bootstrap"
+  ],
+  [
+    "tensor_network_contraction",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "cyclotomic_union_assembly",
+    "lattice_sieve_sds_enumeration"
+  ],
+  [
+    "tensor_network_contraction",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "genetic_algorithm_circulant_core",
+    "rl_guided_difference_family"
+  ],
+  [
+    "tensor_network_contraction",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "genetic_algorithm_circulant_core",
+    "spin_glass_ising_relaxation"
+  ],
+  [
+    "tensor_network_contraction",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "lattice_sieve_sds_enumeration",
+    "ag_code_evaluation_matrix"
+  ],
+  [
+    "tensor_network_contraction",
+    "kronecker_lift_bootstrap",
+    "goethals_seidel_sds_search",
+    "rl_guided_difference_family",
+    "belief_propagation_row_repair"
   ]
 ]

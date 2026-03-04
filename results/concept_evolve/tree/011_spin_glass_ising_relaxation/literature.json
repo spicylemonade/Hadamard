@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Finding a Hadamard Matrix by Simulated Annealing of Spin-Vectors",
+    "authors": ["A. B. Suksmono"],
+    "year": 2016,
+    "venue": "Journal of Physics: Conference Series",
+    "relevance": "Direct predecessor: SA for Hadamard construction as spin system",
+    "url": "https://arxiv.org/abs/1606.03815"
+  },
+  {
+    "title": "Enhanced Differential Evolution Algorithm with Local Search Based on Hadamard Matrix",
+    "authors": ["Various"],
+    "year": 2021,
+    "venue": "Computational Intelligence and Neuroscience",
+    "relevance": "Hybrid metaheuristic with Hadamard-structured local search",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8570889/"
+  },
+  {
+    "title": "Discovery of an Hadamard matrix of order 92",
+    "authors": ["L. D. Baumert", "S. Golomb", "M. Hall"],
+    "year": 1962,
+    "venue": "Bulletin of the AMS",
+    "relevance": "Historic paper using Williamson's method with computation — earliest computer-aided Hadamard construction",
+    "url": "https://doi.org/10.1090/S0002-9904-1962-10761-7"
+  }
+]
