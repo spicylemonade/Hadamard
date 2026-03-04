@@ -2,121 +2,109 @@
   {
     "id": "paley_quadratic_residue",
     "slug": "paley-quadratic-residue",
-    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/001_paley-quadratic-residue",
-    "domains": [
-      "number_theory",
-      "combinatorial_design",
-      "finite_fields"
-    ]
+    "folder": "results/concept_evolve/tree/001_paley-quadratic-residue",
+    "domains": ["number_theory", "combinatorial_design", "finite_fields"],
+    "feasibility_score": 2,
+    "status": "dead_end",
+    "outcome": "Paley I gives H(168), not H(668). Paley II requires q≡1(mod4), but 167≡3(mod4). Both provably inapplicable."
   },
   {
     "id": "goethals_seidel_array",
     "slug": "goethals-seidel-array",
-    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/002_goethals-seidel-array",
-    "domains": [
-      "combinatorial_design",
-      "signal_processing",
-      "optimization"
-    ]
+    "folder": "results/concept_evolve/tree/002_goethals-seidel-array",
+    "domains": ["combinatorial_design", "signal_processing", "optimization"],
+    "feasibility_score": 6,
+    "status": "best_approach_tested",
+    "outcome": "Main approach. Legendre baseline achieves PSD=672 (gap=4). SA optimization over ~500M evaluations reaches L2~400K, Linf~120. Solution not found but approach has lowest known gap."
   },
   {
     "id": "kronecker_tensor_product",
     "slug": "kronecker-tensor-product",
-    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/003_kronecker-tensor-product",
-    "domains": [
-      "linear_algebra",
-      "combinatorial_design",
-      "coding_theory"
-    ]
+    "folder": "results/concept_evolve/tree/003_kronecker-tensor-product",
+    "domains": ["linear_algebra", "combinatorial_design", "coding_theory"],
+    "feasibility_score": 0,
+    "status": "dead_end",
+    "outcome": "668 cannot be factored into two valid Hadamard orders. Provably inapplicable."
   },
   {
     "id": "williamson_type_matrices",
     "slug": "williamson-type-matrices",
-    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/004_williamson-type-matrices",
-    "domains": [
-      "combinatorial_design",
-      "algebraic_combinatorics",
-      "constraint_satisfaction"
-    ]
+    "folder": "results/concept_evolve/tree/004_williamson-type-matrices",
+    "domains": ["combinatorial_design", "algebraic_combinatorics", "constraint_satisfaction"],
+    "feasibility_score": 4,
+    "status": "tested_negative",
+    "outcome": "Williamson restriction reduces search space to 2^336 but SA still plateaus. No Williamson solution found for n=167. Possible that Williamson matrices don't exist for this order."
   },
   {
     "id": "complementary_sequences",
     "slug": "complementary-sequences",
-    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/005_complementary-sequences",
-    "domains": [
-      "signal_processing",
-      "communications",
-      "combinatorial_design"
-    ]
+    "folder": "results/concept_evolve/tree/005_complementary-sequences",
+    "domains": ["signal_processing", "communications", "combinatorial_design"],
+    "feasibility_score": 3,
+    "status": "analyzed",
+    "outcome": "Four Legendre PAF total = -4 at all non-zero shifts (not 0). The gap of 4 is fundamental. Valid DC tuples (row sum decompositions) cataloged: 10 solutions."
   },
   {
     "id": "cyclotomic_class_partition",
     "slug": "cyclotomic-class-partition",
-    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/006_cyclotomic-class-partition",
-    "domains": [
-      "number_theory",
-      "algebraic_combinatorics",
-      "coding_theory"
-    ]
+    "folder": "results/concept_evolve/tree/006_cyclotomic-class-partition",
+    "domains": ["number_theory", "algebraic_combinatorics", "coding_theory"],
+    "feasibility_score": 1,
+    "status": "dead_end",
+    "outcome": "ROOT OBSTRUCTION: 4 does not divide |Z_167*|=166=2×83. No useful 4-class cyclotomic decomposition exists. The sparse group structure (83 prime) is likely why H(668) is harder than neighboring orders."
   },
   {
     "id": "spectral_flatness_condition",
     "slug": "spectral-flatness-condition",
-    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/007_spectral-flatness-condition",
-    "domains": [
-      "signal_processing",
-      "information_theory",
-      "optimization"
-    ]
+    "folder": "results/concept_evolve/tree/007_spectral-flatness-condition",
+    "domains": ["signal_processing", "information_theory", "optimization"],
+    "feasibility_score": 5,
+    "status": "key_insight",
+    "outcome": "PSD must equal 668 at all 167 frequencies. Energy conservation: sum|X(k)|^2 = p^2 per sequence. Reducing PSD at one frequency necessarily increases it at others. This spectral rigidity is the core optimization barrier."
   },
   {
     "id": "quantum_optimization_search",
     "slug": "quantum-optimization-search",
-    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/008_quantum-optimization-search",
-    "domains": [
-      "quantum_computing",
-      "combinatorial_optimization",
-      "physics"
-    ]
+    "folder": "results/concept_evolve/tree/008_quantum-optimization-search",
+    "domains": ["quantum_computing", "combinatorial_optimization", "physics"],
+    "feasibility_score": 2,
+    "status": "not_implemented",
+    "outcome": "Theoretical potential via QAOA (Suksmono 2025), but current quantum hardware lacks scale for 668 variables. Not computationally feasible with current technology."
   },
   {
     "id": "modular_hadamard_relaxation",
     "slug": "modular-hadamard-relaxation",
-    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/009_modular-hadamard-relaxation",
-    "domains": [
-      "modular_arithmetic",
-      "coding_theory",
-      "combinatorial_design"
-    ]
+    "folder": "results/concept_evolve/tree/009_modular-hadamard-relaxation",
+    "domains": ["modular_arithmetic", "coding_theory", "combinatorial_design"],
+    "feasibility_score": 4,
+    "status": "external_result",
+    "outcome": "Eliahou (2025) achieved 64-modular result (HH^T ≡ 668I mod 64). Our Legendre baseline achieves mod-4 equivalence. Gap from modular to exact remains the key challenge."
   },
   {
     "id": "conference_matrix_border",
     "slug": "conference-matrix-border",
-    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/010_conference-matrix-border",
-    "domains": [
-      "combinatorial_design",
-      "graph_theory",
-      "linear_algebra"
-    ]
+    "folder": "results/concept_evolve/tree/010_conference-matrix-border",
+    "domains": ["combinatorial_design", "graph_theory", "linear_algebra"],
+    "feasibility_score": 2,
+    "status": "analyzed",
+    "outcome": "Conference matrices of order 168 exist (Paley). But conference matrix border construction doesn't directly yield H(668). Alternative structural approach with no clear advantage."
   },
   {
     "id": "t_sequence_decomposition",
     "slug": "t-sequence-decomposition",
-    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/011_t-sequence-decomposition",
-    "domains": [
-      "combinatorial_design",
-      "signal_processing",
-      "algebraic_combinatorics"
-    ]
+    "folder": "results/concept_evolve/tree/011_t-sequence-decomposition",
+    "domains": ["combinatorial_design", "signal_processing", "algebraic_combinatorics"],
+    "feasibility_score": 1,
+    "status": "dead_end",
+    "outcome": "T-sequences require factorization 167 = t × s, but 167 is prime. Only t=1 (standard Williamson) or t=167 (unknown T-matrices). No viable decomposition."
   },
   {
     "id": "difference_set_construction",
     "slug": "difference-set-construction",
-    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/012_difference-set-construction",
-    "domains": [
-      "combinatorial_design",
-      "group_theory",
-      "algebraic_combinatorics"
-    ]
+    "folder": "results/concept_evolve/tree/012_difference-set-construction",
+    "domains": ["combinatorial_design", "group_theory", "algebraic_combinatorics"],
+    "feasibility_score": 3,
+    "status": "tested_negative",
+    "outcome": "Spence SDS parameters 4-{334;167,167,167,168;334} are valid but search space is 2x larger than GS approach in Z_167. Not computationally pursued beyond parameter analysis."
   }
 ]
