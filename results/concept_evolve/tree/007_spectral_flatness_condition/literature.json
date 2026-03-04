@@ -1,0 +1,10 @@
+[
+  {
+    "title": "Approximately Hadamard matrices and Riesz bases in random frames",
+    "authors": ["Xiaoyu Dong", "Mark Rudelson"],
+    "year": 2022,
+    "venue": "International Mathematics Research Notices",
+    "doi": "10.48550/arXiv.2207.07523",
+    "relevance": "Constructs ±1 matrices with bounded condition number for all n, showing approximate Hadamard matrices always exist"
+  }
+]

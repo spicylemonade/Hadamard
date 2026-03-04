@@ -1,0 +1,12 @@
+{
+  "symbolic_name": "conference_matrix_border",
+  "description": "A conference matrix C of order n has zero diagonal and ±1 off-diagonal with CC^T = (n-1)I. For p=167, the Jacobsthal matrix is a conference matrix. Bordering gives H(168). Non-standard bordering/embedding needed for H(668).",
+  "domains": ["combinatorial_design", "graph_theory", "linear_algebra"],
+  "mathematical_formalization": "C = Q_167, CC^T = 166I (on {0,±1}), bordered: H(168) = [[1,1^T],[-1,C+I]]",
+  "key_results": {
+    "conference_order": 167,
+    "conference_type": "skew (since 167 ≡ 3 mod 4)",
+    "bordered_hadamard_order": 168,
+    "connection_to_srg": "Conference matrix ↔ Paley graph (strongly regular)"
+  }
+}

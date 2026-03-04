@@ -1,0 +1,12 @@
+{
+  "symbolic_name": "quantum_optimization_search",
+  "description": "QAOA and quantum annealing formulations for Hadamard matrix search. The GS structure reduces the problem from O(M²) to O(M) qubits. Gate-based QAOA avoids the ancilla overhead of annealing.",
+  "domains": ["quantum_computing", "combinatorial_optimization", "physics"],
+  "mathematical_formalization": "H_cost = sum_{i<j} (sum_k h_ik h_jk)^2, h_ik ∈ {-1,+1} → Z_k Pauli",
+  "key_results": {
+    "qubits_needed_full": "668^2 = 446224 (infeasible)",
+    "qubits_needed_gs": "4 × 167 = 668 (feasible future)",
+    "current_quantum_limit": "~50 qubits effective",
+    "reference_paper": "Suksmono (2024), arXiv:2408.07964"
+  }
+}

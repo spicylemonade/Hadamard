@@ -1,0 +1,17 @@
+[
+  {
+    "title": "A Hadamard matrix of order 428",
+    "authors": ["H. Kharaghani", "B. Tayfeh-Rezaie"],
+    "year": 2005,
+    "venue": "Journal of Combinatorial Designs",
+    "doi": "10.1002/jcd.20043",
+    "relevance": "Used T-sequences and complementary approach for previously unknown order"
+  },
+  {
+    "title": "Hadamard Matrices, Sequences, and Block Designs",
+    "authors": ["Jennifer Seberry", "Mieko Yamada"],
+    "year": 1992,
+    "venue": "Contemporary Design Theory",
+    "relevance": "Comprehensive survey of sequence-based Hadamard constructions"
+  }
+]

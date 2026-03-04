@@ -1,0 +1,25 @@
+[
+  {
+    "title": "On Orthogonal Matrices",
+    "authors": ["Raymond Paley"],
+    "year": 1933,
+    "venue": "Journal of Mathematics and Physics",
+    "doi": "10.1002/sapm1933121311",
+    "relevance": "Original Paley construction for Hadamard matrices using quadratic residues"
+  },
+  {
+    "title": "Extension of Paley Construction for Hadamard Matrix",
+    "authors": ["Shipra Kumari", "Hrishikesh Mahato"],
+    "year": 2019,
+    "venue": "arXiv:1912.10755",
+    "relevance": "Extended Paley constructions applicable to any odd prime power, not just q ≡ 1 mod 4"
+  },
+  {
+    "title": "A database of constructions of Hadamard matrices",
+    "authors": ["Matteo Cati", "Dmitrii V. Pasechnik"],
+    "year": 2024,
+    "venue": "arXiv:2411.18897",
+    "doi": "10.48550/arXiv.2411.18897",
+    "relevance": "Comprehensive database confirming 668 is the smallest unknown order; all orders ≤ 1208 covered in SageMath"
+  }
+]

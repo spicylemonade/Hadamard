@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Combinatorial Theory",
+    "authors": ["Marshall Hall"],
+    "year": 1988,
+    "venue": "John Wiley & Sons",
+    "doi": "10.1002/9781118032862",
+    "relevance": "Williamson construction for Hadamard matrices, Section 14.2"
+  },
+  {
+    "title": "Constructing New Turyn Type Sequences, T-Sequences and Hadamard Matrices",
+    "authors": ["Stephen London"],
+    "year": 2013,
+    "venue": "PhD Thesis, University of Illinois at Chicago",
+    "relevance": "Outlined constructions for all known orders ≤ 1000"
+  }
+]

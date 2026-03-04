@@ -1,0 +1,72 @@
+{
+  "associations": {
+    "hadamard_668_free_associations": [
+      "668 = 4 × 167: the number 167 is a 'lonely prime' — it resists factorization, its group structure (Z_166 = Z_2 × Z_83) resists 4-way partition, and it's not of the form q+1 or (q-1)/2 for any prime power q",
+      "The Hadamard conjecture for 668 is like Fermat's Last Theorem for n=668: believed true but unproven, with the obstruction being number-theoretic",
+      "Spectral flatness ↔ thermodynamic equilibrium: the 4 sequences must distribute their spectral energy uniformly, like reaching thermal equilibrium across 167 frequency bins",
+      "The GS array is a quaternion-valued construction: {1,i,j,k} ↔ {A,B,C,D}, suggesting connections to division algebras and Hurwitz's theorem (only dimensions 1,2,4,8)",
+      "Modular Hadamard relaxation is like p-adic approximation: solving mod 2, then mod 4, then mod 8, ..., hoping to lift to an exact solution (Hensel's lemma analogy)",
+      "Conference matrices as equiangular tight frames: the 167 rows of the Jacobsthal matrix form 167 equiangular lines in R^167, a connection to quantum state tomography",
+      "The problem has a satisfiability structure: 167×166/2 = 13861 orthogonality constraints on 668² binary variables"
+    ],
+    "cross_domain_sparks": [
+      "LDPC codes use sparse parity-check matrices with good distance; could sparse H(668) sub-structures inform the search?",
+      "Turán-type problems: what's the maximum number of orthogonal row pairs achievable in a 668×668 ±1 matrix?",
+      "The energy landscape of the PSD flatness objective resembles a spin glass; replica symmetry breaking may explain the hardness",
+      "Compressed sensing: the Hadamard matrix is an optimal measurement matrix; what if we approach H(668) from the RIP perspective?",
+      "Algebraic geometry: Hadamard matrices correspond to real points on a specific algebraic variety; is the variety empty at n=668?"
+    ]
+  },
+  "blind_spots": [
+    {
+      "description": "Non-circulant approaches for the GS array",
+      "explanation": "We focused on circulant matrices in the GS array, but A,B,C,D don't need to be circulant. Group-developed matrices over non-cyclic groups might work. Z_167 is cyclic, but what about matrices developed over non-abelian groups?"
+    },
+    {
+      "description": "Computer algebra system (CAS) exhaustive search",
+      "explanation": "Magma and GAP have more sophisticated search algorithms for difference sets than our Python optimization. Professional CAS tools with constraint propagation might find solutions that heuristic search misses."
+    },
+    {
+      "description": "Constructions over GF(167^k) for k > 1",
+      "explanation": "We only considered GF(167). But constructions using GF(167^2) or GF(167^3) — like Mathon's construction of conference matrices of order pq² — might enable new paths to H(668)."
+    },
+    {
+      "description": "Cocyclic Hadamard matrices",
+      "explanation": "Cocyclic construction uses 2-cocycles over groups to build Hadamard matrices. This framework subsumes many classical constructions and might reveal solutions invisible to direct algebraic methods."
+    },
+    {
+      "description": "Machine learning guided search",
+      "explanation": "Recent work uses graph neural networks and reinforcement learning to guide combinatorial search. Training on known Hadamard constructions might learn structural patterns applicable to 668."
+    },
+    {
+      "description": "The Spence construction via Z_166 = Z_2 × Z_83",
+      "explanation": "We noted the Spence SDS parameters but didn't fully explore the CRT structure of Z_166. The Chinese Remainder Theorem decomposition might enable a structured search."
+    },
+    {
+      "description": "Turyn-type sequences of length 167",
+      "explanation": "Turyn sequences are a different formulation (non-periodic autocorrelation, partial supports). London's PhD thesis (2013) constructed new Turyn sequences for many orders; 167 may be tractable via this route."
+    }
+  ],
+  "anomaly_results": [
+    {
+      "constraint": "What if we allow entries from {-1, 0, +1} instead of {-1, +1}?",
+      "result": "This leads to weighing matrices W(668, k) for k < 668. Many such matrices exist and are used in experimental design (Plackett-Burman designs). The problem becomes easier but the matrix is no longer Hadamard."
+    },
+    {
+      "constraint": "What if we require only approximate orthogonality (off-diagonal ≤ ε)?",
+      "result": "Our truncated H(672)[:668,:668] achieves max off-diagonal = 4, giving ε/n = 4/668 ≈ 0.006. This is already remarkably good for practical applications (error correcting codes, compressed sensing)."
+    },
+    {
+      "constraint": "What if the order were 668 + 4k for small k?",
+      "result": "H(672) = H(4×168) exists (Paley I). H(664) = H(4×166) exists (construction in SageMath). The gap at exactly 668 = 4×167 is due to 167 being prime with (p-1)/2 = 83 also prime."
+    },
+    {
+      "constraint": "What if we use complex entries (±1, ±i) instead of real ±1?",
+      "result": "Complex Hadamard (Butson) matrices BH(n, 4) exist for all n (DFT matrix). The real ±1 constraint is what makes the problem hard. A BH(668, 4) is trivially constructible."
+    },
+    {
+      "constraint": "What if we work over GF(2) instead of the reals?",
+      "result": "Binary Hadamard matrices (mod 2) always exist: any orthogonal array OA(2, 668, 2, 2) suffices. The integer constraint is the source of difficulty."
+    }
+  ]
+}

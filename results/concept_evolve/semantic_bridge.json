@@ -1,0 +1,61 @@
+{
+  "nodes": [
+    {"id": "paley_quadratic_residue", "domain": "number_theory"},
+    {"id": "goethals_seidel_array", "domain": "combinatorial_design"},
+    {"id": "kronecker_tensor_product", "domain": "linear_algebra"},
+    {"id": "williamson_type_matrices", "domain": "algebraic_combinatorics"},
+    {"id": "complementary_sequences", "domain": "signal_processing"},
+    {"id": "cyclotomic_class_partition", "domain": "number_theory"},
+    {"id": "spectral_flatness_condition", "domain": "information_theory"},
+    {"id": "quantum_optimization_search", "domain": "quantum_computing"},
+    {"id": "modular_hadamard_relaxation", "domain": "coding_theory"},
+    {"id": "conference_matrix_border", "domain": "combinatorial_design"},
+    {"id": "t_sequence_decomposition", "domain": "signal_processing"},
+    {"id": "difference_set_construction", "domain": "group_theory"},
+    {"id": "GF167_structure", "domain": "finite_fields"},
+    {"id": "open_problem_668", "domain": "mathematics"},
+    {"id": "flat_psd_equivalence", "domain": "signal_processing"}
+  ],
+  "edges": [
+    {"source": "paley_quadratic_residue", "target": "conference_matrix_border", "relation": "Legendre symbol constructs Jacobsthal matrix which IS the conference matrix"},
+    {"source": "conference_matrix_border", "target": "goethals_seidel_array", "relation": "Conference matrix serves as input A in GS array; bordering is a special case of GS"},
+    {"source": "goethals_seidel_array", "target": "complementary_sequences", "relation": "GS circulant condition IS the complementary sequence PAF=0 condition"},
+    {"source": "complementary_sequences", "target": "spectral_flatness_condition", "relation": "PAF flatness in time domain ↔ PSD flatness in frequency domain (DFT duality)"},
+    {"source": "spectral_flatness_condition", "target": "quantum_optimization_search", "relation": "PSD flatness objective can be encoded as QUBO cost Hamiltonian"},
+    {"source": "kronecker_tensor_product", "target": "modular_hadamard_relaxation", "relation": "Truncated Kronecker product yields modular Hadamard approximation"},
+    {"source": "williamson_type_matrices", "target": "goethals_seidel_array", "relation": "Williamson matrices are a special case (symmetric circulant) of GS input matrices"},
+    {"source": "cyclotomic_class_partition", "target": "difference_set_construction", "relation": "Cyclotomic classes provide structured difference sets in Z_p"},
+    {"source": "cyclotomic_class_partition", "target": "paley_quadratic_residue", "relation": "QR/QNR are the 2-class cyclotomic partition; Paley uses this directly"},
+    {"source": "difference_set_construction", "target": "goethals_seidel_array", "relation": "SDS directly yield circulant matrices for the GS array"},
+    {"source": "t_sequence_decomposition", "target": "goethals_seidel_array", "relation": "T-matrices plug into Cooper-Wallis variant of GS construction"},
+    {"source": "GF167_structure", "target": "cyclotomic_class_partition", "relation": "GF(167)* = Z_166 = Z_2 × Z_83 determines available cyclotomic structures"},
+    {"source": "GF167_structure", "target": "paley_quadratic_residue", "relation": "GF(167) provides the finite field for Legendre symbol and Jacobsthal matrix"},
+    {"source": "GF167_structure", "target": "open_problem_668", "relation": "4 ∤ 166 = |GF(167)*| is the root algebraic obstruction"},
+    {"source": "complementary_sequences", "target": "flat_psd_equivalence", "relation": "Complementary set condition and flat PSD are DFT-dual formulations"},
+    {"source": "flat_psd_equivalence", "target": "open_problem_668", "relation": "No set of four ±1 sequences of length 167 with flat total PSD = 668 is known"},
+    {"source": "modular_hadamard_relaxation", "target": "open_problem_668", "relation": "Best known: 64-modular (Eliahou 2025); exact Hadamard unknown"},
+    {"source": "quantum_optimization_search", "target": "open_problem_668", "relation": "Proposed path: quantum advantage may solve instances classical computers cannot"}
+  ],
+  "bridge_chains": [
+    {
+      "name": "Number Theory → Signal Processing → Quantum Computing",
+      "path": ["paley_quadratic_residue", "conference_matrix_border", "goethals_seidel_array", "complementary_sequences", "spectral_flatness_condition", "quantum_optimization_search"],
+      "description": "From quadratic residues in GF(167) through conference matrices and GS array to spectral flatness condition, then to quantum optimization. Crosses number theory, combinatorial design, signal processing, and quantum computing."
+    },
+    {
+      "name": "Group Theory → Combinatorics → Optimization",
+      "path": ["GF167_structure", "cyclotomic_class_partition", "difference_set_construction", "goethals_seidel_array", "spectral_flatness_condition"],
+      "description": "From the algebraic structure of Z_167* through cyclotomic partitions and difference sets to the GS array and spectral optimization. Crosses algebra, combinatorics, and optimization."
+    },
+    {
+      "name": "Linear Algebra → Coding Theory → Open Problem",
+      "path": ["kronecker_tensor_product", "modular_hadamard_relaxation", "open_problem_668"],
+      "description": "From Kronecker product construction through modular relaxation to the open problem. Shows how exact constructions (H(672)) yield approximations (4-modular H(668))."
+    },
+    {
+      "name": "Algebraic Combinatorics → Signal Design → Information Theory",
+      "path": ["williamson_type_matrices", "goethals_seidel_array", "complementary_sequences", "flat_psd_equivalence", "spectral_flatness_condition"],
+      "description": "From Williamson matrix constraints through sequence design to information-theoretic optimality conditions. Bridges discrete algebra and continuous signal theory."
+    }
+  ]
+}

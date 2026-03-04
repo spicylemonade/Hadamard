@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Cyclotomy and Difference Sets",
+    "authors": ["Thomas Storer"],
+    "year": 1967,
+    "venue": "Markham Publishing",
+    "relevance": "Foundation of cyclotomic methods for difference set construction"
+  },
+  {
+    "title": "Cyclotomy and complementary difference sets",
+    "authors": ["George Szekeres"],
+    "year": 1971,
+    "venue": "Acta Arithmetica",
+    "doi": "10.4064/aa-18-1-349-353",
+    "relevance": "Complementary difference sets from cyclotomic constructions"
+  }
+]

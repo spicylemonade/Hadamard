@@ -1,0 +1,14 @@
+{
+  "symbolic_name": "modular_hadamard_relaxation",
+  "description": "An m-modular Hadamard matrix H satisfies HH^T ≡ nI (mod m). Eliahou (2025) achieved m=64 for order 668 (previous record: m=32 from 2001). Our truncated H(672) achieves m=4.",
+  "domains": ["modular_arithmetic", "coding_theory", "combinatorial_design"],
+  "mathematical_formalization": "H ∈ {±1}^{668×668}, HH^T ≡ 668·I (mod m), m ∈ {4, 8, 16, 32, 64, ...}",
+  "key_results": {
+    "eliahou_modulus": 64,
+    "eliahou_year": 2025,
+    "previous_record": 32,
+    "previous_year": 2001,
+    "our_truncation_modulus": 4,
+    "exact_hadamard_known": false
+  }
+}

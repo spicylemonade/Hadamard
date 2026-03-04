@@ -1,0 +1,12 @@
+{
+  "symbolic_name": "complementary_sequences",
+  "description": "Four ±1 sequences of length 167 whose periodic autocorrelations sum to zero at all nonzero lags. Equivalent to flat total PSD = 668 in frequency domain. Connected to OFDM, radar waveforms, and compressed sensing.",
+  "domains": ["signal_processing", "communications", "combinatorial_design"],
+  "mathematical_formalization": "sum_i PAF_i(j) = 0 for j >= 1; equivalently sum_i |S_i(k)|^2 = 668 for all k",
+  "key_results": {
+    "dc_decomposition": "Need (sum A)^2 + (sum B)^2 + (sum C)^2 + (sum D)^2 = 668",
+    "valid_dc_tuples": [[1,1,15,21],[1,9,15,19],[3,3,5,25],[3,3,11,23],[3,3,17,19]],
+    "legendre_paf": "PAF(j) = -1 for all j >= 1 (from single Legendre sequence)",
+    "four_legendre_total": "4*(-1) = -4 at each lag (not 0)"
+  }
+}

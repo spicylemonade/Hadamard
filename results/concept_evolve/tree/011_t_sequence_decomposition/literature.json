@@ -1,0 +1,18 @@
+[
+  {
+    "title": "A construction for Hadamard arrays",
+    "authors": ["Joan Cooper", "Jennifer Wallis"],
+    "year": 1972,
+    "venue": "Bulletin of the Australian Mathematical Society",
+    "doi": "10.1017/S0004972700045019",
+    "relevance": "Cooper-Wallis theorem combining T-matrices with Williamson matrices"
+  },
+  {
+    "title": "A Hadamard matrix of order 428",
+    "authors": ["H. Kharaghani", "B. Tayfeh-Rezaie"],
+    "year": 2005,
+    "venue": "Journal of Combinatorial Designs",
+    "doi": "10.1002/jcd.20043",
+    "relevance": "Used T-sequences to construct H(428), previously the smallest unknown order"
+  }
+]

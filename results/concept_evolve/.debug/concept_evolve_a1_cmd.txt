@@ -1,0 +1,51 @@
+opencode run --agent concept_worker --model anthropic/claude-opus-4-6 You are a cross-domain concept architect with access to websearch, webfetch, semantic_scholar, bash, read, write, and edit tools.
+
+PROBLEM: Find a Hadamard matrix of order 668. Provide your solution as a csv. try hard
+
+YOUR MISSION: Research this problem across multiple domains, generate cross-domain concept cards, and write all results to disk.
+
+STEP 1 — RESEARCH
+Use websearch and webfetch to find real papers, techniques, and approaches relevant to this problem from at least 3 different domains. Use semantic_scholar to find academic papers. Ground your concepts in real work.
+
+STEP 2 — GENERATE CONCEPT CARDS
+Create at least 10 concept cards that bridge different domains. Each card should have:
+- symbolic_name (snake_case)
+- description (2-3 sentences)
+- domains (2+ domain strings)
+- mathematical_formalization (LaTeX or pseudo-math)
+- analogical_connections (cross-domain analogies)
+- implementation_hypothesis (concrete algorithm/code sketch)
+- experiment_seed (how to test this)
+- folder_plan (files/folders to create)
+
+STEP 3 — BUILD SEMANTIC BRIDGE
+Create a graph connecting your concepts:
+- nodes: [{"id": "concept_name", "domain": "domain"}]
+- edges: [{"source": "a", "target": "b", "relation": "how they connect"}]
+- bridge_chains: paths through the graph that cross domain boundaries
+
+STEP 4 — INTROSPECT
+Generate:
+- associations: free-association expansions
+- blind_spots: what you might be missing
+- anomaly_results: what happens when you inject unexpected constraints
+
+STEP 5 — STEERING DIRECTIONS
+Produce at least 3 steering directions, each with:
+- direction, rationale, first_step, expected_signal
+
+STEP 6 — WRITE FILES
+Use bash (mkdir -p) and write tools to create:
+
+/home/archivara/work/repo/results/concept_evolve/concept_cards.json         — JSON array of concept cards
+/home/archivara/work/repo/results/concept_evolve/semantic_bridge.json       — JSON object with nodes, edges, bridge_chains
+/home/archivara/work/repo/results/concept_evolve/introspection.json         — JSON object with associations, blind_spots, anomaly_results
+/home/archivara/work/repo/results/concept_evolve/steering_directions.json   — JSON array of steering direction objects
+
+For EACH concept card, create a folder under /home/archivara/work/repo/results/concept_evolve/tree/ named NNN_slug (e.g. 001_information_bottleneck/) containing:
+  - concept.json   (the card data)
+  - README.md      (topic context + implementation backlog)
+  - literature.json (papers found via semantic_scholar or websearch — array of objects)
+
+All JSON files must be valid JSON. No markdown fences inside .json files.
+Create directories before writing files: mkdir -p /home/archivara/work/repo/results/concept_evolve /home/archivara/work/repo/results/concept_evolve/tree

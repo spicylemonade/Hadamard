@@ -1,0 +1,13 @@
+{
+  "symbolic_name": "spectral_flatness_condition",
+  "description": "The GS circulant Hadamard condition in the frequency domain: total PSD must be constant at 668 across all 167 frequency bins. This connects to information-theoretic capacity, white noise spectra, and maximum entropy distributions.",
+  "domains": ["signal_processing", "information_theory", "optimization"],
+  "mathematical_formalization": "P(k) = sum_{i=1}^{4} |S_i(k)|^2 = 668 for all k = 0,...,166",
+  "key_results": {
+    "parseval_per_sequence": "sum_k |S_i(k)|^2 = 167^2 = 27889",
+    "total_energy": "4 × 27889 = 111556",
+    "target_per_frequency": 668,
+    "check": "668 × 167 = 111556",
+    "optimization_landscape": "Many local minima; greedy descent plateaus at energy ~486K"
+  }
+}

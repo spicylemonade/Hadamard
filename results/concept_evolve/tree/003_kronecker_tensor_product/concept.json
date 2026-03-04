@@ -1,0 +1,14 @@
+{
+  "symbolic_name": "kronecker_tensor_product",
+  "description": "Kronecker product of Hadamard matrices yields Hadamard matrices. H(672) = H(4)⊗H(168) is the nearest constructible order above 668. Truncation to 668×668 yields a 4-modular approximation.",
+  "domains": ["linear_algebra", "combinatorial_design", "coding_theory"],
+  "mathematical_formalization": "H_{mn} = H_m ⊗ H_n, (H_m⊗H_n)(H_m⊗H_n)^T = mn·I",
+  "key_results": {
+    "H672_constructed": true,
+    "H672_verified": true,
+    "truncated_668_max_offdiag": 4,
+    "truncated_668_mean_offdiag": 1.48,
+    "nearest_constructible_above": 672,
+    "nearest_constructible_below": 664
+  }
+}

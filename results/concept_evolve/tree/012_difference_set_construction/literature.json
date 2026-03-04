@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Hadamard matrices from relative difference sets",
+    "authors": ["Edward Spence"],
+    "year": 1975,
+    "venue": "Journal of Combinatorial Theory, Series A",
+    "doi": "10.1016/0097-3165(75)90054-0",
+    "relevance": "Spence construction using 4-SDS with specific parameters"
+  },
+  {
+    "title": "Construction of some new Hadamard matrices",
+    "authors": ["Dragomir Ž. Djoković"],
+    "year": 1992,
+    "venue": "Bulletin of the Australian Mathematical Society",
+    "doi": "10.1017/S0004972700030185",
+    "relevance": "Computer search methodology for SDS yielding new Hadamard matrices"
+  },
+  {
+    "title": "A class of cyclic difference families",
+    "authors": ["Dragomir Ž. Djoković", "Ilias S. Kotsireas"],
+    "year": 2016,
+    "venue": "Special Matrices",
+    "doi": "10.1515/spma-2016-0029",
+    "relevance": "Cyclic difference families for v ≡ 3 mod 4 prime — directly relevant to v=167"
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "symbolic_name": "paley_quadratic_residue",
+  "description": "Uses quadratic residues in GF(p) to construct conference matrices and Hadamard matrices. For p ≡ 3 mod 4, the Jacobsthal matrix Q built from Legendre symbols is skew-symmetric with Q*Q^T = pI - J, yielding a skew Hadamard matrix of order p+1.",
+  "domains": ["number_theory", "combinatorial_design", "finite_fields"],
+  "mathematical_formalization": "Q_{ij} = chi((i-j) mod p), H = [[1, 1^T],[-1, Q+I]], HH^T = (p+1)I",
+  "analogical_connections": ["Legendre symbol as binary classifier", "Skew-symmetry as antisymmetric layer", "Conference matrix as equiangular tight frame"],
+  "implementation_hypothesis": "For p=167: construct Jacobsthal matrix, form H(168) via Paley I. Verified H(168)*H(168)^T = 168*I.",
+  "experiment_seed": "Implement Paley I for p=167 in NumPy. Verify. Use as building block for H(668) approaches.",
+  "key_results": {
+    "H168_constructed": true,
+    "H168_verified": true,
+    "p": 167,
+    "p_mod_4": 3,
+    "primitive_root_mod_167": 5
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "symbolic_name": "cyclotomic_class_partition",
+  "description": "Partitioning Z*_167 into cyclotomic classes. Since |Z*_167| = 166 = 2×83 and 4 ∤ 166, standard 4-class cyclotomic constructions fail — the root algebraic obstruction for H(668).",
+  "domains": ["number_theory", "algebraic_combinatorics", "coding_theory"],
+  "mathematical_formalization": "Z*_167 = <5> ≅ Z_166 = Z_2 × Z_83; subgroups: {1}, {1,166}, <25> (order 83), Z*_167",
+  "key_results": {
+    "primitive_root": 5,
+    "group_order": 166,
+    "factorization": "2 × 83",
+    "four_divides_166": false,
+    "subgroup_orders": [1, 2, 83, 166],
+    "non_uniform_partition": "Sizes 42, 42, 41, 41 by discrete log mod 4"
+  }
+}

@@ -1,0 +1,25 @@
+[
+  {
+    "title": "A quantum approximate optimization method for finding Hadamard matrices",
+    "authors": ["Andriyan Bayu Suksmono"],
+    "year": 2024,
+    "venue": "Scientific Reports",
+    "doi": "10.1038/s41598-025-18778-1",
+    "relevance": "QAOA formulation for Hadamard search with O(M) qubits on gate-based quantum computers"
+  },
+  {
+    "title": "Finding Hadamard Matrices by a Quantum Annealing Machine",
+    "authors": ["Andriyan Bayu Suksmono", "Yuichiro Minato"],
+    "year": 2019,
+    "venue": "Scientific Reports",
+    "doi": "10.1038/s41598-019-50473-w",
+    "relevance": "Original quantum annealing approach for H-SEARCH"
+  },
+  {
+    "title": "Finding high-order Hadamard matrices by using quantum computers",
+    "authors": ["Andriyan Bayu Suksmono", "Yuichiro Minato"],
+    "year": 2020,
+    "venue": "arXiv:2009.10919",
+    "relevance": "Turyn-based quantum computing method for high-order H-matrices"
+  }
+]

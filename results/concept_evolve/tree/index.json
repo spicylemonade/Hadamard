@@ -1,0 +1,122 @@
+[
+  {
+    "id": "paley_quadratic_residue",
+    "slug": "paley-quadratic-residue",
+    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/001_paley-quadratic-residue",
+    "domains": [
+      "number_theory",
+      "combinatorial_design",
+      "finite_fields"
+    ]
+  },
+  {
+    "id": "goethals_seidel_array",
+    "slug": "goethals-seidel-array",
+    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/002_goethals-seidel-array",
+    "domains": [
+      "combinatorial_design",
+      "signal_processing",
+      "optimization"
+    ]
+  },
+  {
+    "id": "kronecker_tensor_product",
+    "slug": "kronecker-tensor-product",
+    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/003_kronecker-tensor-product",
+    "domains": [
+      "linear_algebra",
+      "combinatorial_design",
+      "coding_theory"
+    ]
+  },
+  {
+    "id": "williamson_type_matrices",
+    "slug": "williamson-type-matrices",
+    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/004_williamson-type-matrices",
+    "domains": [
+      "combinatorial_design",
+      "algebraic_combinatorics",
+      "constraint_satisfaction"
+    ]
+  },
+  {
+    "id": "complementary_sequences",
+    "slug": "complementary-sequences",
+    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/005_complementary-sequences",
+    "domains": [
+      "signal_processing",
+      "communications",
+      "combinatorial_design"
+    ]
+  },
+  {
+    "id": "cyclotomic_class_partition",
+    "slug": "cyclotomic-class-partition",
+    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/006_cyclotomic-class-partition",
+    "domains": [
+      "number_theory",
+      "algebraic_combinatorics",
+      "coding_theory"
+    ]
+  },
+  {
+    "id": "spectral_flatness_condition",
+    "slug": "spectral-flatness-condition",
+    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/007_spectral-flatness-condition",
+    "domains": [
+      "signal_processing",
+      "information_theory",
+      "optimization"
+    ]
+  },
+  {
+    "id": "quantum_optimization_search",
+    "slug": "quantum-optimization-search",
+    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/008_quantum-optimization-search",
+    "domains": [
+      "quantum_computing",
+      "combinatorial_optimization",
+      "physics"
+    ]
+  },
+  {
+    "id": "modular_hadamard_relaxation",
+    "slug": "modular-hadamard-relaxation",
+    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/009_modular-hadamard-relaxation",
+    "domains": [
+      "modular_arithmetic",
+      "coding_theory",
+      "combinatorial_design"
+    ]
+  },
+  {
+    "id": "conference_matrix_border",
+    "slug": "conference-matrix-border",
+    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/010_conference-matrix-border",
+    "domains": [
+      "combinatorial_design",
+      "graph_theory",
+      "linear_algebra"
+    ]
+  },
+  {
+    "id": "t_sequence_decomposition",
+    "slug": "t-sequence-decomposition",
+    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/011_t-sequence-decomposition",
+    "domains": [
+      "combinatorial_design",
+      "signal_processing",
+      "algebraic_combinatorics"
+    ]
+  },
+  {
+    "id": "difference_set_construction",
+    "slug": "difference-set-construction",
+    "folder": "/home/archivara/work/repo/results/concept_evolve/tree/012_difference-set-construction",
+    "domains": [
+      "combinatorial_design",
+      "group_theory",
+      "algebraic_combinatorics"
+    ]
+  }
+]

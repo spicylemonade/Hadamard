@@ -1,0 +1,12 @@
+{
+  "symbolic_name": "difference_set_construction",
+  "description": "Supplementary difference sets (SDS) in abelian groups yield circulant matrices for the GS array. For H(668), need 4-{167; k1,k2,k3,k4; λ} SDS in Z_167 or 4-{166; 83,83,83,84; 166} SDS in Z_166 (Spence construction).",
+  "domains": ["combinatorial_design", "group_theory", "algebraic_combinatorics"],
+  "mathematical_formalization": "S_1,...,S_4 ⊆ Z_167: for all g ≠ 0, sum_i |{(a,b) ∈ S_i × S_i : a-b ≡ g}| = λ",
+  "key_results": {
+    "spence_parameters": "4-{166; 83,83,83,84; 166}",
+    "spence_group": "Z_166 = Z_2 × Z_83",
+    "lambda_check": "(83×82×3 + 84×83)/165 = 166 ✓",
+    "known_sds_for_167": false
+  }
+}

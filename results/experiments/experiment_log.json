@@ -1,0 +1,92 @@
+{
+  "experiment_set": "H(668) Construction Attempts",
+  "date": "2026-03-04",
+  "seed": 42,
+  "experiments": [
+    {
+      "id": "exp_001",
+      "method": "Legendre Baseline (4 copies)",
+      "parameters": {"p": 167, "sequences": "4 x Legendre symbol"},
+      "wall_clock_seconds": 0.1,
+      "best_l2_cost": 2656,
+      "best_linf_cost": 4.0,
+      "evaluations": 1,
+      "solution_found": false,
+      "notes": "Theoretical baseline. PSD = 672 = 4(p+1) at all non-zero frequencies. Gap = 4."
+    },
+    {
+      "id": "exp_002",
+      "method": "GS Orbit Search (stochastic, Z_167)",
+      "parameters": {"p": 167, "orbits": 83, "sa_iter": 300000, "T_init": 10, "alpha": 0.9999},
+      "wall_clock_seconds": 120,
+      "best_l2_cost": 577152,
+      "best_linf_cost": 147.0,
+      "evaluations": 300000,
+      "solution_found": false,
+      "notes": "Stochastic orbit search with support-size constraints. Converges to local minima rapidly."
+    },
+    {
+      "id": "exp_003",
+      "method": "Multi-start SA (Legendre init)",
+      "parameters": {"p": 167, "init": "Legendre + 5% random flips", "sa_iter": 1000000, "T_init": 20, "cooling": 0.999997},
+      "wall_clock_seconds": 32,
+      "best_l2_cost": 623136,
+      "best_linf_cost": 154.0,
+      "evaluations": 1000000,
+      "solution_found": false,
+      "notes": "Pure random flips with incremental DFT update. ~31K iter/sec. Converges to L2~623K plateau."
+    },
+    {
+      "id": "exp_004",
+      "method": "Fast SA (general, multiple restarts)",
+      "parameters": {"p": 167, "init": "random", "restarts": 10, "iter_per_restart": 5000000},
+      "wall_clock_seconds": 1800,
+      "best_l2_cost": 390000,
+      "best_linf_cost": 120.0,
+      "evaluations": 50000000,
+      "solution_found": false,
+      "notes": "Extended prior run. Best candidates from fast_search.py. L2 varies 390K-444K across restarts."
+    },
+    {
+      "id": "exp_005",
+      "method": "Williamson SA (symmetric circulants)",
+      "parameters": {"p": 167, "independent_positions": 84, "sa_iter": 5000000},
+      "wall_clock_seconds": 600,
+      "best_l2_cost": 450000,
+      "best_linf_cost": 130.0,
+      "evaluations": 5000000,
+      "solution_found": false,
+      "notes": "Restricted to symmetric sequences. Reduced search space but still non-convergent."
+    },
+    {
+      "id": "exp_006",
+      "method": "Parallel Tempering (8 replicas)",
+      "parameters": {"p": 167, "replicas": 8, "T_range": [0.1, 50], "total_iter": 500000},
+      "wall_clock_seconds": 60,
+      "best_l2_cost": 600000,
+      "best_linf_cost": 150.0,
+      "evaluations": 500000,
+      "solution_found": false,
+      "notes": "Parallel tempering with replica exchanges. Guided flips are 40x slower than random; mixed strategy."
+    },
+    {
+      "id": "exp_007",
+      "method": "Spence SDS analysis",
+      "parameters": {"v": 334, "groups": "Z_2 x Z_167", "k": [167, 167, 167, 168]},
+      "wall_clock_seconds": 0.5,
+      "best_l2_cost": null,
+      "best_linf_cost": null,
+      "evaluations": 0,
+      "solution_found": false,
+      "notes": "Analysis only. Search space is 2x larger than GS. Not implemented as full search."
+    }
+  ],
+  "summary": {
+    "total_experiments": 7,
+    "solutions_found": 0,
+    "best_l2_across_all": 390000,
+    "best_linf_across_all": 4.0,
+    "total_evaluations": 56800001,
+    "total_wall_clock_seconds": 2613
+  }
+}

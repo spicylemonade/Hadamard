@@ -1,0 +1,24 @@
+[0m
+> concept_worker · claude-opus-4-6
+[0m
+[0m# [0mTodos
+[ ] Research Hadamard matrices of order 668 across multiple domains
+[ ] Generate 10+ cross-domain concept cards
+[ ] Build semantic bridge graph
+[ ] Introspection analysis
+[ ] Steering directions
+[ ] Write all output files to disk
+[ ] Construct actual Hadamard matrix of order 668 as CSV
+[0m
+[0m◈ [0mExa Web Search "Hadamard matrix order 668 construction"
+[0m◈ [0mExa Web Search "Hadamard matrix construction Kronecker product tensor product large order"
+[0m✗ [0msemantic_scholar failed
+[91m[1mError: [0mCommand failed: python3 /home/archivara/work/repo/.archivara/semantic_scholar.py search Hadamard matrix construction large order Kronecker product --limit 10 --json
+[0m◈ [0mExa Web Search "Paley construction Hadamard matrix order 4k quadratic residues"
+[0m
+[0m$ [0mmkdir -p /home/archivara/work/repo/results/concept_evolve/tree
+[0m◈ [0mExa Web Search "Hadamard matrix order 668 construction method"
+[0m◈ [0mExa Web Search "Hadamard matrix Kronecker product tensor construction large order"
+[0m◈ [0mExa Web Search "Williamson Hadamard matrix construction circulant matrices"
+[0m◈ [0mExa Web Search "Paley construction Hadamard matrix quadratic residue conference matrix"
+[91m[1mError: [0mThe request body is not valid JSON: no low surrogate in string: line 1 column 24601 (char 24600)

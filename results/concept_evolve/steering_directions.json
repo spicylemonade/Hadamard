@@ -1,0 +1,26 @@
+[
+  {
+    "direction": "Exhaustive algebraic search using Spence SDS over Z_166",
+    "rationale": "The Spence construction (Theorem 7) needs 4-{166; 83,83,83,84; 166} SDS in Z_166 = Z_2 × Z_83. The CRT decomposition Z_166 ≅ Z_2 × Z_83 allows the search to exploit the product structure. The subgroup lattice of Z_83 is simple (only trivial subgroups since 83 is prime), but the Z_2 factor provides a natural 2-coloring. This is the most algebraically structured path to H(668).",
+    "first_step": "Implement a SAT/SMT encoding of the 4-SDS condition over Z_166. Use the CRT to represent each element as (a,b) ∈ Z_2 × Z_83. Define Boolean variables x_{i,g} for 'element g ∈ S_i'. Encode the λ=166 difference condition as cardinality constraints. Run a modern SAT solver (Kissat, CaDiCaL) with symmetry breaking.",
+    "expected_signal": "If a solution exists via Spence, the SAT solver should find it within hours to days for this problem size. If UNSAT is proven, this rules out the Spence construction for 668 (which would itself be a publishable result). Partial solutions (achieving λ ≈ 166 with small deviation) would indicate near-feasibility."
+  },
+  {
+    "direction": "Turyn-type sequence search via balanced partition of Z_167",
+    "rationale": "London's 2013 thesis showed that Turyn-type sequences exist for many orders where other methods fail. T-sequences of length t combined with Williamson matrices of order w give H(4tw). For 668 = 4×167, we need tw=167 (prime), so t=167, w=1. T-sequences of length 167 require partitioning {0,...,166} into 4 supports with zero aperiodic autocorrelation sum. The non-periodic autocorrelation condition may be easier to satisfy than the periodic one.",
+    "first_step": "Implement the Kharaghani T-sequence construction for small primes p ≡ 3 mod 4 (p=7,11,19,23,31). Identify structural patterns. Check if the construction generalizes to p=167. If not, run a constrained optimization: partition {0,...,166} into 4 disjoint sets S_1,...,S_4 and search for ±1 assignments on each S_i minimizing the non-periodic autocorrelation sum.",
+    "expected_signal": "Success for small primes validates the approach. For p=167, convergence of the autocorrelation residual toward zero indicates feasibility. If the residual plateaus far from zero (as in our GS experiments), this suggests T-sequences of length 167 may not exist."
+  },
+  {
+    "direction": "Hybrid quantum-classical search using QAOA for GS-array sequences",
+    "rationale": "Suksmono (2024) showed QAOA can find Hadamard matrices with O(M) qubits. For the GS-array formulation, we need only 4×167 = 668 binary variables. Current quantum simulators can handle 30-50 qubits effectively. By decomposing the 668-variable problem into smaller sub-problems (e.g., optimizing one sequence of length 167 while holding others fixed), each sub-problem fits within quantum simulator range with additional heuristic tricks.",
+    "first_step": "Formulate the PSD flatness condition as a QUBO with 167 binary variables (one sequence at a time, fixing the other 3). Implement in Qiskit. Run QAOA with p=1,2,3 layers on a quantum simulator for the p=7 test case (28 variables). Measure solution quality vs. classical SA baseline.",
+    "expected_signal": "If QAOA outperforms classical SA for small test cases (p=7,11), this motivates scaling up. The key metric is whether quantum superposition helps escape local minima that trap classical search. For p=167, even partial improvement (lower energy plateau) would be significant."
+  },
+  {
+    "direction": "Cocyclic construction via non-abelian group extensions",
+    "rationale": "Cocyclic Hadamard matrices are developed from 2-cocycles over groups, generalizing the circulant/group-developed paradigm. The cocyclic framework found new Hadamard matrices at orders where all abelian group-based methods failed. For n=668, we could search over extensions of Z_167 by Z_4 (non-split), which captures non-commutative structure that circulant methods miss entirely.",
+    "first_step": "Enumerate non-abelian groups of order 668 = 4×167. Since 167 is prime, the only groups are Z_668, Z_4 × Z_167, and the semidirect product Z_167 ⋊ Z_4 (if it exists — check if Aut(Z_167) has order divisible by 4: |Aut(Z_167)| = 166 = 2×83, so Z_4 doesn't embed; only Z_2 does). This limits options but the dihedral group D_167 (order 334) or other groups of order 4n might work via the GS array over non-cyclic groups.",
+    "expected_signal": "If a non-trivial cocyclic construction is found for n=668, it would likely involve a group action that is not equivalent to any circulant construction. The signal is a cocyclic matrix H with HH^T = 668I verified computationally."
+  }
+]

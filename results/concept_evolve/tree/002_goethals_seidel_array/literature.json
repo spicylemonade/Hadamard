@@ -1,0 +1,25 @@
+[
+  {
+    "title": "A skew Hadamard matrix of order 36",
+    "authors": ["J.M. Goethals", "J.J. Seidel"],
+    "year": 1970,
+    "venue": "Journal of the Australian Mathematical Society",
+    "doi": "10.1017/S144678870000673X",
+    "relevance": "Original GS array construction"
+  },
+  {
+    "title": "Hadamard matrices of order 764 exist",
+    "authors": ["Dragomir Ž. Đoković"],
+    "year": 2008,
+    "venue": "Combinatorica",
+    "doi": "10.1007/s00493-008-2384-z",
+    "relevance": "Used GS array with SDS to construct previously unknown Hadamard matrix"
+  },
+  {
+    "title": "Two classes of Hadamard matrices of Goethals-Seidel type",
+    "authors": ["Dragomir Ž. Đoković"],
+    "year": 2024,
+    "venue": "arXiv:2404.14375",
+    "relevance": "Recent GS-type constructions up to order 2524"
+  }
+]

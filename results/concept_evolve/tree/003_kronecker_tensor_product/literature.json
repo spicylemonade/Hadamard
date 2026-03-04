@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Thoughts on inverse orthogonal matrices, simultaneous signsuccessions, and tessellated pavements",
+    "authors": ["J.J. Sylvester"],
+    "year": 1867,
+    "venue": "Philosophical Magazine",
+    "doi": "10.1080/14786446708639914",
+    "relevance": "Original recursive Hadamard construction via tensor product"
+  },
+  {
+    "title": "Some properties of Hadamard matrices generated recursively by Kronecker products",
+    "authors": ["Benjamin Arazi"],
+    "year": 1979,
+    "venue": "Linear Algebra and its Applications",
+    "relevance": "Properties of Kronecker-constructed Hadamard matrices"
+  }
+]

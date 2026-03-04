@@ -1,0 +1,14 @@
+{
+  "symbolic_name": "goethals_seidel_array",
+  "description": "A 4×4 block array converting four ±1 matrices with sum-of-squares property into a Hadamard matrix of order 4n. For circulant inputs, reduces to finding four ±1 sequences with zero-sum periodic autocorrelation.",
+  "domains": ["combinatorial_design", "signal_processing", "optimization"],
+  "mathematical_formalization": "GS(A,B,C,D): AA^T+BB^T+CC^T+DD^T = 4nI → H(4n)",
+  "key_results": {
+    "target_order": 668,
+    "sequence_length": 167,
+    "psd_target": 668,
+    "best_optimization_energy": 486304,
+    "solution_found": false,
+    "open_problem": true
+  }
+}

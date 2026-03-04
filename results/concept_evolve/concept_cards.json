@@ -1,0 +1,170 @@
+[
+  {
+    "symbolic_name": "paley_quadratic_residue",
+    "description": "Uses quadratic residues in GF(p) to construct conference matrices and Hadamard matrices. For p ≡ 3 mod 4, the Jacobsthal matrix Q built from Legendre symbols is skew-symmetric with Q*Q^T = pI - J, yielding a skew Hadamard matrix of order p+1. This is the workhorse construction for prime-power orders.",
+    "domains": ["number_theory", "combinatorial_design", "finite_fields"],
+    "mathematical_formalization": "Q_{ij} = \\chi((i-j) \\bmod p), \\quad H = \\begin{pmatrix} 1 & \\mathbf{1}^T \\\\ -\\mathbf{1} & Q + I \\end{pmatrix}, \\quad HH^T = (p+1)I",
+    "analogical_connections": [
+      "Legendre symbol ↔ binary classification in ML (separating quadratic residues from non-residues)",
+      "Skew-symmetry of Q ↔ antisymmetric neural network layers",
+      "Conference matrix ↔ equiangular tight frames in signal processing"
+    ],
+    "implementation_hypothesis": "For p=167 (≡3 mod 4, prime): construct Jacobsthal matrix Q of order 167, then H(168) = [[1, 1^T],[-1, Q+I]]. Verified: H(168)*H(168)^T = 168*I. This gives the core building block for approaches to H(668)=H(4*167).",
+    "experiment_seed": "Implement Paley I for p=167 in Python/NumPy. Verify orthogonality. Measure condition number. Test as component in larger constructions targeting 668.",
+    "folder_plan": ["results/concept_evolve/tree/001_paley_quadratic_residue/"]
+  },
+  {
+    "symbolic_name": "goethals_seidel_array",
+    "description": "A 4×4 block array that converts four ±1 matrices A,B,C,D satisfying AA^T+BB^T+CC^T+DD^T=4nI into a Hadamard matrix of order 4n. When A,B,C,D are circulant matrices of order n, the problem reduces to finding four ±1 sequences with zero-sum periodic autocorrelation at all nonzero lags. This is the primary construction method for orders 4p where p is prime.",
+    "domains": ["combinatorial_design", "signal_processing", "optimization"],
+    "mathematical_formalization": "GS(A,B,C,D) = \\begin{pmatrix} A & BR & CR & DR \\\\ -BR & A & D^TR & -C^TR \\\\ -CR & -D^TR & A & B^TR \\\\ -DR & C^TR & -B^TR & A \\end{pmatrix}, \\quad R = \\text{anti-diagonal permutation}",
+    "analogical_connections": [
+      "GS array structure ↔ quaternion algebra (i,j,k basis elements)",
+      "PAF flatness condition ↔ white noise spectrum in signal processing",
+      "Circulant structure ↔ convolutional layers in deep learning"
+    ],
+    "implementation_hypothesis": "For H(668): find four ±1 circulant matrices of order 167 with flat total power spectral density = 668 at every frequency. The search reduces to finding sequences whose DFT magnitudes squared sum to a constant. Current best heuristic search achieves energy ~486K (from target 0).",
+    "experiment_seed": "Implement GS array in NumPy. Run simulated annealing with FFT-based incremental energy updates. Compare random init vs. Legendre-based init vs. cyclotomic init.",
+    "folder_plan": ["results/concept_evolve/tree/002_goethals_seidel_array/"]
+  },
+  {
+    "symbolic_name": "kronecker_tensor_product",
+    "description": "The Kronecker product of two Hadamard matrices of orders m and n yields a Hadamard matrix of order mn. This is the simplest recursive construction (Sylvester's method). For order 668 = 4×167, the obstruction is that 167 is prime and odd, so no H(167) exists. The nearest Kronecker-constructible order is 672 = 4×168.",
+    "domains": ["linear_algebra", "combinatorial_design", "coding_theory"],
+    "mathematical_formalization": "H_{mn} = H_m \\otimes H_n, \\quad (H_m \\otimes H_n)(H_m \\otimes H_n)^T = H_mH_m^T \\otimes H_nH_n^T = mn \\cdot I_{mn}",
+    "analogical_connections": [
+      "Kronecker product ↔ multi-scale wavelet decomposition",
+      "Tensor structure ↔ product codes in coding theory",
+      "Factorization obstruction ↔ prime gaps in number theory"
+    ],
+    "implementation_hypothesis": "H(672) = H(4) ⊗ H(168) is a valid 672×672 Hadamard matrix. By truncating to the first 668 rows and columns, we obtain a ±1 matrix with H*H^T having diagonal entries 668 and off-diagonal entries bounded by ±4 (a 4-modular approximation).",
+    "experiment_seed": "Construct H(672), verify, truncate to 668×668. Measure off-diagonal distribution. Compare with Eliahou's 64-modular construction quality.",
+    "folder_plan": ["results/concept_evolve/tree/003_kronecker_tensor_product/"]
+  },
+  {
+    "symbolic_name": "williamson_type_matrices",
+    "description": "Four symmetric circulant ±1 matrices A,B,C,D of order n satisfying A²+B²+C²+D²=4nI yield a Hadamard matrix of order 4n via the Williamson array. The symmetry constraint (palindromic first rows) halves the search space. Known for many n≤63 but NOT for n=167, which is exactly what's needed for H(668).",
+    "domains": ["combinatorial_design", "algebraic_combinatorics", "constraint_satisfaction"],
+    "mathematical_formalization": "A,B,C,D \\text{ symmetric circulant}, \\quad A^2+B^2+C^2+D^2 = 4 \\cdot 167 \\cdot I_{167}, \\quad H = \\text{Williamson}(A,B,C,D) \\in \\{\\pm 1\\}^{668 \\times 668}",
+    "analogical_connections": [
+      "Symmetric circulant constraint ↔ palindromic sequence design in genomics",
+      "Sum-of-squares condition ↔ Lagrange four-square theorem in number theory",
+      "Search space reduction via symmetry ↔ symmetry breaking in SAT solvers"
+    ],
+    "implementation_hypothesis": "Search for Williamson matrices of order 167 with palindromic first-row constraint. The search space is 2^84 (half of 167 positions due to symmetry). Use algebraic structure of Z_167 to prune. This is a sub-problem of the open H(668) problem.",
+    "experiment_seed": "Enumerate palindromic ±1 sequences of length 167. Check circulant autocorrelation constraints. Use branch-and-bound or SAT reduction.",
+    "folder_plan": ["results/concept_evolve/tree/004_williamson_type_matrices/"]
+  },
+  {
+    "symbolic_name": "complementary_sequences",
+    "description": "Golay complementary pairs/sets are sequences whose aperiodic or periodic autocorrelation functions sum to a delta function. For H(668), we need 4 sequences of length 167 whose periodic autocorrelations sum to zero at all nonzero lags. This connects to OFDM channel estimation, radar waveform design, and compressed sensing.",
+    "domains": ["signal_processing", "communications", "combinatorial_design"],
+    "mathematical_formalization": "\\sum_{i=1}^{4} \\text{PAF}_{s_i}(j) = \\begin{cases} 4p & j=0 \\\\ 0 & j \\neq 0 \\end{cases}, \\quad \\text{equivalently: } \\sum_i |S_i(k)|^2 = 4p \\; \\forall k",
+    "analogical_connections": [
+      "Flat power spectrum ↔ white noise in physics",
+      "Complementary set condition ↔ perfect reconstruction filter banks",
+      "Golay pair existence restriction ↔ no-go theorems in quantum information"
+    ],
+    "implementation_hypothesis": "Decompose the flat PSD condition: need sum_i |S_i(k)|^2 = 668 for all k. The DC component requires (sum A)^2 + (sum B)^2 + (sum C)^2 + (sum D)^2 = 668. Valid decompositions: e.g., 1² + 9² + 15² + 19² = 668. Then optimize non-DC frequencies.",
+    "experiment_seed": "Fix DC row-sums to a valid 4-square decomposition of 668. Run SA with swap moves preserving row sums. Measure PSD flatness convergence rate.",
+    "folder_plan": ["results/concept_evolve/tree/005_complementary_sequences/"]
+  },
+  {
+    "symbolic_name": "cyclotomic_class_partition",
+    "description": "Partitioning the multiplicative group of GF(p) into cyclotomic classes provides structured initial sequences for Hadamard constructions. For p=167, the group Z*_167 has order 166 = 2×83. Since 4 does not divide 166, standard 4-class cyclotomic constructions fail, which is a root cause of the difficulty of H(668).",
+    "domains": ["number_theory", "algebraic_combinatorics", "coding_theory"],
+    "mathematical_formalization": "\\mathbb{Z}_{167}^* \\cong \\mathbb{Z}_{166} = \\mathbb{Z}_2 \\times \\mathbb{Z}_{83}, \\quad \\text{only subgroups of orders } 1, 2, 83, 166 \\quad (4 \\nmid 166)",
+    "analogical_connections": [
+      "Cyclotomic class structure ↔ frequency band allocation in wireless",
+      "Group factorization failure ↔ RSA hardness (related to group structure)",
+      "Partition obstruction ↔ impossibility results in distributed computing"
+    ],
+    "implementation_hypothesis": "Since 4∤166, use non-uniform partitions: split Z*_167 into 4 sets of sizes 42,42,41,41 by discrete log mod 4. These approximate cyclotomic classes and can seed optimization. Alternatively, use subgroup <g^2> of order 83 and its coset to partition into 2 halves, then subdivide further.",
+    "experiment_seed": "Compute discrete logs mod 167 using primitive root g=5. Partition by index mod 4. Measure resulting sequence autocorrelation flatness. Compare with random partition.",
+    "folder_plan": ["results/concept_evolve/tree/006_cyclotomic_class_partition/"]
+  },
+  {
+    "symbolic_name": "spectral_flatness_condition",
+    "description": "The Hadamard condition for GS-array circulant sequences translates to constant total power spectral density in the frequency domain. This spectral flatness condition connects to information-theoretic capacity (Shannon), signal design for CDMA systems, and the uncertainty principle. The energy landscape has many local minima, explaining why local search fails for p=167.",
+    "domains": ["signal_processing", "information_theory", "optimization"],
+    "mathematical_formalization": "P(k) = \\sum_{i=1}^{4} |\\hat{s}_i(k)|^2 = 4p \\quad \\forall k \\in \\{0,\\ldots,p-1\\}, \\quad \\text{where } \\hat{s}_i = \\text{DFT}(s_i)",
+    "analogical_connections": [
+      "Flat PSD ↔ maximum entropy distribution in thermodynamics",
+      "PSD flatness ↔ channel capacity maximization (water-filling)",
+      "DFT domain optimization ↔ spectral methods in PDE solving"
+    ],
+    "implementation_hypothesis": "Reformulate the search as a continuous optimization: relax ±1 to [-1,1], minimize sum (P(k)-668)^2, then round. The rounding destroys flatness, creating a gap analogous to the integrality gap in combinatorial optimization.",
+    "experiment_seed": "Implement continuous relaxation with gradient descent on PSD flatness. Measure gap between continuous optimum (P(k)=668 achievable) and integer (±1) feasibility.",
+    "folder_plan": ["results/concept_evolve/tree/007_spectral_flatness_condition/"]
+  },
+  {
+    "symbolic_name": "quantum_optimization_search",
+    "description": "Quantum approximate optimization (QAOA) and quantum annealing have been proposed for Hadamard matrix search. The H-SEARCH problem encodes the orthogonality constraint as a QUBO (quadratic unconstrained binary optimization) and maps it to a quantum Hamiltonian. For order M, this requires O(M) qubits on gate-based quantum computers.",
+    "domains": ["quantum_computing", "combinatorial_optimization", "physics"],
+    "mathematical_formalization": "H_{\\text{cost}} = \\sum_{i<j} \\left(\\sum_k h_{ik} h_{jk}\\right)^2, \\quad h_{ik} \\in \\{-1,+1\\} \\mapsto Z_k \\text{ Pauli operator}",
+    "analogical_connections": [
+      "QUBO formulation ↔ Ising model in statistical mechanics",
+      "Quantum tunneling through barriers ↔ escaping local minima in SA",
+      "Qubit efficiency ↔ dimensionality reduction in classical computing"
+    ],
+    "implementation_hypothesis": "For H(668), the GS-array structure reduces the search from 668² binary variables to 4×167 = 668 binary variables. Encode as QUBO: minimize sum of squared off-diagonal entries of (GS)*(GS)^T. Run on quantum simulator with 668 qubits.",
+    "experiment_seed": "Formulate QUBO for GS-array sequences of length 167. Test on quantum simulator (Qiskit/Cirq) at small scale (p=7,11). Extrapolate resource requirements for p=167.",
+    "folder_plan": ["results/concept_evolve/tree/008_quantum_optimization_search/"]
+  },
+  {
+    "symbolic_name": "modular_hadamard_relaxation",
+    "description": "An m-modular Hadamard matrix H satisfies H*H^T ≡ nI (mod m), relaxing exact orthogonality to modular congruence. Eliahou (2025) constructed a 64-modular Hadamard matrix of order 668, improving the previous record of m=32 from 2001. This relaxation connects to coding theory (codes over Z_m) and lattice-based cryptography.",
+    "domains": ["modular_arithmetic", "coding_theory", "combinatorial_design"],
+    "mathematical_formalization": "H \\in \\{\\pm 1\\}^{668 \\times 668}, \\quad HH^T \\equiv 668 \\cdot I \\pmod{64}",
+    "analogical_connections": [
+      "Modular relaxation ↔ approximate nearest-neighbor in ANN search",
+      "Increasing modulus toward exact solution ↔ lifting in algebraic geometry",
+      "m-modular matrices ↔ codes over rings Z/mZ in coding theory"
+    ],
+    "implementation_hypothesis": "Our truncated H(672)[:668,:668] achieves off-diagonal entries in {-4,-2,0,2,4}, making it 4-modular (equivalently 8-modular since all off-diag are even). This is weaker than Eliahou's 64-modular but trivially constructible. The hierarchy: 4-modular → 8 → 16 → 32 → 64 → exact.",
+    "experiment_seed": "Construct the truncated matrix. Verify modular level. Compare with Eliahou's construction. Search for modifications that increase the modular level.",
+    "folder_plan": ["results/concept_evolve/tree/009_modular_hadamard_relaxation/"]
+  },
+  {
+    "symbolic_name": "conference_matrix_border",
+    "description": "A conference matrix C of order n satisfies C*C^T = (n-1)I with zero diagonal and ±1 off-diagonal entries. For odd prime p ≡ 3 mod 4, the Jacobsthal matrix is a conference matrix of order p. Bordering C with ±1 vectors (Paley's technique) converts it to a Hadamard matrix. For H(668), the conference matrix of order 167 is available but the bordering to reach 668 requires a non-standard technique.",
+    "domains": ["combinatorial_design", "graph_theory", "linear_algebra"],
+    "mathematical_formalization": "C = Q_{167} \\text{ (Jacobsthal)}, \\quad CC^T = 166 \\cdot I - J + 167I = 167I - J, \\quad \\text{border to get } H(168)",
+    "analogical_connections": [
+      "Conference matrix ↔ strongly regular graph adjacency matrix",
+      "Bordering technique ↔ augmenting paths in network flow",
+      "Equiangular lines from conference matrices ↔ quantum state tomography"
+    ],
+    "implementation_hypothesis": "The Jacobsthal matrix Q of GF(167) is the starting point. Standard bordering gives H(168). For H(668) = H(4×167), we need to combine Q with a structured 4×4 design. The Goethals-Seidel array with A = Q+I and B,C,D derived from Q's structure is one path.",
+    "experiment_seed": "Construct Q_167. Try A = Q+I, B = (shifted Q)+I variations. Measure AA^T+BB^T+CC^T+DD^T deviation from 668*I.",
+    "folder_plan": ["results/concept_evolve/tree/010_conference_matrix_border/"]
+  },
+  {
+    "symbolic_name": "t_sequence_decomposition",
+    "description": "T-sequences are four (0,±1) sequences of length n with zero-sum non-periodic autocorrelation and disjoint support. They yield T-matrices, which combined with Williamson-type matrices via the Cooper-Wallis theorem produce Hadamard matrices of order 4nw. For H(668)=H(4×167×1), we need T-matrices of order 167 or a factorization 167=n×w with T-sequences of order n.",
+    "domains": ["combinatorial_design", "signal_processing", "algebraic_combinatorics"],
+    "mathematical_formalization": "\\sum_{i=1}^{4} N_{A_i}(j) = 0 \\; \\forall j \\geq 1, \\quad \\text{supp}(A_1) \\sqcup \\text{supp}(A_2) \\sqcup \\text{supp}(A_3) \\sqcup \\text{supp}(A_4) = \\{0,\\ldots,n-1\\}",
+    "analogical_connections": [
+      "Disjoint support ↔ orthogonal frequency division in OFDM",
+      "T-sequence as sparse code ↔ sparse representation in compressed sensing",
+      "Cooper-Wallis theorem ↔ product construction in coding theory"
+    ],
+    "implementation_hypothesis": "Since 167 is prime, the only factorization is 167=167×1. Need T-sequences of length 167. These are constructed from special properties of Z_167 (cf. Kharaghani's construction). The sequence design requires partitioning {0,...,166} into 4 disjoint support sets and assigning ±1 values.",
+    "experiment_seed": "Implement T-sequence search for small primes (p=7,11,23). Verify Cooper-Wallis construction. Attempt to scale to p=167 using structural constraints from Z_167.",
+    "folder_plan": ["results/concept_evolve/tree/011_t_sequence_decomposition/"]
+  },
+  {
+    "symbolic_name": "difference_set_construction",
+    "description": "Supplementary difference sets (SDS) in an abelian group G generalize classical difference sets. A 4-{v; k1,k2,k3,k4; λ} SDS yields circulant matrices for the Goethals-Seidel array. For H(668), one needs 4-{167; k1,k2,k3,k4; λ} SDS in Z_167. The Spence construction alternatively needs 4-{166; 83,83,83,84; 166} SDS in Z_166. Neither is known.",
+    "domains": ["combinatorial_design", "group_theory", "algebraic_combinatorics"],
+    "mathematical_formalization": "S_1,\\ldots,S_4 \\subseteq \\mathbb{Z}_{167}, \\quad \\forall g \\neq 0: \\sum_{i=1}^{4} |\\{(a,b) \\in S_i \\times S_i : a-b \\equiv g\\}| = \\lambda",
+    "analogical_connections": [
+      "Difference sets ↔ perfect hash families in computer science",
+      "SDS ↔ balanced incomplete block designs (BIBD)",
+      "Group structure of Z_167 ↔ error-correcting code structure"
+    ],
+    "implementation_hypothesis": "Search for 4-SDS in Z_167 using: (1) cyclotomic initial construction from QR/QNR, (2) local search via set element swaps, (3) algebraic constraints from the character theory of Z_167. The character sum conditions reduce to checking O(p) equations.",
+    "experiment_seed": "Implement SDS verification. Start with QR/QNR-based initial sets. Run optimization over set membership. Track lambda-deviation across all group elements.",
+    "folder_plan": ["results/concept_evolve/tree/012_difference_set_construction/"]
+  }
+]

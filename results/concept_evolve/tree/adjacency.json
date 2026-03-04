@@ -1,0 +1,48 @@
+{
+  "paley_quadratic_residue": [
+    "conference_matrix_border"
+  ],
+  "conference_matrix_border": [
+    "goethals_seidel_array"
+  ],
+  "goethals_seidel_array": [
+    "complementary_sequences"
+  ],
+  "complementary_sequences": [
+    "spectral_flatness_condition",
+    "flat_psd_equivalence"
+  ],
+  "spectral_flatness_condition": [
+    "quantum_optimization_search"
+  ],
+  "kronecker_tensor_product": [
+    "modular_hadamard_relaxation"
+  ],
+  "williamson_type_matrices": [
+    "goethals_seidel_array"
+  ],
+  "cyclotomic_class_partition": [
+    "difference_set_construction",
+    "paley_quadratic_residue"
+  ],
+  "difference_set_construction": [
+    "goethals_seidel_array"
+  ],
+  "t_sequence_decomposition": [
+    "goethals_seidel_array"
+  ],
+  "GF167_structure": [
+    "cyclotomic_class_partition",
+    "paley_quadratic_residue",
+    "open_problem_668"
+  ],
+  "flat_psd_equivalence": [
+    "open_problem_668"
+  ],
+  "modular_hadamard_relaxation": [
+    "open_problem_668"
+  ],
+  "quantum_optimization_search": [
+    "open_problem_668"
+  ]
+}

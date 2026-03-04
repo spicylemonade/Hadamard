@@ -1,0 +1,8 @@
+CONCEPT EVOLUTION COMPLETE
+- Concepts: 12
+- Bridge nodes: 15
+- Bridge edges: 18
+- Concept folders: 12
+- Walk paths: 26
+
+Top steering directions:

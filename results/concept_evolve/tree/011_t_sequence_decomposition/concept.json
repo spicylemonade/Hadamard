@@ -1,0 +1,11 @@
+{
+  "symbolic_name": "t_sequence_decomposition",
+  "description": "T-sequences: four (0,±1) sequences with zero-sum non-periodic autocorrelation and disjoint support. Combined with Williamson-type matrices via Cooper-Wallis theorem to produce Hadamard matrices. For H(668), need T-sequences of length 167.",
+  "domains": ["combinatorial_design", "signal_processing", "algebraic_combinatorics"],
+  "mathematical_formalization": "sum_i N_{A_i}(j) = 0 for j >= 1, supp(A_1) ⊔ supp(A_2) ⊔ supp(A_3) ⊔ supp(A_4) = {0,...,166}",
+  "key_results": {
+    "required_length": 167,
+    "factorization_167": "prime (no non-trivial factorizations)",
+    "cooper_wallis_needs": "T-matrices of order t and Williamson matrices of order w with tw=167"
+  }
+}

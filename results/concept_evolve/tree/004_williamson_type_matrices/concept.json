@@ -1,0 +1,12 @@
+{
+  "symbolic_name": "williamson_type_matrices",
+  "description": "Four symmetric circulant ±1 matrices satisfying A²+B²+C²+D²=4nI. Known for many n ≤ 63 but NOT for n=167. The symmetry constraint halves the search space to 2^84.",
+  "domains": ["combinatorial_design", "algebraic_combinatorics", "constraint_satisfaction"],
+  "mathematical_formalization": "A,B,C,D symmetric circulant of order 167, A²+B²+C²+D² = 668·I",
+  "key_results": {
+    "williamson_known_up_to": 63,
+    "target_n": 167,
+    "search_space_size": "2^84 (due to palindromic symmetry)",
+    "known_for_167": false
+  }
+}
