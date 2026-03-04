@@ -69,7 +69,7 @@ def main():
     H, chi = build_legendre_gs_matrix()
     
     # Export to CSV
-    csv_path = os.path.join(os.path.dirname(__file__), '..', 'hadamard_668.csv')
+    csv_path = os.path.join(os.path.dirname(__file__), '..', 'near_miss_668.csv')
     csv_path = os.path.abspath(csv_path)
     export_csv(H, csv_path)
     print(f"\nExported to {csv_path}")

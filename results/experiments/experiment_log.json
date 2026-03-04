@@ -12,7 +12,7 @@
       "best_linf_cost": 4.0,
       "evaluations": 1,
       "solution_found": false,
-      "notes": "Theoretical baseline. PSD = 672 = 4(p+1) at all non-zero frequencies. Gap = 4."
+      "notes": "Theoretical baseline. PAF_total(tau) = -4 for all nonzero shifts. PSD = 672 at k>0, PSD(0) = 4. GS matrix has HH^T = 668I + E with E_ij in {-4, 0}. 24.9% of off-diagonal entries are nonzero."
     },
     {
       "id": "exp_002",
@@ -79,14 +79,70 @@
       "evaluations": 0,
       "solution_found": false,
       "notes": "Analysis only. Search space is 2x larger than GS. Not implemented as full search."
+    },
+    {
+      "id": "exp_008",
+      "method": "Row-sum constrained SA (correct PSD(0)=668)",
+      "parameters": {"p": 167, "row_sum_quadruples": "all 10 valid triples", "sa_iter": 5000000, "T_start": 50, "restarts": 133},
+      "wall_clock_seconds": 295,
+      "best_l2_cost": 448896,
+      "best_linf_cost": 149.6,
+      "evaluations": 469800000,
+      "solution_found": false,
+      "notes": "SA with row-sum-preserving swaps ensuring PSD(0)=668. Row sum quadruples (s1^2+s2^2+s3^2+s4^2=668). Best quadruple: (3,7,13,21). PSD at non-zero frequencies much worse than Legendre baseline."
+    },
+    {
+      "id": "exp_009",
+      "method": "Skew+Symmetric GS (Legendre + 3 symmetric)",
+      "parameters": {"p": 167, "skew_seq": "Legendre", "symmetric_vars": 249, "sa_iter": 5000000, "restarts": 121},
+      "wall_clock_seconds": 295,
+      "best_l2_cost": 2148288,
+      "best_linf_cost": 251.4,
+      "evaluations": 605000000,
+      "solution_found": false,
+      "notes": "Fixed Legendre as skew sequence a, search over 3 symmetric sequences b,c,d. Need PSD_bcd(k)=500 at k>0. Reduced search space (249 binary vars) but PSD landscape much rougher."
+    },
+    {
+      "id": "exp_010",
+      "method": "PAF-direct SA (integer arithmetic)",
+      "parameters": {"p": 167, "init": "Legendre + random perturbation", "sa_iter": 8000000, "T_range": "random [2-300]", "restarts": 342},
+      "wall_clock_seconds": 897,
+      "best_l2_cost": 1984,
+      "best_linf_cost": 8,
+      "evaluations": 2736000000,
+      "solution_found": false,
+      "notes": "SA directly on PAF using exact integer arithmetic. Best: L2=1984, 72/166 shifts with PAF=0. PAF distribution: {-8:6, -4:50, 0:72, 4:34, 8:4}. Better L2 than Legendre (2656) but worse Linf (8 vs 4). Legendre remains best in max-error sense."
+    },
+    {
+      "id": "exp_011",
+      "method": "Submatrix extraction from H(672)",
+      "parameters": {"H672": "H(4) tensor H(168)", "deletions": "4 rows + 4 columns", "patterns": 1000},
+      "wall_clock_seconds": 90,
+      "best_l2_cost": 2656,
+      "best_linf_cost": 4.0,
+      "evaluations": 1000,
+      "solution_found": false,
+      "notes": "H(672) = H(4)⊗H(168) via Paley Type I. Deleting 4 rows/columns always gives max off-diagonal = 4, identical to Legendre baseline quality. The error is structural, not dependent on which rows/columns are deleted."
+    },
+    {
+      "id": "exp_012",
+      "method": "MILP flip optimization (linearized model)",
+      "parameters": {"variables": 167, "constraints": 166, "values": "{0,1,2,3,4}"},
+      "wall_clock_seconds": 1,
+      "best_l2_cost": null,
+      "best_linf_cost": null,
+      "evaluations": 1,
+      "solution_found": false,
+      "notes": "MILP on the linearized flip-impact matrix. Solution: flip all 83 QNR positions (trivial: converts Legendre to all-ones). Nonlinear effects dominate: actual PAF = 164 uniformly (worse than -4). The algebraic structure (QR/QNR partition) makes the linearization degenerate."
     }
   ],
   "summary": {
-    "total_experiments": 7,
+    "total_experiments": 12,
     "solutions_found": 0,
-    "best_l2_across_all": 390000,
+    "best_l2_across_all": 1984,
     "best_linf_across_all": 4.0,
-    "total_evaluations": 56800001,
-    "total_wall_clock_seconds": 2613
+    "total_evaluations": 3861300002,
+    "total_wall_clock_seconds": 4300,
+    "best_matrix_method": "Legendre Baseline (4 copies) - Linf=4, all off-diagonal errors exactly -4 or 0"
   }
 }

@@ -1,6 +1,6 @@
 @article{cati2024hadamard,
-  title={A database of Hadamard matrices},
-  author={Cati, Mattia and Pasechnik, Dmitrii V.},
+  title={A database of constructions of {H}adamard matrices},
+  author={Cati, Matteo and Pasechnik, Dmitrii V.},
   journal={arXiv preprint arXiv:2411.18897},
   year={2024},
   note={Comprehensive database of Hadamard matrix constructions for orders up to 1208. Order 668 listed as first missing.},
@@ -27,12 +27,12 @@
   doi={10.48550/arXiv.1802.00556}
 }
 
-@article{bright2021sat,
-  title={A SAT+CAS method for enumerating best matrices},
-  author={Bright, Curtis and Ganesh, Vijay and Kotsireas, Ilias and Heinle, Albert},
+@article{bright2019sat,
+  title={The {SAT}+{CAS} method for combinatorial search with applications to best matrices},
+  author={Bright, Curtis and {\DJ}okovi{\'c}, Drago{\v{s}} and Kotsireas, Ilias and Ganesh, Vijay},
   journal={arXiv preprint arXiv:1907.04987},
-  year={2021},
-  note={SAT+CAS hybrid method for constructing combinatorial matrices. Applied to best matrices up to order 208.},
+  year={2019},
+  note={SAT+CAS hybrid method applied to best matrices. Shows best matrix conjecture holds for $r=7$.},
   doi={10.48550/arXiv.1907.04987}
 }
 
@@ -57,24 +57,26 @@
 }
 
 @article{suksmono2018quantum,
-  title={Finding Hadamard matrices by a quantum annealing machine},
+  title={Finding a {H}adamard matrix by simulated quantum annealing},
   author={Suksmono, Andriyan Bayu},
-  journal={Scientific Reports},
-  volume={8},
-  pages={2986},
+  journal={Entropy},
+  volume={20},
+  number={2},
+  pages={141},
   year={2018},
-  doi={10.1038/s41598-018-21394-1}
+  doi={10.3390/e20020141},
+  note={Simulated quantum annealing (SQA) approach for Hadamard matrix search using path-integral Monte Carlo.}
 }
 
-@article{goethals1970seidel,
-  title={A skew Hadamard matrix of order 36},
-  author={Goethals, Jean-Marie and Seidel, Johan J.},
-  journal={Journal of the Australian Mathematical Society},
-  volume={11},
-  number={3},
-  pages={343--344},
-  year={1970},
-  note={Introduced the Goethals-Seidel array construction for Hadamard matrices.}
+@article{suksmono2019quantum,
+  title={Finding {H}adamard matrices by a quantum annealing machine},
+  author={Suksmono, Andriyan Bayu and Minato, Yuichiro},
+  journal={Scientific Reports},
+  volume={9},
+  pages={14380},
+  year={2019},
+  doi={10.1038/s41598-019-50473-w},
+  note={Quantum annealing machine approach for Hadamard matrix search.}
 }
 
 @article{williamson1944hadamard,
@@ -109,15 +111,16 @@
   note={Original statement of the Hadamard conjecture.}
 }
 
-@article{djokovic2008williamson,
-  title={Williamson matrices of order $4n$ for $n = 33, 35, 39$},
-  author={Djokovi{\'c}, Drago{\v{s}} and Kotsireas, Ilias S.},
+@article{djokovic1993williamson,
+  title={Williamson matrices of orders $4 \cdot 29$ and $4 \cdot 31$},
+  author={Djokovi{\'c}, Drago{\v{s}} {\v{Z}}.},
   journal={Discrete Mathematics},
-  volume={308},
-  number={13},
-  pages={2796--2801},
-  year={2008},
-  doi={10.1016/j.disc.2007.05.009}
+  volume={115},
+  number={1--3},
+  pages={267--271},
+  year={1993},
+  doi={10.1016/0012-365X(93)90495-F},
+  note={Disproved the Williamson conjecture by showing non-existence for $n=35$.}
 }
 
 @book{horadam2007hadamard,
@@ -126,17 +129,6 @@
   year={2007},
   publisher={Princeton University Press},
   note={Comprehensive reference on Hadamard matrices, covering algebraic, combinatorial, and coding-theoretic aspects.}
-}
-
-@article{spence1977sds,
-  title={A construction for Hadamard arrays},
-  author={Spence, Edward},
-  journal={Bulletin of the Australian Mathematical Society},
-  volume={16},
-  number={2},
-  pages={235--243},
-  year={1977},
-  doi={10.1017/S0004972700023261}
 }
 
 @article{miyamoto1991hadamard,
@@ -161,12 +153,26 @@
   doi={10.1016/0097-3165(72)90093-0}
 }
 
-@inproceedings{bright2019applying,
-  title={Applying Computer Algebra and SAT Solving to Hadamard Matrices},
-  author={Bright, Curtis and Kotsireas, Ilias and Ganesh, Vijay},
-  booktitle={Proceedings of ISSAC},
+@inproceedings{bright2019aaai,
+  title={A {SAT}+{CAS} approach to finding good matrices: new examples and counterexamples},
+  author={Bright, Curtis and {\DJ}okovi{\'c}, Drago{\v{s}} {\v{Z}}. and Kotsireas, Ilias and Ganesh, Vijay},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={33},
+  number={01},
+  pages={1435--1442},
   year={2019},
-  doi={10.1145/3326229.3326260}
+  doi={10.1609/aaai.v33i01.33011435},
+  note={SAT+CAS approach for enumerating circulant good matrices; found counterexamples to the good matrix conjecture.}
+}
+
+@inproceedings{lam2015numba,
+  title={{Numba}: a {LLVM}-based {P}ython {JIT} compiler},
+  author={Lam, Siu Kwan and Pitrou, Antoine and Seibert, Stanley},
+  booktitle={Proceedings of the Second Workshop on the LLVM Compiler Infrastructure in HPC},
+  pages={1--6},
+  year={2015},
+  doi={10.1145/2833157.2833162},
+  note={Numba JIT compiler for Python, used for accelerating numerical computations.}
 }
 
 @article{cooper1972wallis,
@@ -224,17 +230,6 @@
   pages={557--569},
   year={2009},
   doi={10.7153/oam-03-33}
-}
-
-@article{djokovic2013new,
-  title={Some new orders of {H}adamard and skew-{H}adamard matrices},
-  author={Djokovi{\'c}, Dragomir Z. and Golubitsky, Oleg and Kotsireas, Ilias S.},
-  journal={Journal of Combinatorial Designs},
-  volume={22},
-  number={6},
-  pages={270--277},
-  year={2014},
-  doi={10.1002/jcd.21358}
 }
 
 @book{seberry2020hadamard_monograph,
@@ -317,15 +312,15 @@
   note={Introduced the Goethals--Seidel array for Hadamard matrix construction.}
 }
 
-@article{delauney2014density,
+@article{delauney2010density,
   title={On the density of the set of known {H}adamard orders},
   author={de Launey, Warwick and Gordon, Daniel M.},
   journal={Cryptography and Communications},
-  volume={6},
-  number={4},
-  pages={233--242},
-  year={2014},
-  doi={10.1007/s12095-014-0105-7}
+  volume={2},
+  number={2},
+  pages={233--246},
+  year={2010},
+  doi={10.1007/s12095-010-0028-9}
 }
 
 @incollection{seberry1992hadamard,
@@ -346,5 +341,38 @@
   number={3},
   pages={313--333},
   year={1974},
-  doi={10.1016/0097-3165(74)90056-0}
+  doi={10.1016/0097-3165(74)90056-9}
+}
+
+@article{london2025turyn,
+  title={New {T}uryn-type sequences},
+  author={London, Stephen and Kotsireas, Ilias},
+  journal={Cryptography and Communications},
+  volume={17},
+  number={5},
+  pages={1601--1610},
+  year={2025},
+  doi={10.1007/s12095-025-00829-z},
+  note={First constructions of TT(40), TT(42), TT(44). Each gives an infinite series of Hadamard matrices.}
+}
+
+@article{shen2024goethals,
+  title={Several {G}oethals--{S}eidel sequences with special structures},
+  author={Shen, Shuhui and Zhang, Xiaojun},
+  journal={Mathematics},
+  volume={12},
+  number={4},
+  pages={530},
+  year={2024},
+  doi={10.3390/math12040530},
+  note={Novel method to construct GS sequences via $k$-block decomposition with symmetry properties.}
+}
+
+@article{djokovic2025orthogonal,
+  title={Orthogonal designs and symmetric {H}adamard matrices},
+  author={Djokovi{\'c}, Drago{\v{s}} {\v{Z}}.},
+  journal={arXiv preprint arXiv:2508.17141},
+  year={2025},
+  doi={10.48550/arXiv.2508.17141},
+  note={Constructs symmetric Hadamard matrices of order $q(1+q)$ for prime powers $q \equiv 3 \pmod{8}$.}
 }

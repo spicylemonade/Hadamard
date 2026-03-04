@@ -89,9 +89,9 @@ This means reducing PSD at one frequency necessarily increases it at others. The
 | 163 | 652 | KNOWN | Yes |
 | 167 | 668 | **OPEN** | **No** |
 | 173 | 692 | KNOWN | Yes |
-| 179 | 716 | KNOWN | Yes |
+| 179 | 716 | **OPEN** | **No** |
 
-The fact that both neighboring primes (163, 173) have known constructions but 167 does not is striking. This suggests the difficulty at p=167 may be related to the specific structure of Z_167*.
+The fact that both neighboring primes 163 and 173 have known constructions but 167 and 179 do not is striking. Both 167 and 179 have sparse Z_p* structure (phi(167) = 2*83, phi(179) = 2*89, both with large prime factors), while 163 and 173 have richer subgroup lattices. This suggests the difficulty is related to the sparse multiplicative group structure.
 
 ## 5. Recommendations for Future Work
 

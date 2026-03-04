@@ -63,10 +63,15 @@ power spectral density (PSD) equals~$668$ at every non-zero frequency.  We
 establish a Legendre-symbol baseline achieving a uniform PSD of~$672$
 across all non-zero frequencies---a gap of exactly~4 from the target---and
 deploy an extensive suite of optimization methods including simulated
-annealing, parallel tempering, DFT-guided spectral moves, multi-flip
-combinatorial search, Williamson-type symmetric restrictions, and
-row-sum-targeted initialization, totalling approximately $5 \times 10^8$
-candidate evaluations.  No exact solution was found; all stochastic methods
+annealing with PAF-direct integer arithmetic, parallel tempering,
+DFT-guided spectral moves, multi-flip combinatorial search,
+Williamson-type symmetric restrictions, skew-plus-symmetric sequence
+restrictions, row-sum-targeted initialization, submatrix extraction from
+$H(672)$, and MILP-based flip optimization, totalling approximately
+$3.9 \times 10^9$ candidate evaluations.  No exact solution was found.
+PAF-direct simulated annealing achieved a best $\Ltwo$~cost of~$1{,}984$
+(versus the Legendre baseline's $2{,}656$) but at the expense of
+$\Linf = 8$ (versus the baseline's $\Linf = 4$).  General SA methods
 converge to local minima with $\Ltwo$ cost~$\approx 4 \times 10^5$.  We
 analyze the structural barriers posed by the sparse multiplicative
 group~$\ZZ_{167}^*$ of order~$166 = 2 \times 83$ and contextualize our
@@ -97,7 +102,7 @@ that this necessary condition is also sufficient.
 Despite extensive progress spanning more than a century---from Sylvester's
 Kronecker product constructions~\cite{sylvester1867thoughts} through
 Paley's quadratic residue method~\cite{paley1933orthogonal} to modern
-computational searches~\cite{djokovic2018goethals,bright2021sat}---the
+computational searches~\cite{djokovic2018goethals,bright2019sat}---the
 conjecture remains unresolved.  As of the comprehensive
 database maintained by Cati and Pasechnik~\cite{cati2024hadamard,cati2023implementing},
 \textbf{order~668 is the smallest multiple of~4 for which no Hadamard
@@ -113,8 +118,8 @@ methods.  In this paper we:
     (Section~\ref{sec:background});
   \item Establish a Legendre-symbol baseline with a uniform PSD gap of~4
     (Section~\ref{sec:method:legendre});
-  \item Deploy six distinct optimization strategies within the
-    Goethals--Seidel framework, totalling $\sim\!5 \times 10^8$
+  \item Deploy nine distinct optimization strategies within the
+    Goethals--Seidel framework, totalling $\sim\!3.9 \times 10^9$
     evaluations (Section~\ref{sec:method});
   \item Document the convergence barriers and analyze the structural
     obstacles posed by the group~$\ZZ_{167}^*$
@@ -154,19 +159,27 @@ Combinatorial Designs~\cite{colbourn2007handbook}.
 
 \subsection{Computational Searches}
 
-Djokovi\'c and Kotsireas~\cite{djokovic2018goethals,djokovic2009sds,djokovic2008williamson}
+Djokovi\'c and Kotsireas~\cite{djokovic2018goethals,djokovic2009sds,djokovic1993williamson}
 conducted extensive computational searches for supplementary difference
 sets (SDS) and Goethals--Seidel difference families, resolving many
 previously open orders.  Bright, Ganesh, and
-Kotsireas~\cite{bright2021sat,bright2019applying} developed a SAT+CAS
+Kotsireas~\cite{bright2019sat,bright2019aaai} developed a SAT+CAS
 hybrid framework that enumerates best matrices up to order~208.
 Kharaghani and Tayfeh-Rezaie~\cite{kharaghani2005hadamard428} constructed
 $H(428)$, resolving a long-standing open case.
 
-Suksmono~\cite{suksmono2018quantum,suksmono2025qaoa} explored quantum and
-quantum-inspired annealing approaches for Hadamard matrix construction,
-while Bennett et al.~\cite{bennett2026quaternionic} recently used
+Suksmono~\cite{suksmono2018quantum,suksmono2019quantum,suksmono2025qaoa}
+explored quantum and quantum-inspired annealing approaches for Hadamard
+matrix construction,
+Bennett et al.~\cite{bennett2026quaternionic} recently used
 quaternionic perfect sequences to enumerate Williamson-type matrices.
+Shen and Zhang~\cite{shen2024goethals} developed a $k$-block decomposition
+method for constructing GS sequences with symmetry, and
+London and Kotsireas~\cite{london2025turyn} constructed the first
+Turyn-type sequences of lengths 40, 42, and 44.
+Djokovi\'c~\cite{djokovic2025orthogonal} constructed symmetric Hadamard
+matrices of order $q(1+q)$ for prime powers $q \equiv 3 \pmod{8}$ via
+orthogonal designs.
 
 \subsection{Recent Progress on Order~668}
 
@@ -182,7 +195,7 @@ lacking a construction at this order.  The PlanetMath
 listing~\cite{planetmath_hadamard} identifies 167 as one of~13 integers
 $m < 500$ for which $H(4m)$ remains unknown.
 
-De~Launey and Gordon~\cite{delauney2014density} showed that the proportion
+De~Launey and Gordon~\cite{delauney2010density} showed that the proportion
 of multiples of~4 admitting Hadamard matrices approaches~1 asymptotically,
 but this does not resolve any specific order.
 
@@ -387,6 +400,40 @@ so each generating sequence is a palindrome: $x_j = x_{n-j}$.  This halves
 the free parameters from~668 to~336 (84 free positions per sequence for
 $n = 167$).  Moves flip paired positions $\{j, n-j\}$ simultaneously.
 
+\subsection{PAF-Direct SA with Numba Acceleration}\label{sec:method:paf}
+
+Rather than optimizing in the frequency domain via PSD, we directly
+minimize the PAF cost
+\[
+  \mathcal{C}_{\PAF}(a,b,c,d) = \sum_{\tau=1}^{n-1}
+  \bigl(\PAF_a(\tau) + \PAF_b(\tau) + \PAF_c(\tau) + \PAF_d(\tau)\bigr)^2
+\]
+using exact integer arithmetic (no floating-point DFT).  This avoids
+numerical round-off entirely and exploits the fact that each single-bit
+flip affects all $n-1$ autocorrelation lags, but each lag update is $O(1)$,
+giving $O(n)$ per flip overall.  Inner loops are JIT-compiled via
+Numba~\cite{lam2015numba}, achieving $\sim\!1.2 \times 10^6$
+iterations/second.  We initialize from the Legendre baseline with random
+perturbations of varying magnitude and run 342 independent restarts with
+randomized temperature schedules.
+
+\subsection{Submatrix Extraction from $H(672)$}
+
+Since $672 = 4 \times 168$ and $H(168)$ is constructible via Paley Type~I,
+we form $H(672) = H(4) \otimes H(168)$ and delete 4~rows and 4~columns to
+obtain a $668 \times 668$ submatrix.  We tested 1{,}000 deletion patterns;
+all yielded max off-diagonal $|E_{ij}| = 4$, identical to the Legendre
+baseline quality.
+
+\subsection{MILP Flip Optimization}
+
+We linearize the effect of flipping positions in the Legendre sequence and
+encode the resulting system as a mixed-integer linear program with 167
+integer variables in $\{0,\ldots,4\}$ and 166 equality constraints.
+The LP relaxation admits an optimal solution (flip all 83 QNR positions),
+but the corresponding actual PAF equals~$164$ uniformly due to nonlinear
+effects that dominate for more than $\sim\!5$ simultaneous flips.
+
 \subsection{Row-Sum-Targeted Initialization}\label{sec:method:rowsum}
 
 Each of the~10 valid decompositions of~668 as a sum of four squares
@@ -401,8 +448,9 @@ each sequence).
 \subsection{Implementation}
 
 All code was implemented in Python~3 with NumPy for DFT operations and
-Numba~\cite{bright2019applying} for JIT-compiled inner loops, achieving
-$\sim\!31{,}000$ iterations/second for single-flip SA at $n = 167$.  The
+Numba~\cite{lam2015numba} for JIT-compiled inner loops, achieving
+$\sim\!31{,}000$ iterations/second for single-flip SA (PSD-domain) and
+$\sim\!1.2 \times 10^6$ iterations/second for PAF-direct SA at $n = 167$.  The
 GS array builder, PSD checker, and verification suite were validated on
 the known Hadamard matrix~$H(12)$ constructed via the Paley Type~I method
 with $q = 11$.
@@ -418,7 +466,8 @@ exactly.
 \subsection{Computational Budget}
 
 Table~\ref{tab:budget} summarizes the computational effort across all
-methods.  The aggregate budget exceeded $5 \times 10^8$ cost evaluations.
+methods.  The aggregate budget exceeded $3.9 \times 10^9$ cost evaluations,
+dominated by the PAF-direct SA campaign ($2.7 \times 10^9$ evaluations).
 
 \begin{table}[t]
   \centering
@@ -431,14 +480,17 @@ methods.  The aggregate budget exceeded $5 \times 10^8$ cost evaluations.
     \textbf{Best $\Linf$} \\
     \midrule
     Legendre baseline         &            1 &    2{,}656 &    4 \\
-    Standard SA               & $1.5 \times 10^8$ & 403{,}000 &  122 \\
-    Parallel tempering        & $1.0 \times 10^8$ & 400{,}000 &  120 \\
-    DFT-guided moves          & $8.0 \times 10^7$ & 405{,}000 &  125 \\
-    Multi-flip SA             & $7.0 \times 10^7$ & 411{,}000 &  130 \\
-    Williamson symmetric      & $5.0 \times 10^7$ & 450{,}000+ & 140+ \\
-    Row-sum targeted restarts & $5.0 \times 10^7$ & 401{,}000 &  121 \\
+    Fast SA (random init)     & $5.0 \times 10^7$ & 390{,}000 &  120 \\
+    PAF-direct SA (Numba)     & $2.7 \times 10^9$ &    1{,}984 &    8 \\
+    Row-sum constrained SA    & $4.7 \times 10^8$ & 448{,}896 &  150 \\
+    Skew + symmetric SA       & $6.1 \times 10^8$ & 2{,}148{,}288 &  251 \\
+    Parallel tempering        & $5.0 \times 10^5$ & 600{,}000 &  150 \\
+    Williamson symmetric      & $5.0 \times 10^6$ & 450{,}000 &  130 \\
+    Multi-start SA (Legendre) & $1.0 \times 10^6$ & 623{,}136 &  154 \\
+    GS orbit search           & $3.0 \times 10^5$ & 577{,}152 &  147 \\
+    Submatrix from $H(672)$   & $1.0 \times 10^3$ &    2{,}656 &    4 \\
     \midrule
-    \textbf{Total}            & $\sim\!5 \times 10^8$ & --- & --- \\
+    \textbf{Total}            & $\sim\!3.9 \times 10^9$ & --- & --- \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -460,12 +512,17 @@ that stochastic methods are the only viable approach.
 The central result is \textbf{negative}: no Hadamard matrix of order~668
 was constructed.  The key quantitative outcomes are:
 \begin{itemize}
-  \item Best $\Ltwo$ cost: $\approx 390{,}000$ (target: 0), achieved by
-    general SA with multiple random restarts.
-  \item Best $\Linf$: $\approx 120$ (target: 0), from parallel tempering.
+  \item Best $\Ltwo$ cost: $1{,}984$ (target: 0), achieved by PAF-direct
+    SA with Numba acceleration (342 restarts, $2.7 \times 10^9$
+    evaluations).  This solution has 72 of 166 shifts with $\PAF = 0$,
+    but $\Linf = 8$.
+  \item Best $\Linf$: 4 (Legendre baseline and submatrix extraction from
+    $H(672)$); next best $\Linf$: 8 (PAF-direct SA).
   \item Legendre baseline: $\Ltwo = 2{,}656$, $\Linf = 4$ (the closest
     near-miss in the~$\Linf$ sense).
-  \item Total evaluations: $\sim\!5 \times 10^8$ across all methods.
+  \item Best general SA $\Ltwo$ (non-PAF methods): $\approx 390{,}000$,
+    $\Linf \approx 120$, from fast SA with 10 random restarts.
+  \item Total evaluations: $\sim\!3.9 \times 10^9$ across all methods.
   \item Row-sum decompositions explored: all~10 valid decompositions.
 \end{itemize}
 
@@ -494,19 +551,22 @@ quadratic residue sequences.
 
 \subsection{SA Convergence Behavior}
 
-All simulated annealing variants exhibited a three-phase convergence
+General SA variants (non-PAF methods) exhibited a three-phase convergence
 pattern (Figure~\ref{fig:convergence}):
 \begin{enumerate}
   \item \textbf{Rapid descent} (first $\sim\!10^6$ evaluations): cost
-    drops from the initial value to~$\approx 4 \times 10^5$.
-  \item \textbf{Plateau} ($10^6$--$10^8$ evaluations): cost fluctuates in
-    $[4 \times 10^5,\; 4.2 \times 10^5]$.
-  \item \textbf{Stagnation} (beyond $10^8$): no further improvement.
+    drops from the initial value to~$\approx 4$--$6 \times 10^5$.
+  \item \textbf{Plateau} ($10^6$--$5 \times 10^7$ evaluations): cost
+    fluctuates in $[3.9 \times 10^5,\; 6.2 \times 10^5]$ depending on
+    initialization.
+  \item \textbf{Stagnation} (beyond $5 \times 10^7$): no further improvement.
 \end{enumerate}
-The convergence to $\mathcal{C} \approx 4 \times 10^5$ across all methods
-and starting points suggests a \emph{structural barrier} in the
-optimization landscape rather than a limitation of any particular
-algorithm.
+The convergence to $\mathcal{C} \approx 4$--$6 \times 10^5$ across
+general SA methods suggests a \emph{structural barrier} in the PSD
+optimization landscape.  By contrast, the PAF-direct approach
+(Section~\ref{sec:method:paf}) operating in autocorrelation space
+achieved $\mathcal{C} = 1{,}984$---far lower, but at the cost of
+higher $\Linf$ (8 versus the Legendre baseline's 4).
 
 \begin{figure}[t]
   \centering
@@ -550,9 +610,12 @@ Legendre baseline's uniform deviation of~4.
 \subsection{Method Comparison}
 
 Figure~\ref{fig:comparison} compares the best $\Ltwo$ costs across all
-methods.  General SA and parallel tempering achieved the lowest costs
-($\sim\!4 \times 10^5$), while the Williamson-restricted search performed
-worst due to the overly constraining palindromic symmetry.
+methods.  Among general SA approaches, fast SA with random initialization
+achieved the lowest PSD-domain cost ($\sim\!3.9 \times 10^5$), while the
+Williamson-restricted and skew-plus-symmetric searches performed worst due
+to overly constraining symmetry requirements.  The PAF-direct SA achieved
+dramatically lower $\Ltwo = 1{,}984$ by operating in autocorrelation space,
+but its $\Linf = 8$ is worse than the Legendre baseline's uniform $\Linf = 4$.
 
 \subsection{Orbit Structure}\label{sec:results:orbits}
 
@@ -572,12 +635,14 @@ combinations, far beyond exhaustive enumeration.
 
 \subsection{Comparison with Neighboring Orders}
 
-Table~\ref{tab:neighbors} compares order~668 with nearby orders.  Both
+Table~\ref{tab:neighbors} compares order~668 with nearby orders.
 $H(652) = H(4 \times 163)$ and $H(692) = H(4 \times 173)$ are known, yet
-$H(668)$ remains open.  The key differentiator is the subgroup structure
-of~$\ZZ_p^*$: for $p = 163$, the order $162 = 2 \times 3^4$ is rich in
-subgroups, while for $p = 167$, the order $166 = 2 \times 83$ admits
-essentially no useful intermediate subgroups.
+$H(668)$ and $H(716) = H(4 \times 179)$ remain
+open~\cite{cati2024hadamard}.  The key differentiator is the subgroup
+structure of~$\ZZ_p^*$: for $p = 163$, the order $162 = 2 \times 3^4$ is
+rich in subgroups, while for $p = 167$ and $p = 179$, the orders $166 = 2
+\times 83$ and $178 = 2 \times 89$ admit essentially no useful
+intermediate subgroups---both 83 and 89 being prime.
 
 \begin{table}[t]
   \centering
@@ -592,7 +657,8 @@ essentially no useful intermediate subgroups.
     \textbf{167} & \textbf{668} & \textbf{166} & $\mathbf{2 \times 83}$
       & \textbf{Open} \\
     173 & 692 & 172 & $2^2 \times 43$          & Known \\
-    179 & 716 & 178 & $2 \times 89$            & Known \\
+    \textbf{179} & \textbf{716} & \textbf{178} & $\mathbf{2 \times 89}$
+      & \textbf{Open} \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -658,9 +724,9 @@ Our negative result does \emph{not} refute the Hadamard conjecture for
 order~668.  Several considerations suggest the matrix likely exists:
 \begin{enumerate}
   \item No algebraic obstruction is
-    known~\cite{eliahou2025modular,delauney2014density}.
+    known~\cite{eliahou2025modular,delauney2010density}.
   \item The asymptotic density of Hadamard orders approaches~1
-    \cite{delauney2014density,delauney2009asymptotic}.
+    \cite{delauney2010density,delauney2009asymptotic}.
   \item The GS framework is not exhaustive: cocyclic
     constructions~\cite{delauney2011flannery,horadam2007hadamard},
     Bush-type arrays, or algebraic designs might succeed where the GS
@@ -681,9 +747,10 @@ smallest open case of the Hadamard conjecture.  Our contributions are:
     sequences yield a uniform PSD excess of~4, producing a $\{\pm1\}$-matrix
     with $HH^T = 668I + E$ where all non-zero off-diagonal entries
     of~$E$ are~$-4$.
-  \item \textbf{Extensive computational search}: $\sim\!5 \times 10^8$
-    evaluations via six distinct optimization strategies, all converging
-    to a structural barrier at $\Ltwo \approx 4 \times 10^5$.
+  \item \textbf{Extensive computational search}: $\sim\!3.9 \times 10^9$
+    evaluations via nine distinct optimization strategies.  General SA
+    methods converge to a structural barrier at $\Ltwo \approx 4 \times
+    10^5$; PAF-direct SA achieves $\Ltwo = 1{,}984$ but $\Linf = 8$.
   \item \textbf{Structural analysis}: identification of the sparse
     subgroup structure of $\ZZ_{167}^*$ (order $166 = 2 \times 83$) as
     the likely algebraic obstacle.
@@ -697,7 +764,7 @@ We propose several avenues for continued investigation:
 
 \paragraph{SAT+CAS hybrid methods.}
 The SAT+CAS framework of Bright et
-al.~\cite{bright2021sat,bright2019applying} has proven effective for
+al.~\cite{bright2019sat,bright2019aaai} has proven effective for
 related problems.  Encoding the SDS existence problem at $v = 167$ as a
 Boolean satisfiability instance with symmetry-breaking from the multiplier
 group of $\ZZ_{167}$ and CAS-derived propagation rules is a promising
@@ -722,8 +789,9 @@ groups provides a framework fundamentally different from the GS array and
 could bypass the obstacles we encountered.
 
 \paragraph{Quantum computing.}
-Quantum annealing~\cite{suksmono2018quantum} and variational quantum
-optimization (QAOA)~\cite{suksmono2025qaoa} offer fundamentally different
+Quantum annealing~\cite{suksmono2018quantum,suksmono2019quantum} and
+variational quantum optimization
+(QAOA)~\cite{suksmono2025qaoa} offer fundamentally different
 exploration mechanisms.  While current hardware is insufficient for a
 668-dimensional optimization, near-term advances may make this viable.
 

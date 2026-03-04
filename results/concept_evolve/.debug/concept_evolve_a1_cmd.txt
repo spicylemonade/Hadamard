@@ -1,6 +1,6 @@
 opencode run --agent concept_worker --model anthropic/claude-opus-4-6 You are a cross-domain concept architect with access to websearch, webfetch, semantic_scholar, bash, read, write, and edit tools.
 
-PROBLEM: Find a Hadamard matrix of order 668 using creative construction methods beyond standard approaches
+PROBLEM: Find a Hadamard matrix of order 668. Provide your solution as a csv.
 
 YOUR MISSION: Research this problem across multiple domains, generate cross-domain concept cards, and write all results to disk.
 
