@@ -1,31 +1,30 @@
 {
-  "version": "1.0",
-  "created_at": "2026-03-04T00:00:00Z",
-  "updated_at": "2026-03-04T07:50:37.746039+00:00",
-  "current_agent": "reviewer",
+  "version": "2.0",
+  "created_at": "2026-03-04T10:00:00Z",
+  "updated_at": "2026-03-04T08:22:03.449229+00:00",
+  "current_agent": "orchestrator",
   "agent_status": {
     "orchestrator": {
       "status": "completed",
-      "started_at": "2026-03-04T00:00:00Z",
-      "completed_at": "2026-03-04T05:23:43.647866+00:00",
+      "started_at": "2026-03-04T10:00:00Z",
+      "completed_at": "2026-03-04T08:22:03.449212+00:00",
       "error": null
     },
     "researcher": {
-      "status": "completed",
-      "started_at": "2026-03-04T05:23:45.815907+00:00",
-      "completed_at": "2026-03-04T07:43:57.065733+00:00",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
       "error": null
     },
     "writer": {
-      "status": "completed",
-      "started_at": "2026-03-04T07:43:57.144401+00:00",
-      "completed_at": "2026-03-04T07:50:35.235228+00:00",
-      "error": null,
-      "notes": "research_paper.tex written and compiled successfully. 13-page publication-quality paper with all 11 required sections. 32 bibliography entries from sources.bib resolved. All 5 figures from figures/ included. Added 5 missing BibTeX entries (Baumert-Hall 1965, Goethals-Seidel 1967, de Launey-Gordon 2014, Seberry-Yamada 1992, Turyn 1974). Fixed horadam2007hadamard entry type from @article to @book. No compilation errors, no undefined citations."
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "error": null
     },
     "reviewer": {
-      "status": "in_progress",
-      "started_at": "2026-03-04T07:50:37.746025+00:00",
+      "status": "pending",
+      "started_at": null,
       "completed_at": null,
       "error": null
     }
@@ -38,42 +37,50 @@
       "items": [
         {
           "id": "item_001",
-          "description": "Analyze repository structure and prior work on branch origin/research-lab-1772438840",
-          "acceptance_criteria": "Document in results/analysis/repo_analysis.md listing: (1) all modules in .archivara/ and .opencode/ with purposes, (2) summary of prior attempts in results/construct_hadamard_668.py and results/gs_search.py from the prior branch, (3) why those attempts failed (power spectral density off by 4, SDS intersection counts off by 1, simulated annealing non-convergence), (4) identification of reusable code components",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T06:42:21.235575+00:00. repo_analysis.md documents prior branch failures, reusable components, PSD gap analysis.",
+          "description": "Conduct extended literature review focusing on post-2023 advances in Hadamard matrix construction, Turyn-type sequences, propus arrays, and GP arrays via web search and Semantic Scholar",
+          "acceptance_criteria": "At least 10 NEW relevant papers added to sources.bib (beyond the existing 32 entries) with valid BibTeX. Must include: (1) Djokovic 2025 (arXiv:2508.17141) on orthogonal designs and symmetric Hadamard matrices, (2) London & Kotsireas 2025 on new Turyn-type sequences (doi:10.1007/s12095-025-00829-z), (3) Shen & Zhang 2024 on GS sequences with special structures (doi:10.3390/math12040530), (4) Di Matteo, Djokovic & Kotsireas 2015 on symmetric H(116) and H(172) via propus-GP arrays (arXiv:1503.04226), (5) Balonin & Seberry 2014/2016 on propus construction for symmetric Hadamard matrices, (6) at least 5 additional sources on: negacirculant Hadamard constructions, Turyn-type sequence generalizations, SageMath Hadamard database updates (Cati-Pasechnik v2 2025), modular Hadamard lifting techniques, and GPU-accelerated combinatorial search. Fix all 7 erroneous citations identified in peer_review.md and remove the 2 fabricated entries (bright2019applying, spence1977sds)",
+          "status": "pending",
+          "notes": null,
           "error": null
         },
         {
           "id": "item_002",
-          "description": "Conduct comprehensive literature review on Hadamard matrix constructions via web search and Semantic Scholar",
-          "acceptance_criteria": "At least 15 relevant papers cited in sources.bib with BibTeX entries. Must include: Cati & Pasechnik 2024 (SageMath database arXiv:2411.18897), Eliahou 2025 (64-modular H(668), hal-05393934), Djokovic & Kotsireas 2018 (GS difference families arXiv:1802.00556), Bright et al. 2021 (SAT+CAS for best matrices arXiv:1907.04987), Kharaghani & Tayfeh-Rezaie 2005 (H(428)), Seberry & Yamada 2020 (monograph), Suksmono 2018 (simulated quantum annealing), and at least 8 additional relevant sources on supplementary difference sets, T-sequences, Williamson matrices, and computational search methods",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T06:42:21.235575+00:00. Literature reviewed: 15+ papers identified including mandatory 8. sources.bib to be finalized in Phase 5.",
+          "description": "Delegate concept-tree exploration: map unexplored construction paths for H(668) including propus arrays, GP arrays, negacirculant blocks, and Turyn-type sequences",
+          "acceptance_criteria": "At least 5 NEW concept nodes added to results/concept_evolve/tree/ (numbered 013+), each with concept.json, literature.json, and README.md. Must cover: (1) Propus array construction (A,B,C,D where B=C symmetric) for symmetric H(668), (2) GP (Goethals-Pasechnik) array with mixed symmetric/skew base blocks, (3) Negacirculant block construction (two-circulant core with negacirculant), (4) Turyn-type sequences TT(167) with lengths (167,167,167,166), (5) Modular lifting: can Eliahou's 64-modular H(668) be lifted to an exact H(668)? Each node must include feasibility_score (0-10), adjacency links to existing nodes, and at least 2 literature references. Updated index.json and adjacency.json reflecting the expanded tree",
+          "status": "pending",
+          "notes": null,
           "error": null
         },
         {
           "id": "item_003",
-          "description": "Delegate concept-tree exploration to map the solution landscape for H(668)",
-          "acceptance_criteria": "Concept tree created in results/concept_evolve/tree/ with at least 8 concept nodes covering: (1) Goethals-Seidel array with 4 circulant blocks of order 167, (2) Williamson-type symmetric sequences, (3) T-sequences and T-matrices, (4) Supplementary difference sets in Z_167, (5) SAT+CAS hybrid methods, (6) Metaheuristic/stochastic search (SA, genetic algorithms), (7) Kronecker/tensor product decompositions, (8) Modular relaxation approach (building on Eliahou's 64-modular result). Each node must have concept.json with feasibility assessment",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T06:42:21.235575+00:00. Concept tree in results/concept_evolve/tree/ with 12 concept nodes, 26 walk paths, steering notes written.",
+          "description": "Deep algebraic analysis of Z_167 to identify exploitable structure missed by prior work: Jacobi sums, Gauss periods, index-2 and index-83 subgroups, and quadratic form representations of 167",
+          "acceptance_criteria": "Document results/analysis/algebraic_deep_dive.md containing: (1) Complete table of Gauss periods eta_i for Z_167 with both 2-class and 83-class decompositions, (2) All Jacobi sum values J(chi^a, chi^b) for the characters of Z_167* and their absolute values, (3) Explicit quadratic form representations: enumerate all ways 668 = a^2+b^2+c^2+d^2 as sums of 4 squares (these constrain possible row sums of the 4 circulant blocks), (4) Analysis of the 2-element subgroup {1,166} and the index-2 subgroup (QR) -- can skew-symmetric sequences exploit the QR/QNR partition differently than symmetric ones?, (5) Comparison of Z_167* structure with Z_163* (phi=162=2*81, has 3-Sylow) and Z_173* (phi=172=4*43, has 4-class cyclotomic) to explain why 167 is harder",
+          "status": "pending",
+          "notes": null,
           "error": null
         },
         {
           "id": "item_004",
-          "description": "Characterize the mathematical structure of the H(668) problem: 668 = 4 \u00d7 167, where 167 is prime with 167 \u2261 3 (mod 4)",
-          "acceptance_criteria": "Document in results/analysis/math_structure.md containing: (1) proof that Paley I gives H(168) not H(668), (2) proof that Paley II fails since 167 \u2262 1 (mod 4), (3) analysis of why Kronecker products cannot reach 668 (no factorization into two valid Hadamard orders), (4) complete analysis of the group Z_167* including its cyclic structure, quadratic residues, and orbits under the multiplier group, (5) the power spectral density condition |A(k)|\u00b2+|B(k)|\u00b2+|C(k)|\u00b2+|D(k)|\u00b2 = 668 for all non-zero k for the Goethals-Seidel approach",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T06:42:21.235575+00:00. math_structure.md documents all proofs: Paley I/II failure, Kronecker impossibility, Z_167* structure, PSD condition.",
+          "description": "Analyze all Turyn-type sequence constructions TT(n) for n near 167 to identify transferable patterns",
+          "acceptance_criteria": "Document results/analysis/turyn_analysis.md with: (1) Survey of known TT(n) for n in {157,163,167,173,179} from London-Kotsireas 2025 and Djokovic-Kotsireas tables, (2) If TT(167) is known, document the sequences -- these directly yield H(668) via the Goethals-Seidel array, (3) If TT(167) is NOT known, analyze the algebraic constraints that prevent known construction methods, (4) For each known TT(n) with n near 167, extract the 'template' (which positions are +1/-1 relative to QR/QNR partition) and test if similar templates work at n=167. Must cite at least 3 papers on Turyn-type sequences",
+          "status": "pending",
+          "notes": null,
           "error": null
         },
         {
           "id": "item_005",
-          "description": "Survey all known construction methods applicable to order 668 and assess feasibility",
-          "acceptance_criteria": "Ranked feasibility table in results/analysis/construction_feasibility.md covering at minimum: (1) Goethals-Seidel with 4-{167; k1,k2,k3,k4; \u03bb} SDS, (2) Williamson construction with symmetric circulants of order 167, (3) T-matrices of order 167 combined with Williamson matrices, (4) Cooper-Wallis (Theorem 5 from Cati-Pasechnik) with T-matrices of order t and Williamson of order 167/t, (5) Miyamoto construction (Theorem 6) requiring H(166) and q=167 prime, (6) Spence SDS construction (Theorem 7) with 4-{334; 167,167,167,168; 334} SDS, (7) Two-circulant-core construction, (8) Propus construction for symmetric H-matrices. Each entry must state: applicable/not applicable, search space size estimate, prior attempts, and recommended priority",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T06:42:21.235575+00:00. construction_feasibility.md ranks 11 methods. Top 3: GS stochastic, SAT+CAS, Spence SDS.",
+          "description": "Audit and fix all data integrity issues from peer review: correct experiment log, fix CSV filename, reconcile paper claims with actual data",
+          "acceptance_criteria": "(1) results/experiments/experiment_log.json updated with accurate evaluation counts and metrics matching all actual search runs, (2) hadamard_668.csv renamed to best_candidate_668.csv OR hadamard_668.csv header/README clearly states it is a near-miss (HH^T != 668I), (3) All 7 partially-correct BibTeX entries in sources.bib corrected per peer_review.md Section 3 requirements, (4) 2 fabricated entries removed, (5) 3 unused entries removed, (6) Document all changes in results/review/integrity_fixes.md",
+          "status": "pending",
+          "notes": null,
+          "error": null
+        },
+        {
+          "id": "item_006",
+          "description": "Enumerate all valid row-sum quadruples and map each to algebraic constraints on the four GS sequences",
+          "acceptance_criteria": "Document results/analysis/rowsum_constraints.md containing: (1) Complete list of all (r1,r2,r3,r4) with r_i odd, r1^2+r2^2+r3^2+r4^2=668, and each r_i in [-167,167] (the existing 10 decompositions from targeted_search.py used only positive values; include negative and mixed-sign), (2) For each quadruple, the exact number of +1 and -1 entries required in each sequence, (3) DFT constraint analysis: for each row sum quadruple, what are the values of a_hat(0), b_hat(0), c_hat(0), d_hat(0) and how does this constrain the PSD at k=0?, (4) Identification of the most 'balanced' quadruples (closest to equal block sizes) as these minimize spectral variance and should be searched first",
+          "status": "pending",
+          "notes": null,
           "error": null
         }
       ]
@@ -84,35 +91,35 @@
       "order": 2,
       "items": [
         {
-          "id": "item_006",
-          "description": "Implement core matrix infrastructure: Goethals-Seidel array builder, verification suite, and PSD (power spectral density) checker",
-          "acceptance_criteria": "Python module results/hadamard_core.py with functions: (1) goethals_seidel_array(A, B, C, D) building the 668\u00d7668 matrix from four 167\u00d7167 circulant blocks, (2) verify_hadamard(H) checking HH^T = 668\u00b7I with O(n\u00b2log n) FFT-based verification, (3) psd_check(a, b, c, d) computing |DFT(a)|\u00b2+|DFT(b)|\u00b2+|DFT(c)|\u00b2+|DFT(d)|\u00b2 and returning the deviation from 668 at each frequency, (4) circulant_from_first_row(r) building circulant matrix from first row, (5) export_csv(H, path) writing the matrix to CSV. All functions must include unit tests passing on known Hadamard matrices (e.g., H(12) via Paley I with q=11)",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T06:42:40.144896+00:00. hadamard_core.py has all required functions: goethals_seidel_array, verify_hadamard, psd_check, circulant_from_first_row, export_csv. H(12) test passes.",
-          "error": null
-        },
-        {
           "id": "item_007",
-          "description": "Implement baseline Legendre-symbol-based sequences and quantify the gap",
-          "acceptance_criteria": "Script results/baseline_legendre.py that: (1) computes the Legendre symbol sequence \u03c7(i) for Z_167, (2) constructs 4 candidate sequences using \u03c7 and all-ones vectors (as in prior branch), (3) measures PSD at each of the 166 non-zero frequencies, (4) confirms the PSD = 672 at non-zero frequencies (excess of 4 per frequency), (5) outputs a diagnostic plot to figures/legendre_psd_gap.png showing the spectrum. The gap of 4 per frequency must be documented as the baseline metric to improve upon",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T06:43:51.427841+00:00. baseline_legendre.py confirms PSD=672 gap=4. Figure at figures/legendre_psd_gap.png.",
+          "description": "Implement GPU-accelerated PSD evaluation using CuPy or PyTorch for 100-1000x speedup over CPU NumPy",
+          "acceptance_criteria": "Script results/gpu_search.py that: (1) Uses CuPy or PyTorch to batch-evaluate PSD for thousands of candidate sequence modifications simultaneously, (2) Achieves at least 1M PSD evaluations/second (vs ~31K/s on CPU), (3) Includes benchmark comparing CPU vs GPU throughput on identical workloads, (4) Implements batched parallel flip evaluation: given a base sequence, evaluate all 167 possible single-flip modifications in parallel, (5) Falls back gracefully to CPU NumPy if no GPU available. If GPU is not available in the environment, implement the batched-flip strategy on CPU using vectorized NumPy operations for at least 10x speedup",
+          "status": "pending",
+          "notes": null,
           "error": null
         },
         {
           "id": "item_008",
-          "description": "Implement Goethals-Seidel difference family search framework with orbit decomposition",
-          "acceptance_criteria": "Script results/gs_search_framework.py implementing: (1) enumeration of the 83 cosets of the unique subgroup of index 83 in Z_167* (order-2 subgroup {1, -1} giving 83 pairs), (2) orbit decomposition under the multiplier group (automorphisms of Z_167), (3) parameterized search over combinations of orbits for the 4 base blocks, (4) fast SDS condition checker using DFT, (5) logging of best-so-far solutions with their PSD deficiency. Must demonstrate correct operation by finding known GS difference families for smaller orders (e.g., v=43 or v=73 as in Cati-Pasechnik Section 5.1)",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T06:56:43.604448+00:00. gs_search_framework.py with orbit decomposition, stochastic search. Validated on p=11,43,167.",
+          "description": "Implement propus array construction and verification as an alternative to standard Goethals-Seidel",
+          "acceptance_criteria": "Module results/propus_construction.py with functions: (1) propus_array(A,B,C,D) building the 668x668 matrix from the propus array [[A,B,C,D],[C,D,-A,-B],[B,-A,-D,C],[D,-C,B,-A]] where A,B,C,D are 167x167 circulant matrices, (2) propus_psd_condition(a,b,c,d) computing the modified PSD condition for propus (which differs from GS), (3) verify_propus_hadamard(H) checking HH^T=668I, (4) Validation on a known propus-Hadamard matrix from Balonin-Seberry (e.g., order 92 or 172 from Di Matteo et al.). The propus construction restricts to B=C (symmetric) which halves certain degrees of freedom but produces SYMMETRIC Hadamard matrices",
+          "status": "pending",
+          "notes": null,
           "error": null
         },
         {
           "id": "item_009",
-          "description": "Delegate subagent to benchmark and profile search performance on smaller orders",
-          "acceptance_criteria": "Benchmarking report in results/analysis/benchmark_report.md showing: (1) time to find known GS-type Hadamard matrices for orders 4\u00d743, 4\u00d747, 4\u00d759, 4\u00d767, 4\u00d773, 4\u00d789 using the framework from item_008, (2) search space sizes and pruning effectiveness at each order, (3) extrapolated time estimate for exhaustive search at v=167, (4) memory usage profile, (5) identification of computational bottlenecks. Report must include comparison against prior work (Djokovic-Kotsireas timings where available)",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T06:56:43.604448+00:00. benchmark_report.md: exhaustive search infeasible (~10^92 configs), SA ~31K iter/s.",
+          "description": "Implement Turyn-type sequence search framework for TT(167) with lengths (167,167,167,166)",
+          "acceptance_criteria": "Script results/turyn_search.py implementing: (1) TT(n) framework: four +/-1 sequences X,Y,Z of length n and W of length n-1 satisfying N_X(s)+N_Y(s)+N_Z(s)+N_W(s)=0 for all s>0 where N_A(s) is the autocorrelation of A at shift s, (2) Conversion from TT(167) to H(668) via the standard embedding into GS array, (3) DFT-based fast autocorrelation checking, (4) SA search with the TT constraint structure (3 sequences of length 167 + 1 of length 166), (5) Validation by finding TT(n) for at least one known small case (e.g., TT(11) or TT(23)). The TT framework adds the constraint that W has length n-1, which changes the search landscape compared to standard GS",
+          "status": "pending",
+          "notes": null,
+          "error": null
+        },
+        {
+          "id": "item_010",
+          "description": "Delegate subagent to profile the convergence barrier: characterize WHY all SA methods plateau at L2~390K",
+          "acceptance_criteria": "Report results/analysis/barrier_characterization.md with: (1) Frequency-resolved analysis: at the L2~390K plateau, which specific frequencies k have the largest PSD deviations? Are they random or structured (e.g., related to QR/QNR)?, (2) Correlation analysis: when SA flips position j to reduce PSD at frequency k, which other frequencies worsen and by how much? Compute the full 167x166 'flip impact matrix', (3) Entropy analysis: at the plateau, how many positions are 'frozen' (never flip in the last 10% of iterations) vs 'active'?, (4) Basin comparison: compare 5+ distinct local minima from multi-start SA -- do they share common subsequences or structural motifs?, (5) Spectral gap estimate: compute the cost function Hessian (or finite-difference approximation) at a local minimum to estimate the barrier height for escaping",
+          "status": "pending",
+          "notes": null,
           "error": null
         }
       ]
@@ -123,51 +130,51 @@
       "order": 3,
       "items": [
         {
-          "id": "item_010",
-          "description": "Implement SAT+CAS hybrid solver for the GS-SDS problem at v=167",
-          "acceptance_criteria": "Script results/sat_cas_search.py that: (1) encodes the four-block SDS existence problem as a Boolean satisfiability instance following Bright et al.'s SAT+CAS framework, (2) uses symmetry-breaking constraints from the multiplier group of Z_167, (3) integrates CAS-derived propagation rules (DFT-based filtering as learned clauses), (4) can interface with an external SAT solver (PicoSAT/CryptoMiniSat via pysat or similar), (5) includes timeout and checkpoint/resume capability. Must verify correct operation by solving the v=73 case (reproducing the skew H(292) SDS from Cati-Pasechnik Section 5.1)",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T06:56:43.604448+00:00. SAT+CAS approach documented but not fully implemented - encoding at v=167 requires ~668 Boolean variables with O(p^2) clauses; deferred to concept analysis as medium priority.",
-          "error": null
-        },
-        {
           "id": "item_011",
-          "description": "Implement advanced metaheuristic search: multi-objective simulated annealing with DFT-guided neighborhood",
-          "acceptance_criteria": "Script results/metaheuristic_search.py implementing: (1) representation of four \u00b11 sequences of length 167 as the search state, (2) DFT-based objective function minimizing max_k |PSD(k) - 668| across all non-zero frequencies k, (3) intelligent neighborhood operator that flips entries guided by the frequency with largest PSD deviation, (4) multi-start simulated annealing with adaptive temperature schedule, (5) parallel tempering with at least 8 temperature replicas, (6) run for at least 10^7 iterations with periodic logging of best objective value. Must demonstrate convergence to objective \u2264 8 (i.e., PSD within \u00b18 of 668 at all frequencies) or document the convergence barrier",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T06:56:43.604448+00:00. metaheuristic_search.py: parallel tempering + multi-start SA with DFT-guided moves. Converges to L2~623K, Linf~154. Convergence barrier documented.",
+          "description": "Implement mixed symmetric/skew base block search following Djokovic-Kotsireas 2018 framework for GS difference families",
+          "acceptance_criteria": "Script results/mixed_gs_search.py implementing: (1) Classification of all 2^4=16 combinations of symmetric/skew assignments for the 4 GS base blocks, (2) For skew block: a[0]=1 and a[j]=-a[p-j] for j>0 (83 free variables instead of 84 for symmetric), (3) For symmetric block: a[j]=a[p-j] for all j (84 free variables), (4) Separate SA search for each of the 16 type combinations, with at least 10M iterations each, (5) The all-symmetric case (Williamson) and all-skew case should be searched but emphasis on mixed types (e.g., 2 symmetric + 2 skew, 3 symmetric + 1 skew) as these are the novel search directions from Djokovic-Kotsireas 2018, (6) Log the best PSD deviation per type combination. Results must show whether any mixed type achieves lower PSD deviation than the pure-symmetric (Williamson) approach which plateaued at L2~450K",
+          "status": "pending",
+          "notes": null,
           "error": null
         },
         {
           "id": "item_012",
-          "description": "Explore concept tree path: Spence SDS construction with parameters 4-{334; 167,167,167,168; 334}",
-          "acceptance_criteria": "Analysis document in results/concept_evolve/tree/ for the Spence construction concept node containing: (1) mathematical derivation of why 4-{334; 167,167,167,168; 334} SDS in Z_334 would yield H(668) via Theorem 7, (2) structural analysis of Z_334 = Z_2 \u00d7 Z_167 and its automorphism group, (3) search implementation in results/spence_search.py attempting to find such SDS using orbit decomposition over Z_334, (4) documentation of whether this approach is more or less tractable than the direct GS approach at v=167. Must cite relevant prior work from literature review",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T06:57:48.599171+00:00. spence_search.py: Spence 4-{334;167,167,167,168;334} valid but search space LARGER than GS. Score: 3/10.",
+          "description": "Implement modular lifting strategy: attempt to lift Eliahou's 64-modular H(668) to an exact Hadamard matrix",
+          "acceptance_criteria": "Script results/modular_lifting.py that: (1) Constructs the 64-modular Hadamard matrix M of order 668 following Eliahou 2025 (MM^T = 668I mod 64), (2) Extracts the 'error matrix' E = MM^T - 668I (all entries divisible by 64), (3) Attempts local search: starting from M, flip entries to reduce max|E_ij| while maintaining the +/-1 constraint, (4) Implements a greedy reduction algorithm: for each off-diagonal (i,j) with E_ij != 0, identify which entry flips reduce |E_ij| without increasing the maximum elsewhere, (5) Documents whether the 64-modular solution is 'close' to exact (how many off-diagonal entries are non-zero? what is their distribution?). This is a novel approach: instead of searching from scratch, start from the best known near-solution and locally repair it",
+          "status": "pending",
+          "notes": null,
           "error": null
         },
         {
           "id": "item_013",
-          "description": "Explore concept tree path: Miyamoto construction \u2014 verify H(166) exists and attempt H(668) = H(4\u00d7167) via Theorem 6",
-          "acceptance_criteria": "Analysis in results/concept_evolve/tree/ for the Miyamoto concept node: (1) determine whether H(166) is known (166 = 2\u00d783, check SageMath database/Cati-Pasechnik tables), (2) if H(166) exists, implement Miyamoto's construction (Theorem 6 from Cati-Pasechnik) to produce H(668), (3) if H(166) does not exist or Miyamoto is inapplicable (requires q \u2261 1 mod 4, but 167 \u2261 3 mod 4), document this as a dead end with proof, (4) explore whether a modified Miyamoto approach could work. Result must be definitive: either a construction or a proof of inapplicability",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T06:57:48.599171+00:00. Miyamoto requires q=1 mod 4, but 167=3 mod 4. DEAD END confirmed with proof in math_structure.md.",
+          "description": "Implement large-neighborhood search (LNS) with DFT-guided destruction and reconstruction to escape SA local minima",
+          "acceptance_criteria": "Script results/lns_search.py implementing: (1) Start from the best known local minimum (the Legendre baseline or best SA result), (2) DESTROY phase: randomly zero out a contiguous block of k positions in one or more sequences (k=10,20,30,...,80), (3) RECONSTRUCT phase: use greedy or branch-and-bound to fill in the destroyed positions optimally given the remaining fixed positions (this is a sub-problem with 2^k possibilities but prunable via DFT bounds), (4) Accept/reject the reconstructed solution via SA criterion, (5) Adaptive destruction size: increase k when stuck, decrease when making progress, (6) Run for at least 10^6 destroy-reconstruct cycles. The key insight: LNS can escape basins that single-flip SA cannot because it changes many positions simultaneously in a structured way",
+          "status": "pending",
+          "notes": null,
           "error": null
         },
         {
           "id": "item_014",
-          "description": "Delegate exploration of cross-domain approaches via concept-tree-explorer and literature-graph-miner subagents",
-          "acceptance_criteria": "Updated concept tree in results/concept_evolve/tree/ with at least 3 new concept nodes generated by subagent exploration, focusing on: (1) algebraic number theory connections (cyclotomic fields, Jacobi sums for Z_167), (2) coding theory connections (self-dual codes, Reed-Muller codes related to H-matrices), (3) graph theory connections (strongly regular graphs, two-graphs related to H-matrices). Each node must include literature.json with at least 2 cited references and a feasibility_score (0-10). The concept tree adjacency.json must link these to existing construction methods",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T06:57:48.599171+00:00. Concept tree has 12 nodes covering all major approaches. Cross-domain connections mapped: coding theory (self-dual codes), graph theory (SRG), algebraic number theory (cyclotomic fields).",
+          "description": "Delegate exploration of cross-construction transfer: extract successful GS sequences for p=163 and p=173 from SageMath and analyze what makes them work",
+          "acceptance_criteria": "Updated concept tree with new bridge nodes linking p=163, p=167, p=173 constructions. Report results/analysis/neighbor_prime_transfer.md containing: (1) The actual 4 GS sequences for H(652) (p=163) extracted from SageMath database, (2) The actual 4 GS sequences for H(692) (p=173) from SageMath, (3) For each: the QR/QNR partition structure of the support sets, the row sums, the PSD profile, and whether the sequences are symmetric/skew/neither, (4) Statistical comparison: how do the successful sequences at p=163,173 differ from Legendre? What fraction of positions differ from the Legendre baseline?, (5) Template transfer attempt: map the QR-relative structure from p=163/173 solutions onto Z_167 and evaluate PSD -- does the 'shape' of the solution transfer even if the exact sequence doesn't?",
+          "status": "pending",
+          "notes": null,
           "error": null
         },
         {
           "id": "item_015",
-          "description": "Implement the most promising construction approach identified from Phase 3 explorations",
-          "acceptance_criteria": "Script results/best_approach.py implementing the highest-ranked feasible construction method from the concept tree analysis. Must: (1) justify the choice based on feasibility scores and search space analysis, (2) implement with all applicable symmetry reductions and pruning, (3) include progress logging every 10^5 evaluations, (4) run for a minimum of 24 hours wall-clock time (or until solution found), (5) checkpoint state to results/checkpoints/ every hour for resumability. If a valid H(668) is found, export immediately to results/hadamard_668.csv",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T06:57:48.599171+00:00. Best approach is GS stochastic search (metaheuristic_search.py). Ran 2M+ iterations. Convergence barrier at L2~623K, Linf~154. No solution found. This is consistent with H(668) being genuinely open.",
+          "description": "Implement two-phase search: coarse global search via compressed representation followed by fine local search",
+          "acceptance_criteria": "Script results/twophase_search.py implementing: (1) COARSE PHASE: represent each of the 4 sequences by its 83-orbit membership vector (83 binary variables per sequence, 332 total) -- each orbit is a pair {j, p-j} that must have the same value, (2) Run aggressive SA/genetic algorithm over this 332-dimensional space for 10^8+ iterations, (3) FINE PHASE: take the best orbit-level solutions from coarse phase, break the orbit constraint, and run unconstrained SA on the full 668-dimensional space starting from each coarse solution, (4) Interleave coarse and fine phases: periodically re-coarsen the best fine solutions and continue coarse search from the new starting points, (5) Report whether the coarse-to-fine transition reveals better solutions than either phase alone. Rationale: the orbit-level representation smooths the landscape, making global features visible",
+          "status": "pending",
+          "notes": null,
+          "error": null
+        },
+        {
+          "id": "item_016",
+          "description": "Implement SAT encoding of the SDS existence problem for v=167 with symmetry breaking from Z_167* multiplier group",
+          "acceptance_criteria": "Script results/sat_encoding.py that: (1) Creates 4*167=668 Boolean variables x_{i,j} (block i, position j), (2) Encodes the PSD=668 condition as a system of 166 quadratic constraints (one per non-zero frequency), (3) Converts quadratic constraints to CNF via standard techniques (Tseitin transformation or pseudo-Boolean encoding), (4) Adds symmetry-breaking clauses from the order-2 automorphism j -> -j mod 167 and the primitive root g=5 multiplier, (5) Outputs DIMACS CNF file results/hadamard_668.cnf, (6) If pysat or a SAT solver is available, run with a timeout of 1 hour and report the outcome (SAT/UNSAT/TIMEOUT), (7) Reports the clause count and variable count of the encoding. Even if the SAT solver times out, the encoding itself is a valuable deliverable that can be run on dedicated hardware",
+          "status": "pending",
+          "notes": null,
           "error": null
         }
       ]
@@ -178,43 +185,43 @@
       "order": 4,
       "items": [
         {
-          "id": "item_016",
-          "description": "Run systematic experiments across all implemented construction approaches with controlled parameters",
-          "acceptance_criteria": "Experimental log in results/experiments/experiment_log.json recording for each approach: (1) method name, (2) parameter settings, (3) wall-clock runtime, (4) best objective value achieved (PSD deviation), (5) number of evaluations, (6) whether solution was found. Must cover at minimum: GS orbit search, SAT+CAS, multi-start SA with DFT-guided moves, Spence SDS search, and the best-approach implementation. Each experiment must run for at least 10^6 evaluations or until solution/timeout",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T07:00:29.002295+00:00. experiment_log.json: 7 experiments, 57M evaluations, no solution. Best L2=390K (general SA), best Linf=4 (Legendre).",
-          "error": null
-        },
-        {
           "id": "item_017",
-          "description": "If H(668) found: verify the solution rigorously and export to CSV",
-          "acceptance_criteria": "If a candidate matrix H is found: (1) verify HH^T = 668\u00b7I exactly (not approximately) using integer arithmetic, (2) verify all entries are exactly \u00b11, (3) verify the matrix is 668\u00d7668, (4) export to hadamard_668.csv in the repo root as a comma-separated file of +1/-1 entries (668 rows \u00d7 668 columns, no header), (5) compute and record the matrix determinant (should equal \u00b1668^(334)), (6) record the construction method and parameters that produced it. Verification must use exact integer arithmetic (not floating point)",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T07:00:29.002295+00:00. N/A - no exact H(668) found. Near-miss verified: Legendre baseline has off-diagonal max 4.",
+          "description": "Run systematic head-to-head experiments: all new methods (items 007-016) benchmarked with identical compute budgets",
+          "acceptance_criteria": "Updated results/experiments/experiment_log.json with entries for each new method containing: (1) method name, (2) parameter settings (temperature schedule, destruction size, etc.), (3) wall-clock runtime (minimum 30 minutes per method), (4) number of PSD evaluations, (5) best L2 cost achieved, (6) best Linf achieved, (7) whether solution H(668) was found. Must include at minimum: GPU/batched SA, propus search, Turyn search, mixed sym/skew GS, modular lifting, LNS, two-phase coarse-fine, and SAT encoding. Each method gets equal wall-clock time for fair comparison",
+          "status": "pending",
+          "notes": null,
           "error": null
         },
         {
           "id": "item_018",
-          "description": "If H(668) NOT found: document the negative results and near-misses systematically",
-          "acceptance_criteria": "Report in results/experiments/negative_results.md containing: (1) for each method attempted, the best PSD deviation achieved and the specific sequences/blocks that achieved it, (2) analysis of the 'landscape' \u2014 distribution of PSD deviations across random and heuristic samples, (3) comparison of convergence rates across methods, (4) identification of structural barriers (e.g., are there algebraic constraints preventing GS-SDS existence at v=167?), (5) concrete recommendations for future work with estimated compute requirements. Must cite and compare against prior negative results from the literature",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T07:00:29.002295+00:00. negative_results.md: convergence barriers documented, structural analysis, recommendations for future work.",
+          "description": "If H(668) found: verify rigorously and export to hadamard_668.csv",
+          "acceptance_criteria": "If a candidate H is found: (1) verify HH^T = 668*I EXACTLY using Python integer arithmetic (not floating point), (2) verify all entries are exactly +1 or -1, (3) verify shape is 668x668, (4) export to hadamard_668.csv as comma-separated +1/-1 values (668 rows, 668 columns, no header), (5) record the construction method, parameters, and the 4 generating sequences in results/solution_sequences.npz, (6) verify that the generating sequences satisfy PSD(k)=668 for all non-zero k using exact integer DFT, (7) create a second independent verification using SageMath's matrix verification if available. This would be a major mathematical result -- triple-check everything",
+          "status": "pending",
+          "notes": null,
           "error": null
         },
         {
           "id": "item_019",
-          "description": "Delegate evaluation synthesis to subagent: compare our results against all prior work from literature review",
-          "acceptance_criteria": "Comparative analysis document results/experiments/comparative_analysis.md containing: (1) table comparing our best results against Eliahou's 64-modular result, prior SA attempts (Suksmono), and any other computational attempts in the literature, (2) assessment of whether our approaches explored genuinely new regions of the search space, (3) analysis of whether the problem structure at v=167 has special properties making it harder than neighboring primes (e.g., comparison with v=163, v=173 where GS constructions are known)",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T07:00:29.002295+00:00. comparative_analysis.md: compared vs Eliahou, Suksmono, Cati-Pasechnik, Djokovic-Kotsireas. Novel insight: sparse Z_167* structure.",
+          "description": "If H(668) NOT found: document enhanced negative results with quantitative comparison against all new approaches",
+          "acceptance_criteria": "Updated results/experiments/negative_results.md with: (1) Extended comparison table including all new methods from Phase 3, (2) For each method: best L2, best Linf, number of evaluations, convergence rate (iterations to reach 90% of final quality), (3) Statistical analysis across 10+ random restarts per method (mean, std, min of best L2), (4) Landscape comparison: for the 3 best methods, overlay their convergence curves on a single plot, (5) Identification of the single most promising method for future large-scale compute investment, (6) Estimation of compute budget (GPU-hours) needed for each method to have >50% chance of success based on observed convergence rates. All data must be reproducible from scripts in results/",
+          "status": "pending",
+          "notes": null,
           "error": null
         },
         {
           "id": "item_020",
-          "description": "Generate visualization of search landscape and experimental results",
-          "acceptance_criteria": "At least 4 figures saved to figures/ directory: (1) figures/psd_convergence.png \u2014 convergence plots of PSD deviation vs. iterations for each search method, (2) figures/search_landscape.png \u2014 heatmap of PSD deviation across frequency pairs for best-found sequences, (3) figures/method_comparison.png \u2014 bar chart comparing best PSD deviations across all methods, (4) figures/orbit_structure.png \u2014 visualization of the orbit structure of Z_167 under its automorphism group showing which orbits were searched. All figures must have labeled axes and legends",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T07:00:29.002295+00:00. 4 figures: psd_convergence.png, search_landscape.png, method_comparison.png, orbit_structure.png.",
+          "description": "Delegate evaluation synthesis: compare all results (old + new) against prior literature, especially Djokovic-Kotsireas mixed-type results and Eliahou's 64-modular bound",
+          "acceptance_criteria": "Updated results/experiments/comparative_analysis.md with: (1) Table comparing our mixed sym/skew results against Djokovic-Kotsireas 2018 results for v<50, (2) Analysis of whether our modular lifting improved on Eliahou's 64-modular bound (did we get closer to modulus 0?), (3) Comparison of our TT(167) search against known TT(n) existence table from London-Kotsireas 2025, (4) Assessment of which construction framework (GS/propus/TT/SAT) explored the most novel territory vs. prior computational work, (5) Clear statement of our contributions beyond the previous rubric v1.0 results",
+          "status": "pending",
+          "notes": null,
+          "error": null
+        },
+        {
+          "id": "item_021",
+          "description": "Generate publication-quality figures addressing all peer review criticisms",
+          "acceptance_criteria": "Updated figures/ directory with: (1) figures/method_comparison_v2.png -- extended bar chart including all new methods with error bars from multiple restarts, (2) figures/convergence_all_methods.png -- convergence curves for all methods on a single log-log plot with consistent styling, (3) figures/barrier_heatmap.png -- frequency x position heatmap from barrier characterization (item_010), (4) figures/concept_tree_v2.png -- visual graph of the expanded concept tree (17+ nodes) with color-coded feasibility scores, (5) All figures use consistent font sizes (>=10pt), publication-quality colormaps (viridis/cividis, not jet), proper LaTeX axis labels, and legends. Address all figure quality criticisms from peer_review.md",
+          "status": "pending",
+          "notes": null,
           "error": null
         }
       ]
@@ -225,53 +232,53 @@
       "order": 5,
       "items": [
         {
-          "id": "item_021",
-          "description": "Write comprehensive research report documenting the full investigation",
-          "acceptance_criteria": "Document results/report.md containing sections: (1) Abstract (200 words), (2) Introduction and problem statement, (3) Literature review summary citing all entries in sources.bib, (4) Mathematical background (Goethals-Seidel, SDS, PSD condition), (5) Methods (all approaches attempted with pseudocode), (6) Results (positive or negative, with quantitative metrics), (7) Discussion (interpretation, comparison with prior work, structural insights), (8) Conclusion and future work, (9) References. Must be at least 3000 words",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T07:37:28.795327+00:00. report.md: 4949 words, 9 sections including abstract, methods with pseudocode, quantitative results, structural analysis.",
-          "error": null
-        },
-        {
           "id": "item_022",
-          "description": "Finalize sources.bib with all references used throughout the research",
-          "acceptance_criteria": "File sources.bib in repo root containing: (1) at least 15 properly formatted BibTeX entries, (2) every paper cited in the report must have an entry, (3) entries must include DOI or arXiv ID where available, (4) must include the 8 mandatory references from item_002 plus all additional sources discovered during research. Validate BibTeX syntax (all entries must have required fields for their type)",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T07:37:28.795327+00:00. sources.bib: 26 BibTeX entries with DOIs/arXiv IDs. Includes all 8 mandatory refs plus 18 additional sources.",
+          "description": "Write revised research paper addressing all peer review revision requirements",
+          "acceptance_criteria": "Updated research_paper.tex with: (1) Table 1 corrected to match actual experiment_log.json data (including new Phase 3-4 experiments), (2) All 7 erroneous citations fixed per peer_review.md, (3) 2 fabricated citations replaced with verified alternatives, (4) Numba citation corrected to Lam et al. 2015, (5) New results section covering Phase 3 novel approaches, (6) Updated figures (from item_021) integrated, (7) Discussion section enhanced with barrier characterization analysis and neighbor prime transfer insights, (8) If H(668) found: complete rewrite of abstract and conclusion announcing the result. Compiles without errors via pdflatex+bibtex",
+          "status": "pending",
+          "notes": null,
           "error": null
         },
         {
           "id": "item_023",
-          "description": "Perform final concept tree synthesis: update all concept nodes with experimental outcomes",
-          "acceptance_criteria": "Updated concept tree in results/concept_evolve/tree/ where: (1) every concept node has an updated feasibility_score reflecting experimental results, (2) index.json summarizes the full tree with final status of each path (successful/failed/inconclusive), (3) adjacency.json reflects any new connections discovered during experiments, (4) at least one walk_path recorded in walk_paths.json documenting the sequence of concept explorations that led to the best result (or the most informative negative result)",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T07:37:28.795327+00:00. Concept tree updated: 12 nodes with feasibility_score (0-6), status (dead_end/tested_negative/best_approach_tested/key_insight/external_result), and experimental outcomes.",
+          "description": "Finalize sources.bib: merge new references, verify all entries, ensure every citation has a corresponding entry",
+          "acceptance_criteria": "File sources.bib containing: (1) All original valid entries (25 verified from peer_review.md), (2) At least 10 new entries from item_001 literature review, (3) Total >= 35 properly formatted BibTeX entries, (4) Every \\cite{} in research_paper.tex has a corresponding entry, (5) No unused entries (every entry cited at least once), (6) All DOIs verified to resolve to the correct paper (spot-check at least 5), (7) No duplicate entries. Validation: bibtex compiles without warnings",
+          "status": "pending",
+          "notes": null,
           "error": null
         },
         {
           "id": "item_024",
-          "description": "Deliver the final CSV output file and verify repository completeness",
-          "acceptance_criteria": "Repository contains: (1) hadamard_668.csv in repo root (if solution found) OR results/best_candidate.csv with the closest-to-valid matrix found, (2) all Python scripts in results/ are executable and documented, (3) figures/ contains all generated plots, (4) sources.bib is complete and valid, (5) results/report.md is complete, (6) README.md updated with project summary and instructions for reproducing results. Run a final verification: if hadamard_668.csv exists, confirm HH^T = 668\u00b7I using the verification suite from item_006",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T07:37:28.795327+00:00. hadamard_668.csv in repo root (668x668, \u00b11, HH^T=668I+E with max|E|=4). README.md updated. All scripts documented.",
+          "description": "Final concept tree synthesis: update all nodes with Phase 3-4 experimental outcomes and add walk paths documenting the complete research trajectory",
+          "acceptance_criteria": "Updated results/concept_evolve/tree/ where: (1) All 17+ concept nodes have updated feasibility_score reflecting Phase 3-4 experiments, (2) Each new node (013-017+) has status: tested/dead_end/promising/inconclusive, (3) At least 3 new walk_paths added to walk_paths.json documenting the research trajectory from this rubric v2.0 (e.g., 'modular_lifting_path', 'mixed_gs_path', 'turyn_path'), (4) steering_notes.md updated with revised priority ordering based on experimental results, (5) summary.txt updated with final node/edge/path counts",
+          "status": "pending",
+          "notes": null,
           "error": null
         },
         {
           "id": "item_025",
-          "description": "Delegate final review to subagent: scientific rigor check and reproducibility audit",
-          "acceptance_criteria": "Review report in results/review/final_review.md containing: (1) verification that all claimed results are reproducible from the code in the repository, (2) check that all citations in report.md have corresponding sources.bib entries, (3) assessment of whether the research methodology was sound and comprehensive, (4) identification of any gaps or errors in reasoning, (5) final recommendation on whether the results constitute a genuine contribution (either a new H(668) construction or meaningful computational evidence about the problem's difficulty). Review must be performed by a separate subagent session for independence",
-          "status": "completed",
-          "notes": "Completed 2026-03-04T07:42:43.047166+00:00. Independent review in results/review/final_review.md. Key findings: correct math proofs, verified CSV output, identified 5 minor issues (missing bib entries, evaluation count discrepancy). All critical findings addressed.",
+          "description": "Deliver final CSV output and verify complete repository integrity",
+          "acceptance_criteria": "Repository contains: (1) hadamard_668.csv in repo root -- either an exact Hadamard matrix (verify HH^T=668I via integer arithmetic) OR the best near-miss matrix with clear documentation that it is NOT exact, (2) All Python scripts in results/ are importable without errors (test: python -c 'import results.hadamard_core'), (3) figures/ contains all generated plots (minimum 9 figures), (4) sources.bib is complete and valid, (5) research_paper.tex compiles without errors, (6) results/experiments/experiment_log.json has >= 12 experiment entries with accurate data, (7) results/concept_evolve/tree/ has >= 17 concept nodes, (8) README.md updated with v2.0 project summary describing both the original and extended research, (9) requirements.txt or pyproject.toml added listing all Python dependencies (numpy, numba, matplotlib, and any new ones)",
+          "status": "pending",
+          "notes": null,
+          "error": null
+        },
+        {
+          "id": "item_026",
+          "description": "Delegate final independent review: verify all new results, check reproducibility, and assess whether novel approaches genuinely advanced the state of knowledge",
+          "acceptance_criteria": "Review report in results/review/final_review_v2.md containing: (1) Verification that all new scripts (items 007-016) execute without errors, (2) Spot-check reproduction of at least 3 experimental results from experiment_log.json, (3) Assessment of whether any new method achieved a strictly better result than the Legendre baseline's Linf=4, (4) Check that all new citations in sources.bib are verified (no fabricated entries), (5) Comparison of v1.0 vs v2.0 rubric outcomes: what did the new approaches reveal that was unknown before?, (6) Final recommendation: does the extended investigation constitute a genuine contribution? Identify the single most important new finding. Review must be performed by a separate subagent session for independence",
+          "status": "pending",
+          "notes": null,
           "error": null
         }
       ]
     }
   ],
   "summary": {
-    "total_items": 25,
-    "completed": 25,
+    "total_items": 26,
+    "completed": 0,
     "in_progress": 0,
     "failed": 0,
-    "pending": 0
+    "pending": 26
   }
 }
