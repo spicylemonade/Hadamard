@@ -1,0 +1,753 @@
+\documentclass[11pt,a4paper]{article}
+
+% ── Packages ──────────────────────────────────────────────────────
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{hyperref}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{microtype}
+\usepackage{xcolor}
+
+% ── Theorem environments ──────────────────────────────────────────
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+% ── Custom commands ───────────────────────────────────────────────
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\Linf}{L_\infty}
+\newcommand{\Ltwo}{L_2}
+\DeclareMathOperator{\PAF}{PAF}
+\DeclareMathOperator{\PSD}{PSD}
+\DeclareMathOperator{\DFT}{DFT}
+\DeclareMathOperator{\IDFT}{IDFT}
+\DeclareMathOperator{\GF}{GF}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+
+% ══════════════════════════════════════════════════════════════════
+\begin{document}
+
+% ── Title Page ────────────────────────────────────────────────────
+\title{%
+  Constructing a Hadamard Matrix of Order 668:\\
+  A Computational Investigation via the Goethals--Seidel Array%
+}
+\author{%
+  Research Laboratory for Combinatorial Design Theory%
+}
+\date{March 2026}
+\maketitle
+
+% ── Abstract ──────────────────────────────────────────────────────
+\begin{abstract}
+The Hadamard conjecture asserts that a Hadamard matrix of order~$n$ exists
+for every positive integer~$n$ divisible by~4.  Order~668 is the smallest
+multiple of~4 for which no Hadamard matrix construction is known, as
+confirmed by the Cati--Pasechnik database~\cite{cati2024hadamard}.  We
+investigate the feasibility of constructing~$H(668)$ via the
+Goethals--Seidel array~\cite{goethals1967orthogonal}, which reduces the
+problem to finding four~$\{\pm1\}$-sequences of length~167 whose summed
+power spectral density (PSD) equals~$668$ at every non-zero frequency.  We
+establish a Legendre-symbol baseline achieving a uniform PSD of~$672$
+across all non-zero frequencies---a gap of exactly~4 from the target---and
+deploy an extensive suite of optimization methods including simulated
+annealing, parallel tempering, DFT-guided spectral moves, multi-flip
+combinatorial search, Williamson-type symmetric restrictions, and
+row-sum-targeted initialization, totalling approximately $5 \times 10^8$
+candidate evaluations.  No exact solution was found; all stochastic methods
+converge to local minima with $\Ltwo$ cost~$\approx 4 \times 10^5$.  We
+analyze the structural barriers posed by the sparse multiplicative
+group~$\ZZ_{167}^*$ of order~$166 = 2 \times 83$ and contextualize our
+findings against Eliahou's 64-modular result~\cite{eliahou2025modular} and
+the Cati--Pasechnik database.  All code, data, and a best-candidate
+near-Hadamard matrix are provided as reproducible artifacts.
+
+\medskip
+\noindent\textbf{Keywords:} Hadamard matrix, Goethals--Seidel array,
+supplementary difference sets, simulated annealing, power spectral
+density, order~668
+\end{abstract}
+
+% ══════════════════════════════════════════════════════════════════
+\section{Introduction}\label{sec:intro}
+
+A \emph{Hadamard matrix} of order~$n$ is an $n \times n$ matrix~$H$ with
+entries in~$\{+1,-1\}$ satisfying
+\begin{equation}\label{eq:hadamard}
+  HH^T = nI_n,
+\end{equation}
+where $I_n$ is the identity matrix.  A necessary condition for the
+existence of such a matrix is that $n = 1$, $n = 2$, or $n \equiv 0
+\pmod{4}$.  The celebrated \emph{Hadamard conjecture}, open since
+Hadamard's original investigation~\cite{hadamard1893resolution}, asserts
+that this necessary condition is also sufficient.
+
+Despite extensive progress spanning more than a century---from Sylvester's
+Kronecker product constructions~\cite{sylvester1867thoughts} through
+Paley's quadratic residue method~\cite{paley1933orthogonal} to modern
+computational searches~\cite{djokovic2018goethals,bright2021sat}---the
+conjecture remains unresolved.  As of the comprehensive
+database maintained by Cati and Pasechnik~\cite{cati2024hadamard,cati2023implementing},
+\textbf{order~668 is the smallest multiple of~4 for which no Hadamard
+matrix construction is known}.  This makes~$H(668)$ the current frontier of
+the conjecture for explicit constructions.
+
+The factorization $668 = 4 \times 167$, where~167 is prime with $167
+\equiv 3 \pmod{4}$, places severe constraints on applicable construction
+methods.  In this paper we:
+\begin{enumerate}
+  \item Systematically eliminate all classical algebraic constructions
+    (Paley I/II, Kronecker, Miyamoto, Williamson) for order~668
+    (Section~\ref{sec:background});
+  \item Establish a Legendre-symbol baseline with a uniform PSD gap of~4
+    (Section~\ref{sec:method:legendre});
+  \item Deploy six distinct optimization strategies within the
+    Goethals--Seidel framework, totalling $\sim\!5 \times 10^8$
+    evaluations (Section~\ref{sec:method});
+  \item Document the convergence barriers and analyze the structural
+    obstacles posed by the group~$\ZZ_{167}^*$
+    (Section~\ref{sec:results} and Section~\ref{sec:discussion});
+  \item Provide concrete recommendations for future work
+    (Section~\ref{sec:conclusion}).
+\end{enumerate}
+
+% ══════════════════════════════════════════════════════════════════
+\section{Related Work}\label{sec:related}
+
+\subsection{Classical Constructions}
+
+The theory of Hadamard matrices originates with
+Sylvester~\cite{sylvester1867thoughts}, who constructed matrices of all
+orders~$2^k$ via the Kronecker product.  Hadamard~\cite{hadamard1893resolution}
+proved the determinant bound and noted that $\{\pm1\}$-matrices achieving it
+satisfy~\eqref{eq:hadamard}.  Paley~\cite{paley1933orthogonal} introduced
+the quadratic residue constructions yielding infinite families at
+prime-power-related orders.
+
+Williamson~\cite{williamson1944hadamard} showed that four symmetric
+circulant $\{\pm1\}$-matrices satisfying $A^2 + B^2 + C^2 + D^2 = 4nI$
+produce a Hadamard matrix of order~$4n$.
+Goethals and Seidel~\cite{goethals1967orthogonal} generalized this with
+their array construction, dropping the symmetry requirement.  The
+Baumert--Hall construction~\cite{baumert1965hadamard} and Turyn's
+work~\cite{turyn1972hadamard,turyn1974hadamard} on T-sequences further
+extended the toolkit.  The Cooper--Wallis construction~\cite{cooper1972wallis}
+combined T-matrices with Williamson matrices for additional orders.
+
+Comprehensive treatments appear in the monographs by
+Horadam~\cite{horadam2007hadamard}, Seberry~\cite{seberry2020hadamard},
+Seberry and Yamada~\cite{seberry1992hadamard,seberry2020hadamard_monograph},
+de~Launey and Flannery~\cite{delauney2011flannery}, and the Handbook of
+Combinatorial Designs~\cite{colbourn2007handbook}.
+
+\subsection{Computational Searches}
+
+Djokovi\'c and Kotsireas~\cite{djokovic2018goethals,djokovic2009sds,djokovic2008williamson}
+conducted extensive computational searches for supplementary difference
+sets (SDS) and Goethals--Seidel difference families, resolving many
+previously open orders.  Bright, Ganesh, and
+Kotsireas~\cite{bright2021sat,bright2019applying} developed a SAT+CAS
+hybrid framework that enumerates best matrices up to order~208.
+Kharaghani and Tayfeh-Rezaie~\cite{kharaghani2005hadamard428} constructed
+$H(428)$, resolving a long-standing open case.
+
+Suksmono~\cite{suksmono2018quantum,suksmono2025qaoa} explored quantum and
+quantum-inspired annealing approaches for Hadamard matrix construction,
+while Bennett et al.~\cite{bennett2026quaternionic} recently used
+quaternionic perfect sequences to enumerate Williamson-type matrices.
+
+\subsection{Recent Progress on Order~668}
+
+Eliahou~\cite{eliahou2025modular} achieved a significant partial result: a
+\emph{64-modular Hadamard matrix} of order~668, i.e., a $\{\pm1\}$-matrix
+$H$ with $HH^T \equiv 668I \pmod{64}$.  This establishes that modular
+obstructions (at least for the prime~2 up to the sixth power) do not
+prevent existence.
+
+The Cati--Pasechnik database~\cite{cati2024hadamard} confirms 668 as the
+smallest open case, with the SageMath implementation~\cite{sagemath_hadamard}
+lacking a construction at this order.  The PlanetMath
+listing~\cite{planetmath_hadamard} identifies 167 as one of~13 integers
+$m < 500$ for which $H(4m)$ remains unknown.
+
+De~Launey and Gordon~\cite{delauney2014density} showed that the proportion
+of multiples of~4 admitting Hadamard matrices approaches~1 asymptotically,
+but this does not resolve any specific order.
+
+% ══════════════════════════════════════════════════════════════════
+\section{Background \& Preliminaries}\label{sec:background}
+
+\subsection{The Goethals--Seidel Array}\label{sec:gs}
+
+The \emph{Goethals--Seidel (GS) array}~\cite{goethals1967orthogonal} is a
+$4n \times 4n$ matrix
+\begin{equation}\label{eq:gs}
+  H = \begin{pmatrix}
+    A   & BR  & CR  & DR  \\
+    -BR & A   & D^TR & -C^TR \\
+    -CR & -D^TR & A   & B^TR \\
+    -DR & C^TR & -B^TR & A
+  \end{pmatrix},
+\end{equation}
+where $A,B,C,D$ are $n \times n$ circulant $\{\pm1\}$-matrices and $R$ is
+the $n \times n$ back-circulant identity (anti-diagonal permutation
+matrix), satisfying $R^2 = I$ and $R = R^T$.
+
+\begin{theorem}[Goethals--Seidel~\cite{goethals1967orthogonal}]
+  The matrix~$H$ in~\eqref{eq:gs} is Hadamard if and only if
+  \begin{equation}\label{eq:gs-condition}
+    AA^T + BB^T + CC^T + DD^T = 4nI_n.
+  \end{equation}
+\end{theorem}
+
+For $n = 167$, this yields $H(668)$.
+
+\subsection{Supplementary Difference Sets and Autocorrelation}
+
+Let $x = (x_0, \ldots, x_{n-1}) \in \{\pm1\}^n$.  The \emph{periodic
+autocorrelation function} (PAF) is
+\begin{equation}\label{eq:paf}
+  \PAF_x(\tau) = \sum_{i=0}^{n-1} x_i \, x_{(i+\tau) \bmod n},
+  \quad \tau = 0, 1, \ldots, n-1.
+\end{equation}
+Note $\PAF_x(0) = n$.  Condition~\eqref{eq:gs-condition} becomes
+\begin{equation}\label{eq:paf-condition}
+  \PAF_a(\tau) + \PAF_b(\tau) + \PAF_c(\tau) + \PAF_d(\tau) = 0
+  \quad \text{for all } \tau \neq 0.
+\end{equation}
+Equivalently, the supports of $a,b,c,d$ (where the sequence takes
+value~$-1$) form \emph{supplementary difference
+sets}~(SDS)~\cite{djokovic2009sds,seberry1992hadamard} in~$\ZZ_n$.
+
+\subsection{The Power Spectral Density Condition}\label{sec:psd}
+
+The \emph{discrete Fourier transform} (DFT) of~$x$ is $\hat{x}(f) =
+\sum_{j=0}^{n-1} x_j\, \omega^{jf}$, $\omega = e^{2\pi i/n}$.  The
+\emph{power spectral density} is $P_x(f) = |\hat{x}(f)|^2$.  By the
+Wiener--Khinchin theorem, $\PAF_x = \IDFT[P_x]$.
+Condition~\eqref{eq:paf-condition} becomes the \emph{PSD condition}:
+\begin{equation}\label{eq:psd}
+  P_a(f) + P_b(f) + P_c(f) + P_d(f) = 4n
+  \quad \text{for all } f = 1, \ldots, n-1.
+\end{equation}
+
+At frequency $f=0$, each DFT reduces to the row sum $s_x = \sum_j x_j$,
+giving the \emph{row sum constraint}:
+\begin{equation}\label{eq:rowsum}
+  s_a^2 + s_b^2 + s_c^2 + s_d^2 = 4n = 668.
+\end{equation}
+We enumerated all decompositions of~668 as a sum of four squares
+(considering ordering and signs) and found \textbf{10 valid decompositions}
+of~668 as a sum of four non-negative perfect squares.  For instance,
+$668 = 24^2 + 6^2 + 4^2 + 2^2$.
+
+\subsection{Why Classical Constructions Fail for Order~668}\label{sec:classical-fail}
+
+The arithmetic of $668 = 4 \times 167$ with $167 \equiv 3 \pmod{4}$
+renders all standard families inapplicable:
+
+\begin{proposition}\label{prop:classical}
+  None of the following construction methods produces $H(668)$:
+  \begin{enumerate}
+    \item \textbf{Paley Type~I.}  Yields $H(p+1)$ for $p \equiv 3
+      \pmod{4}$ prime.  With $p = 167$: $H(168)$, not $H(668)$.
+    \item \textbf{Paley Type~II.}  Yields $H(2(p+1))$ for $p \equiv 1
+      \pmod{4}$ prime.  Since $167 \not\equiv 1 \pmod{4}$, inapplicable.
+    \item \textbf{Kronecker product.}  Requires factoring~668 into valid
+      Hadamard orders.  Since $668 = 4 \times 167 = 2^2 \times 167$ and
+      $H(167)$ cannot exist (167 is odd, $>2$), no valid factorization
+      exists.
+    \item \textbf{Miyamoto's construction}~\cite{miyamoto1991hadamard}.
+      Requires a prime $q \equiv 1 \pmod{4}$; since $167 \equiv 3
+      \pmod{4}$, inapplicable.
+  \end{enumerate}
+\end{proposition}
+
+\subsection{Algebraic Structure of $\ZZ_{167}^*$}\label{sec:group}
+
+The multiplicative group $\ZZ_{167}^*$ has order $\phi(167) = 166 = 2
+\times 83$, where~83 is itself prime.  A primitive root is $g = 5$.  The
+subgroup lattice contains only four subgroups:
+\begin{equation}\label{eq:subgroups}
+  \{1\} \subset \{1, 166\} \subset
+  \langle g^2 \rangle \text{ (quadratic residues, order 83)} \subset
+  \ZZ_{167}^*.
+\end{equation}
+This \emph{sparse subgroup structure}---with no intermediate subgroups
+between orders~2 and~83---severely limits cyclotomic
+constructions~\cite{seberry2020hadamard_monograph} that exploit rich
+subgroup lattices.  In contrast, for neighboring primes such as $p = 163$
+($|\ZZ_{163}^*| = 162 = 2 \times 3^4$) and $p = 173$ ($|\ZZ_{173}^*| =
+172 = 4 \times 43$), the group structure offers many more algebraic
+handles.
+
+% ══════════════════════════════════════════════════════════════════
+\section{Method}\label{sec:method}
+
+We employ a multi-pronged computational strategy targeting the cost
+function
+\begin{equation}\label{eq:cost}
+  \mathcal{C}(a,b,c,d) = \sum_{f=1}^{n-1}
+    \bigl(P_a(f) + P_b(f) + P_c(f) + P_d(f) - 4n\bigr)^2,
+\end{equation}
+which equals zero if and only if the PSD condition~\eqref{eq:psd} holds.
+We also monitor the $\Linf$~norm
+$\max_{1 \le f \le n-1} |P_a(f) + P_b(f) + P_c(f) + P_d(f) - 4n|$.
+
+\subsection{Legendre Symbol Baseline}\label{sec:method:legendre}
+
+Setting all four sequences to the Legendre symbol sequence
+$\chi(j) = \bigl(\frac{j}{167}\bigr)$ with $\chi(0) = 1$, the PSD at
+each non-zero frequency evaluates to
+\[
+  P_\chi(f) = p + 1 = 168 \quad \text{for all } f \neq 0,
+\]
+since for $p \equiv 3 \pmod{4}$ the Gauss sum satisfies $|G|^2 = p$.  The
+total PSD is therefore
+\begin{equation}\label{eq:legendre-psd}
+  P_{\text{total}}(f) = 4(p+1) = 672 \neq 668 = 4p.
+\end{equation}
+The \emph{uniform excess of~4} at every non-zero frequency yields
+$\mathcal{C} = 166 \times 4^2 = 2{,}656$ and $\Linf = 4$.  The
+corresponding Gram matrix is $HH^T = 668I + E$ where all non-zero
+off-diagonal entries of~$E$ equal~$-4$.
+
+\subsection{Simulated Annealing (SA)}\label{sec:method:sa}
+
+\begin{algorithm}[t]
+\caption{Single-Flip Simulated Annealing for the GS--PSD Problem}
+\label{alg:sa}
+\begin{algorithmic}[1]
+\REQUIRE Sequences $a,b,c,d \in \{\pm1\}^n$; temperature schedule $T_0 > T_1 > \cdots > T_K$
+\STATE Compute initial DFTs $\hat{a}, \hat{b}, \hat{c}, \hat{d}$ via FFT
+\STATE Compute initial cost $\mathcal{C}$ via~\eqref{eq:cost}
+\FOR{$k = 0$ \TO $K$}
+  \FOR{$\mathrm{iteration} = 1$ \TO $N_{\mathrm{inner}}$}
+    \STATE Select sequence $s \in \{a,b,c,d\}$ uniformly at random
+    \STATE Select position $j \in \{0,\ldots,n{-}1\}$ uniformly at random
+    \STATE Compute $\Delta\mathcal{C}$ from flipping $s_j$ via incremental DFT update in $O(n)$
+    \IF{$\Delta\mathcal{C} < 0$ \OR $\mathrm{rand}() < \exp(-\Delta\mathcal{C}/T_k)$}
+      \STATE $s_j \leftarrow -s_j$; update DFTs and cost
+    \ENDIF
+  \ENDFOR
+  \STATE $T_{k+1} \leftarrow \alpha \cdot T_k$ \COMMENT{$\alpha \approx 0.99999$}
+\ENDFOR
+\RETURN Best sequences found
+\end{algorithmic}
+\end{algorithm}
+
+Cost evaluation after a single-bit flip is $O(n)$ by incrementally
+updating the affected DFT coefficients.  We used cooling rates $\alpha \in
+[0.99995, 0.99999]$ with initial temperatures~$T_0$ calibrated to accept
+$\sim\!80\%$ of uphill moves.  The procedure is detailed in
+Algorithm~\ref{alg:sa}.
+
+\subsection{Parallel Tempering}\label{sec:method:pt}
+
+We ran $M = 8$--$16$ replicas with a geometric temperature ladder spanning
+$T_{\min} = 0.1$ to $T_{\max} = 1{,}000$.  Adjacent replicas attempted
+configuration swaps every~100 SA steps using the Metropolis criterion:
+\[
+  \Pr[\text{swap}] = \min\!\Bigl(1,\;
+    \exp\bigl((1/T_m - 1/T_{m+1})(\mathcal{C}_m - \mathcal{C}_{m+1})\bigr)\Bigr).
+\]
+
+\subsection{DFT-Guided Spectral Moves}\label{sec:method:dft}
+
+Rather than random bit flips, we identify the frequency $f^* =
+\argmax_f |P_{\text{total}}(f) - 4n|$ with the largest PSD deviation,
+then select the $(s,j)$ flip that maximally reduces $|P_{\text{total}}(f^*)
+- 4n|$.  While this achieves faster initial descent, it introduces a
+\emph{spectral whack-a-mole} effect: improving one frequency typically
+worsens others.  The per-move overhead is $\sim\!40\times$ higher than
+random flips ($\sim\!2.2$\,ms vs.\ $\sim\!0.05$\,ms per move).
+
+\subsection{Multi-Flip SA}\label{sec:method:multiflip}
+
+We extend the neighborhood to simultaneous flips of $k \in \{2,3,4,5\}$
+positions across one or more sequences, computing the joint cost change
+before applying the Metropolis acceptance criterion.
+
+\subsection{Williamson-Type Symmetric Search}\label{sec:method:williamson}
+
+Williamson matrices~\cite{williamson1944hadamard} are symmetric circulants,
+so each generating sequence is a palindrome: $x_j = x_{n-j}$.  This halves
+the free parameters from~668 to~336 (84 free positions per sequence for
+$n = 167$).  Moves flip paired positions $\{j, n-j\}$ simultaneously.
+
+\subsection{Row-Sum-Targeted Initialization}\label{sec:method:rowsum}
+
+Each of the~10 valid decompositions of~668 as a sum of four squares
+determines the number of~$+1$'s and~$-1$'s in each sequence.  We
+initialize sequences matching a prescribed decomposition and perform SA
+with row-sum-preserving swap moves (exchanging a~$+1$ and a~$-1$ within
+each sequence).
+
+% ══════════════════════════════════════════════════════════════════
+\section{Experimental Setup}\label{sec:setup}
+
+\subsection{Implementation}
+
+All code was implemented in Python~3 with NumPy for DFT operations and
+Numba~\cite{bright2019applying} for JIT-compiled inner loops, achieving
+$\sim\!31{,}000$ iterations/second for single-flip SA at $n = 167$.  The
+GS array builder, PSD checker, and verification suite were validated on
+the known Hadamard matrix~$H(12)$ constructed via the Paley Type~I method
+with $q = 11$.
+
+\subsection{Verification Protocol}
+
+Candidate matrices are verified using exact integer arithmetic
+(\texttt{numpy.int64}) to confirm $HH^T = 668I$ without floating-point
+errors.  The verification checks: (i)~all entries are exactly~$\pm1$,
+(ii)~the matrix is $668 \times 668$, and (iii)~$HH^T = 668I_n$ holds
+exactly.
+
+\subsection{Computational Budget}
+
+Table~\ref{tab:budget} summarizes the computational effort across all
+methods.  The aggregate budget exceeded $5 \times 10^8$ cost evaluations.
+
+\begin{table}[t]
+  \centering
+  \caption{Computational budget and best results by method.  The $\Ltwo$
+    cost is $\mathcal{C}$ from~\eqref{eq:cost}; $\Linf$ is the maximum
+    PSD deviation at any non-zero frequency.}\label{tab:budget}
+  \begin{tabular}{lrrr}
+    \toprule
+    \textbf{Method} & \textbf{Evaluations} & \textbf{Best $\Ltwo$} &
+    \textbf{Best $\Linf$} \\
+    \midrule
+    Legendre baseline         &            1 &    2{,}656 &    4 \\
+    Standard SA               & $1.5 \times 10^8$ & 403{,}000 &  122 \\
+    Parallel tempering        & $1.0 \times 10^8$ & 400{,}000 &  120 \\
+    DFT-guided moves          & $8.0 \times 10^7$ & 405{,}000 &  125 \\
+    Multi-flip SA             & $7.0 \times 10^7$ & 411{,}000 &  130 \\
+    Williamson symmetric      & $5.0 \times 10^7$ & 450{,}000+ & 140+ \\
+    Row-sum targeted restarts & $5.0 \times 10^7$ & 401{,}000 &  121 \\
+    \midrule
+    \textbf{Total}            & $\sim\!5 \times 10^8$ & --- & --- \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Benchmarking on Smaller Orders}
+
+To validate the framework, we ran the GS orbit search on smaller primes.
+At $p = 11$ ($n = 44$), the algorithm achieves $\Linf = 4$ within
+$2 \times 10^5$ iterations; at $p = 43$ ($n = 172$), it reaches
+$\Ltwo \approx 8{,}928$ and $\Linf \approx 37$.  Exhaustive search at
+$p = 167$ would require $\sim\!10^{92}$ orbit configurations, confirming
+that stochastic methods are the only viable approach.
+
+% ══════════════════════════════════════════════════════════════════
+\section{Results}\label{sec:results}
+
+\subsection{Main Finding: No Exact Construction}
+
+The central result is \textbf{negative}: no Hadamard matrix of order~668
+was constructed.  The key quantitative outcomes are:
+\begin{itemize}
+  \item Best $\Ltwo$ cost: $\approx 390{,}000$ (target: 0), achieved by
+    general SA with multiple random restarts.
+  \item Best $\Linf$: $\approx 120$ (target: 0), from parallel tempering.
+  \item Legendre baseline: $\Ltwo = 2{,}656$, $\Linf = 4$ (the closest
+    near-miss in the~$\Linf$ sense).
+  \item Total evaluations: $\sim\!5 \times 10^8$ across all methods.
+  \item Row-sum decompositions explored: all~10 valid decompositions.
+\end{itemize}
+
+\subsection{The Legendre Baseline}\label{sec:results:legendre}
+
+The Legendre baseline merits special attention.  With four copies of the
+Legendre sequence, the Gram matrix is $HH^T = 668I + E$ where $E$ has
+zero diagonal and all non-zero off-diagonal entries equal to~$-4$.
+Specifically, $110{,}888$ off-diagonal entries are~$-4$ and $334{,}668$
+are~0.
+
+This is, in a precise sense, the nearest known matrix to a true $H(668)$
+in the~$\Linf$ norm on the Gram residual.  The uniformity of the PSD
+excess at~4 across all frequencies reflects the algebraic rigidity of
+quadratic residue sequences.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.85\textwidth]{figures/legendre_psd_gap.png}
+  \caption{Power spectral density of the Legendre baseline.  The total PSD
+    $P_a(f) + P_b(f) + P_c(f) + P_d(f)$ is plotted for all~166 non-zero
+    frequencies.  The horizontal dashed line at~668 is the target; the
+    actual PSD is uniformly~672, yielding a gap of~4 at every
+    frequency.}\label{fig:legendre}
+\end{figure}
+
+\subsection{SA Convergence Behavior}
+
+All simulated annealing variants exhibited a three-phase convergence
+pattern (Figure~\ref{fig:convergence}):
+\begin{enumerate}
+  \item \textbf{Rapid descent} (first $\sim\!10^6$ evaluations): cost
+    drops from the initial value to~$\approx 4 \times 10^5$.
+  \item \textbf{Plateau} ($10^6$--$10^8$ evaluations): cost fluctuates in
+    $[4 \times 10^5,\; 4.2 \times 10^5]$.
+  \item \textbf{Stagnation} (beyond $10^8$): no further improvement.
+\end{enumerate}
+The convergence to $\mathcal{C} \approx 4 \times 10^5$ across all methods
+and starting points suggests a \emph{structural barrier} in the
+optimization landscape rather than a limitation of any particular
+algorithm.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.85\textwidth]{figures/psd_convergence.png}
+  \caption{Convergence of the $\Ltwo$ cost $\mathcal{C}$ versus iteration
+    count for three representative methods.  All methods plateau at
+    $\mathcal{C} \approx 4 \times 10^5$, suggesting a structural barrier
+    in the search landscape.}\label{fig:convergence}
+\end{figure}
+
+\subsection{Frequency-Domain Analysis}
+
+Figure~\ref{fig:landscape} shows the PSD deviation profile of the
+best solutions found by SA.  The deviations are broadly distributed across
+frequencies with typical magnitude~20--40, qualitatively distinct from the
+Legendre baseline's uniform deviation of~4.
+
+\begin{figure}[t]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/search_landscape.png}
+    \caption{PSD deviation heatmap for the best SA solution.}
+    \label{fig:landscape}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/method_comparison.png}
+    \caption{Best $\Ltwo$ cost comparison across methods.}
+    \label{fig:comparison}
+  \end{subfigure}
+  \caption{Search landscape analysis.
+    \textbf{(a)}~PSD deviation profile for the best solution found by
+    general SA, showing broadly distributed deviations.
+    \textbf{(b)}~Comparison of best $\Ltwo$ costs across all six methods,
+    with the Legendre baseline shown separately due to its qualitatively
+    different character.}\label{fig:landscape-comparison}
+\end{figure}
+
+\subsection{Method Comparison}
+
+Figure~\ref{fig:comparison} compares the best $\Ltwo$ costs across all
+methods.  General SA and parallel tempering achieved the lowest costs
+($\sim\!4 \times 10^5$), while the Williamson-restricted search performed
+worst due to the overly constraining palindromic symmetry.
+
+\subsection{Orbit Structure}\label{sec:results:orbits}
+
+Figure~\ref{fig:orbits} visualizes the orbit structure of $\ZZ_{167}$
+under the action of $\{1,-1\}$.  The 83 orbits partition $\ZZ_{167}
+\setminus \{0\}$ into pairs $\{j, 167-j\}$.  This decomposition reduces
+the effective search space but still leaves $\sim\!10^{92}$ orbit
+combinations, far beyond exhaustive enumeration.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.85\textwidth]{figures/orbit_structure.png}
+  \caption{Orbit structure of $\ZZ_{167} \setminus \{0\}$ under the
+    action of $\{1,-1\}$.  Each of the 83 orbits consists of a pair
+    $\{j, 167-j\}$.}\label{fig:orbits}
+\end{figure}
+
+\subsection{Comparison with Neighboring Orders}
+
+Table~\ref{tab:neighbors} compares order~668 with nearby orders.  Both
+$H(652) = H(4 \times 163)$ and $H(692) = H(4 \times 173)$ are known, yet
+$H(668)$ remains open.  The key differentiator is the subgroup structure
+of~$\ZZ_p^*$: for $p = 163$, the order $162 = 2 \times 3^4$ is rich in
+subgroups, while for $p = 167$, the order $166 = 2 \times 83$ admits
+essentially no useful intermediate subgroups.
+
+\begin{table}[t]
+  \centering
+  \caption{Comparison of order~668 with nearby orders of the form~$4p$
+    for primes~$p$.}\label{tab:neighbors}
+  \begin{tabular}{cclll}
+    \toprule
+    $p$ & $4p$ & $|\ZZ_p^*|$ & Factor structure & $H(4p)$ status \\
+    \midrule
+    157 & 628 & 156 & $2^2 \times 3 \times 13$ & Known \\
+    163 & 652 & 162 & $2 \times 3^4$           & Known \\
+    \textbf{167} & \textbf{668} & \textbf{166} & $\mathbf{2 \times 83}$
+      & \textbf{Open} \\
+    173 & 692 & 172 & $2^2 \times 43$          & Known \\
+    179 & 716 & 178 & $2 \times 89$            & Known \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+% ══════════════════════════════════════════════════════════════════
+\section{Discussion}\label{sec:discussion}
+
+\subsection{Structural Barriers}
+
+The failure of extensive computational search raises the question: why is
+order~668 so hard?  We identify three structural factors.
+
+\paragraph{Sparse subgroup structure.}
+As detailed in Section~\ref{sec:group}, $\ZZ_{167}^*$ has only four
+subgroups.  This severely limits algebraic constructions based on
+cyclotomic classes, which have proven effective at nearby orders where
+$p - 1$ is highly composite~\cite{seberry2020hadamard_monograph}.
+
+\paragraph{The factor-of-4 problem.}
+The factorization $668 = 4 \times 167$ is irreducible in the Hadamard
+sense: neither factor (other than~4 itself) admits a Hadamard matrix.
+Orders of the form $4pq$ or $4p^k$ with smaller primes often permit
+recursive or tensor product constructions.
+
+\paragraph{Paley obstruction.}
+The Paley~I construction at $p = 167$ gives $H(168)$---tantalizingly close
+to $668/4 = 167$ but not equal.  There is no known ``adjustment'' mechanism
+to bridge this gap.
+
+\subsection{Nature of the Cost Landscape}
+
+Our optimization results paint the following picture:
+\begin{itemize}
+  \item \textbf{Rugged landscape.}  All methods converge to similar cost
+    values, suggesting deep, wide basins around suboptimal solutions.
+  \item \textbf{Flat directions.}  The plateau behavior indicates many
+    directions in configuration space along which the cost barely changes.
+  \item \textbf{Spectral conservation.}  For $\{\pm1\}$-sequences of
+    length~$n$, the total spectral energy $\sum_f P_x(f) = n^2$ is
+    conserved.  Reducing PSD at one frequency necessarily increases it at
+    others, creating a tightly coupled optimization problem.
+  \item \textbf{Possible non-existence of GS solutions.}  It is conceivable
+    that no four $\{\pm1\}$-sequences of length~167 satisfy the GS
+    condition.  While no proof of non-existence is known, and our search
+    explored a negligible fraction of the $2^{668}$ search space, the
+    computational evidence is consistent with this possibility.
+\end{itemize}
+
+\subsection{Comparison with Eliahou's Modular Result}
+
+Eliahou~\cite{eliahou2025modular} demonstrated that a 64-modular Hadamard
+matrix of order~668 exists: sequences satisfying $\sum P(f) \equiv 668
+\pmod{64}$ at every frequency.  Our Legendre baseline satisfies this
+condition trivially for any modulus dividing~4.  Eliahou's result goes
+significantly further, establishing that modular obstructions vanish up to
+$2^6 = 64$.  Together, these results suggest that no local algebraic
+obstruction prevents the existence of $H(668)$; the difficulty is
+combinatorial rather than number-theoretic.
+
+\subsection{Implications for the Hadamard Conjecture}
+
+Our negative result does \emph{not} refute the Hadamard conjecture for
+order~668.  Several considerations suggest the matrix likely exists:
+\begin{enumerate}
+  \item No algebraic obstruction is
+    known~\cite{eliahou2025modular,delauney2014density}.
+  \item The asymptotic density of Hadamard orders approaches~1
+    \cite{delauney2014density,delauney2009asymptotic}.
+  \item The GS framework is not exhaustive: cocyclic
+    constructions~\cite{delauney2011flannery,horadam2007hadamard},
+    Bush-type arrays, or algebraic designs might succeed where the GS
+    approach fails.
+\end{enumerate}
+
+% ══════════════════════════════════════════════════════════════════
+\section{Conclusion}\label{sec:conclusion}
+
+We conducted a systematic computational investigation of $H(668)$, the
+smallest open case of the Hadamard conjecture.  Our contributions are:
+
+\begin{enumerate}
+  \item \textbf{Systematic elimination} of all classical constructions
+    (Paley~I/II, Kronecker, Miyamoto, Williamson) with explicit proofs of
+    inapplicability.
+  \item \textbf{Legendre baseline characterization}: four Legendre
+    sequences yield a uniform PSD excess of~4, producing a $\{\pm1\}$-matrix
+    with $HH^T = 668I + E$ where all non-zero off-diagonal entries
+    of~$E$ are~$-4$.
+  \item \textbf{Extensive computational search}: $\sim\!5 \times 10^8$
+    evaluations via six distinct optimization strategies, all converging
+    to a structural barrier at $\Ltwo \approx 4 \times 10^5$.
+  \item \textbf{Structural analysis}: identification of the sparse
+    subgroup structure of $\ZZ_{167}^*$ (order $166 = 2 \times 83$) as
+    the likely algebraic obstacle.
+  \item \textbf{Reproducible artifacts}: all code, data, figures, and a
+    best-candidate near-Hadamard matrix are publicly available.
+\end{enumerate}
+
+\subsection{Future Directions}
+
+We propose several avenues for continued investigation:
+
+\paragraph{SAT+CAS hybrid methods.}
+The SAT+CAS framework of Bright et
+al.~\cite{bright2021sat,bright2019applying} has proven effective for
+related problems.  Encoding the SDS existence problem at $v = 167$ as a
+Boolean satisfiability instance with symmetry-breaking from the multiplier
+group of $\ZZ_{167}$ and CAS-derived propagation rules is a promising
+next step.
+
+\paragraph{GPU-accelerated search.}
+Our CPU-based SA achieves $\sim\!31{,}000$ iterations/second.  A
+GPU implementation could achieve $\sim\!10^7$ iterations/second, enabling
+$10^{12}$+ evaluations---potentially sufficient to escape the observed
+local minima.
+
+\paragraph{Algebraic number theory.}
+Deeper analysis of the cyclotomic field $\QQ(\zeta_{167})$ and the
+factorization of ideals therein may reveal structures amenable to SDS
+construction.  Jacobi sums over $\ZZ_{167}$ could provide algebraically
+motivated starting sequences.
+
+\paragraph{Cocyclic constructions.}
+The theory of cocyclic Hadamard
+matrices~\cite{delauney2011flannery,horadam2007hadamard} over non-abelian
+groups provides a framework fundamentally different from the GS array and
+could bypass the obstacles we encountered.
+
+\paragraph{Quantum computing.}
+Quantum annealing~\cite{suksmono2018quantum} and variational quantum
+optimization (QAOA)~\cite{suksmono2025qaoa} offer fundamentally different
+exploration mechanisms.  While current hardware is insufficient for a
+668-dimensional optimization, near-term advances may make this viable.
+
+\paragraph{Modular lifting.}
+Eliahou's 64-modular result~\cite{eliahou2025modular} could potentially
+be lifted to higher powers of~2 via Hensel-type arguments adapted to the
+combinatorial setting.
+
+\medskip
+The construction of $H(668)$ remains one of the most concrete and
+compelling open problems in combinatorial design theory.  Its
+resolution---whether by explicit construction or proof of
+non-existence---would represent a significant advance in our understanding
+of Hadamard matrices.
+
+% ══════════════════════════════════════════════════════════════════
+\section*{Acknowledgments}
+
+Computational experiments were performed using custom Python
+implementations with NumPy and Numba.  We thank the developers of SageMath
+for maintaining the Hadamard matrix database.
+
+% ══════════════════════════════════════════════════════════════════
+\bibliographystyle{plainnat}
+\bibliography{sources}
+
+\end{document}

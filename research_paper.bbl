@@ -1,0 +1,245 @@
+\begin{thebibliography}{32}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Baumert and Hall(1965)]{baumert1965hadamard}
+Leonard~D. Baumert and Marshall Hall, Jr.
+\newblock A new construction for {H}adamard matrices.
+\newblock \emph{Bulletin of the American Mathematical Society}, 71\penalty0
+  (1):\penalty0 169--170, 1965.
+\newblock \doi{10.1090/S0002-9904-1965-11273-3}.
+
+\bibitem[Bennett et~al.(2026)Bennett, Bright, Colinot, and
+  Nayak]{bennett2026quaternionic}
+Aidan Bennett, Curtis Bright, Paul Colinot, and Ashwin Nayak.
+\newblock Quaternionic perfect sequences and {H}adamard matrices.
+\newblock \emph{arXiv preprint arXiv:2601.22337}, 2026.
+\newblock \doi{10.48550/arXiv.2601.22337}.
+\newblock Enumeration of Williamson-type matrices up to order 21 via
+  quaternionic perfect sequences.
+
+\bibitem[Bright et~al.(2019)Bright, Kotsireas, and Ganesh]{bright2019applying}
+Curtis Bright, Ilias Kotsireas, and Vijay Ganesh.
+\newblock Applying computer algebra and sat solving to hadamard matrices.
+\newblock In \emph{Proceedings of ISSAC}, 2019.
+\newblock \doi{10.1145/3326229.3326260}.
+
+\bibitem[Bright et~al.(2021)Bright, Ganesh, Kotsireas, and
+  Heinle]{bright2021sat}
+Curtis Bright, Vijay Ganesh, Ilias Kotsireas, and Albert Heinle.
+\newblock A sat+cas method for enumerating best matrices.
+\newblock \emph{arXiv preprint arXiv:1907.04987}, 2021.
+\newblock \doi{10.48550/arXiv.1907.04987}.
+\newblock SAT+CAS hybrid method for constructing combinatorial matrices.
+  Applied to best matrices up to order 208.
+
+\bibitem[Cati and Pasechnik(2023)]{cati2023implementing}
+Matteo Cati and Dmitrii~V. Pasechnik.
+\newblock Implementing {H}adamard matrices in {SageMath}.
+\newblock \emph{arXiv preprint arXiv:2306.16812}, 2023.
+\newblock \doi{10.48550/arXiv.2306.16812}.
+\newblock Implementation covering all known Hadamard and skew Hadamard orders
+  up to 1000.
+
+\bibitem[Cati and Pasechnik(2024)]{cati2024hadamard}
+Mattia Cati and Dmitrii~V. Pasechnik.
+\newblock A database of hadamard matrices.
+\newblock \emph{arXiv preprint arXiv:2411.18897}, 2024.
+\newblock \doi{10.48550/arXiv.2411.18897}.
+\newblock Comprehensive database of Hadamard matrix constructions for orders up
+  to 1208. Order 668 listed as first missing.
+
+\bibitem[Colbourn and Dinitz(2007)]{colbourn2007handbook}
+Charles~J. Colbourn and Jeffrey~H. Dinitz.
+\newblock \emph{Handbook of Combinatorial Designs}.
+\newblock Chapman and Hall/CRC, 2nd edition, 2007.
+\newblock \doi{10.1201/9781420010541}.
+
+\bibitem[Cooper and Wallis(1972)]{cooper1972wallis}
+John Cooper and Jennifer Wallis.
+\newblock A construction of hadamard matrices.
+\newblock \emph{Bulletin of the Australian Mathematical Society}, 7\penalty0
+  (2):\penalty0 269--277, 1972.
+\newblock \doi{10.1017/S0004972700045081}.
+
+\bibitem[de~Launey(2009)]{delauney2009asymptotic}
+Warwick de~Launey.
+\newblock On the asymptotic existence of {H}adamard matrices.
+\newblock \emph{Journal of Combinatorial Theory, Series A}, 116\penalty0
+  (4):\penalty0 1002--1008, 2009.
+\newblock \doi{10.1016/j.jcta.2009.01.001}.
+
+\bibitem[de~Launey and Flannery(2011)]{delauney2011flannery}
+Warwick de~Launey and Dane Flannery.
+\newblock \emph{Algebraic Design Theory}, volume 175 of \emph{Mathematical
+  Surveys and Monographs}.
+\newblock American Mathematical Society, 2011.
+\newblock \doi{10.1090/surv/175}.
+
+\bibitem[de~Launey and Gordon(2014)]{delauney2014density}
+Warwick de~Launey and Daniel~M. Gordon.
+\newblock On the density of the set of known {H}adamard orders.
+\newblock \emph{Cryptography and Communications}, 6\penalty0 (4):\penalty0
+  233--242, 2014.
+\newblock \doi{10.1007/s12095-014-0105-7}.
+
+\bibitem[Djokovi{\'c}(2009)]{djokovic2009sds}
+Dragomir~Z. Djokovi{\'c}.
+\newblock Supplementary difference sets with symmetry for {H}adamard matrices.
+\newblock \emph{Operators and Matrices}, 3\penalty0 (4):\penalty0 557--569,
+  2009.
+\newblock \doi{10.7153/oam-03-33}.
+
+\bibitem[Djokovi{\'c} and Kotsireas(2008)]{djokovic2008williamson}
+Drago{\v{s}} Djokovi{\'c} and Ilias~S. Kotsireas.
+\newblock Williamson matrices of order $4n$ for $n = 33, 35, 39$.
+\newblock \emph{Discrete Mathematics}, 308\penalty0 (13):\penalty0 2796--2801,
+  2008.
+\newblock \doi{10.1016/j.disc.2007.05.009}.
+
+\bibitem[Djokovi{\'c} and Kotsireas(2018)]{djokovic2018goethals}
+Drago{\v{s}} Djokovi{\'c} and Ilias~S. Kotsireas.
+\newblock Goethals-seidel difference families with symmetric or skew base
+  blocks.
+\newblock \emph{arXiv preprint arXiv:1802.00556}, 2018.
+\newblock \doi{10.48550/arXiv.1802.00556}.
+\newblock Systematic search for GS difference families using orbit
+  decomposition and multiplier groups.
+
+\bibitem[Eliahou(2025)]{eliahou2025modular}
+Shalom Eliahou.
+\newblock A 64-modular {H}adamard matrix of order 668.
+\newblock \emph{The Australasian Journal of Combinatorics}, 93\penalty0
+  (2):\penalty0 422--427, 2025.
+\newblock Improves the modular record for order 668 from 32-modular to
+  64-modular. HAL: hal-05393934.
+
+\bibitem[Goethals and Seidel(1967)]{goethals1967orthogonal}
+Jean-Marie Goethals and Johan~J. Seidel.
+\newblock Orthogonal matrices with zero diagonal.
+\newblock \emph{Canadian Journal of Mathematics}, 19:\penalty0 1001--1010,
+  1967.
+\newblock \doi{10.4153/CJM-1967-091-8}.
+\newblock Introduced the Goethals--Seidel array for Hadamard matrix
+  construction.
+
+\bibitem[Hadamard(1893)]{hadamard1893resolution}
+Jacques Hadamard.
+\newblock R{\'e}solution d'une question relative aux d{\'e}terminants.
+\newblock \emph{Bulletin des Sciences Math{\'e}matiques}, 17:\penalty0
+  240--246, 1893.
+\newblock Original statement of the Hadamard conjecture.
+
+\bibitem[Horadam(2007)]{horadam2007hadamard}
+Kathy~J. Horadam.
+\newblock \emph{Hadamard Matrices and Their Applications}.
+\newblock Princeton University Press, 2007.
+\newblock Comprehensive reference on Hadamard matrices, covering algebraic,
+  combinatorial, and coding-theoretic aspects.
+
+\bibitem[Kharaghani and Tayfeh-Rezaie(2005)]{kharaghani2005hadamard428}
+Hadi Kharaghani and Behruz Tayfeh-Rezaie.
+\newblock A hadamard matrix of order 428.
+\newblock \emph{Journal of Combinatorial Designs}, 13\penalty0 (6):\penalty0
+  435--440, 2005.
+\newblock \doi{10.1002/jcd.20043}.
+
+\bibitem[Miyamoto(1991)]{miyamoto1991hadamard}
+Masahiko Miyamoto.
+\newblock A construction of hadamard matrices.
+\newblock \emph{Journal of Combinatorial Theory, Series A}, 57\penalty0
+  (1):\penalty0 86--108, 1991.
+\newblock \doi{10.1016/0097-3165(91)90008-5}.
+
+\bibitem[Paley(1933)]{paley1933orthogonal}
+Raymond E. A.~C. Paley.
+\newblock On orthogonal matrices.
+\newblock \emph{Journal of Mathematics and Physics}, 12\penalty0
+  (1-4):\penalty0 311--320, 1933.
+\newblock \doi{10.1002/sapm1933121311}.
+
+\bibitem[{PlanetMath contributors}(2024)]{planetmath_hadamard}
+{PlanetMath contributors}.
+\newblock Hadamard conjecture.
+\newblock \url{https://planetmath.org/HadamardConjecture}, 2024.
+\newblock Lists 167 as one of 13 integers m < 500 where H(4m) is unknown.
+
+\bibitem[Seberry(2017)]{seberry2020hadamard}
+Jennifer Seberry.
+\newblock \emph{Orthogonal Designs: Hadamard Matrices, Quadratic Forms and
+  Algebras}.
+\newblock Springer, 2017.
+\newblock \doi{10.1007/978-3-319-59032-5}.
+\newblock Comprehensive monograph on Hadamard matrices and related structures.
+
+\bibitem[Seberry and Yamada(1992)]{seberry1992hadamard}
+Jennifer Seberry and Mieko Yamada.
+\newblock Hadamard matrices, sequences, and block designs.
+\newblock In Jeffrey~H. Dinitz and Douglas~R. Stinson, editors,
+  \emph{Contemporary Design Theory: A Collection of Surveys}, pages 431--560.
+  Wiley-Interscience, 1992.
+
+\bibitem[Seberry and Yamada(2020)]{seberry2020hadamard_monograph}
+Jennifer Seberry and Mieko Yamada.
+\newblock \emph{Hadamard Matrices: Constructions using Number Theory and Linear
+  Algebra}.
+\newblock John Wiley \& Sons, 2020.
+\newblock \doi{10.1002/9781119520252}.
+\newblock Comprehensive tables of known Hadamard orders up to n=2999.
+
+\bibitem[Suksmono(2018)]{suksmono2018quantum}
+Andriyan~Bayu Suksmono.
+\newblock Finding hadamard matrices by a quantum annealing machine.
+\newblock \emph{Scientific Reports}, 8:\penalty0 2986, 2018.
+\newblock \doi{10.1038/s41598-018-21394-1}.
+
+\bibitem[Suksmono(2025)]{suksmono2025qaoa}
+Andriyan~Bayu Suksmono.
+\newblock A quantum approximate optimization method for finding {H}adamard
+  matrices.
+\newblock \emph{Scientific Reports}, 15, 2025.
+\newblock \doi{10.1038/s41598-025-18778-1}.
+\newblock QAOA-based quantum computing approach for Hadamard matrix search.
+
+\bibitem[Sylvester(1867)]{sylvester1867thoughts}
+James~Joseph Sylvester.
+\newblock Thoughts on inverse orthogonal matrices, simultaneous
+  signsuccessions, and tessellated pavements in two or more colours.
+\newblock \emph{The London, Edinburgh, and Dublin Philosophical Magazine and
+  Journal of Science}, 34:\penalty0 461--475, 1867.
+\newblock \doi{10.1080/14786446708639914}.
+
+\bibitem[{The Sage Developers}(2024)]{sagemath_hadamard}
+{The Sage Developers}.
+\newblock {SageMath} {H}adamard matrix constructions.
+\newblock GitHub Issue \#34807:
+  \url{https://github.com/sagemath/sage/issues/34807}, 2024.
+\newblock 668 is the first order for which no Hadamard matrix construction is
+  available in SageMath.
+
+\bibitem[Turyn(1972)]{turyn1972hadamard}
+Richard~J. Turyn.
+\newblock An infinite class of williamson matrices.
+\newblock \emph{Journal of Combinatorial Theory, Series A}, 12\penalty0
+  (3):\penalty0 319--321, 1972.
+\newblock \doi{10.1016/0097-3165(72)90093-0}.
+
+\bibitem[Turyn(1974)]{turyn1974hadamard}
+Richard~J. Turyn.
+\newblock Hadamard matrices, {B}aumert-{H}all units, four-symbol sequences,
+  pulse compression, and surface wave encodings.
+\newblock \emph{Journal of Combinatorial Theory, Series A}, 16\penalty0
+  (3):\penalty0 313--333, 1974.
+\newblock \doi{10.1016/0097-3165(74)90056-0}.
+
+\bibitem[Williamson(1944)]{williamson1944hadamard}
+John Williamson.
+\newblock Hadamard's determinant theorem and the sum of four squares.
+\newblock \emph{Duke Mathematical Journal}, 11\penalty0 (1):\penalty0 65--81,
+  1944.
+\newblock \doi{10.1215/S0012-7094-44-01108-7}.
+
+\end{thebibliography}
